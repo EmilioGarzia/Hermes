@@ -1,4 +1,4 @@
-package unipa.prog3.prog3;
+package unipa.prog3.view.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
