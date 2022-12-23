@@ -4,21 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7678a2eb-37a0-4ba8-ae44-296860f6a95e" name="Changes" comment="Project dependencies update">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/prog3/controller/genetica/Cromosoma.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/prog3/controller/genetica/Popolazione.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/prog3/model/entity/Cliente.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/prog3/model/entity/Collo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/prog3/model/entity/Veicolo.java" afterDir="false" />
+    <list default="true" id="7678a2eb-37a0-4ba8-ae44-296860f6a95e" name="Changes" comment="Upload of project fundamentals">
+      <change afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/controller/service/LoginService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/model/DataManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/model/entity/Utente.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/controller/HomeController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/controller/LoginController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/controller/MainController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/unipa/prog3/courier-view.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/unipa/prog3/home-view.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/unipa/prog3/login-view.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/unipa/prog3/main.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/unipa/prog3/user-view.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TODO" beforeDir="false" afterPath="$PROJECT_DIR$/TODO" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/prog3/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/prog3/view/HelloApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/prog3/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/prog3/view/controller/HelloController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/unipa/prog3/prog3/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/unipa/prog3/prog3/hello-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/model/entity/Veicolo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/model/entity/Veicolo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/MainApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/controller/HelloController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/unipa/prog3/hello-view.fxml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +33,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
@@ -84,18 +90,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "/run/media/data/manuel/IdeaProjects/Prog3",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/run/media/data/manuel/IdeaProjects/Prog3/src/main/resources/unipa/prog3/client&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/unipa/prog3" />
+      <recent name="$PROJECT_DIR$/src/main/resources/unipa/prog3/client" />
+      <recent name="$PROJECT_DIR$/src/main/resources/unipa/prog3/courier" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="unipa.prog3.prog3" />
     </key>
@@ -123,7 +134,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671547594298</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Upload of project fundamentals">
+      <created>1671549336916</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1671549336916</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -152,6 +170,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Project initial upload" />
     <MESSAGE value="Project dependencies update" />
-    <option name="LAST_COMMIT_MESSAGE" value="Project dependencies update" />
+    <MESSAGE value="Upload of project fundamentals" />
+    <option name="LAST_COMMIT_MESSAGE" value="Upload of project fundamentals" />
   </component>
 </project>

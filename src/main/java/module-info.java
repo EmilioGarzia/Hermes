@@ -1,4 +1,4 @@
-module unipa.prog3.prog3 {
+module unipa.prog {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.web;
@@ -11,9 +11,8 @@ module unipa.prog3.prog3 {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
 
-    opens unipa.prog3 to javafx.fxml;
-    exports unipa.prog3.view;
     opens unipa.prog3.view to javafx.fxml;
+    exports unipa.prog3.view;
     exports unipa.prog3.view.controller;
     opens unipa.prog3.view.controller to javafx.fxml;
 }

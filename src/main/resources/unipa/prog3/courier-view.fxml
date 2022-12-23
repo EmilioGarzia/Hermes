@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="370.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="10.0" layoutY="10.0" text="Codice collo:" AnchorPane.leftAnchor="140.0" AnchorPane.topAnchor="93.0" />
+      <TextField layoutX="228.0" layoutY="122.0" AnchorPane.leftAnchor="228.0" AnchorPane.rightAnchor="140.0" AnchorPane.topAnchor="90.0">
+         <font>
+            <Font name="Liberation Sans" size="13.0" />
+         </font>
+      </TextField>
+      <Label layoutX="83.0" layoutY="170.0" text="Centro di smistamento:" AnchorPane.leftAnchor="140.0" AnchorPane.topAnchor="145.0" />
+      <ComboBox layoutX="10.0" layoutY="10.0" prefWidth="150.0" AnchorPane.leftAnchor="293.0" AnchorPane.rightAnchor="140.0" AnchorPane.topAnchor="141.0" />
+      <Button alignment="CENTER" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="35.0" text="Segnala consegna" textAlignment="CENTER" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="190.0" AnchorPane.topAnchor="240.0" />
+   </children>
+</AnchorPane>
