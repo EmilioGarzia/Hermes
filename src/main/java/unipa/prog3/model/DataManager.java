@@ -1,19 +1,16 @@
 package unipa.prog3.model;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.Vector;
-import java.util.function.IntFunction;
 
 public class DataManager {
     private static final String dataPath = System.getProperty("user.home") + File.separator + "prog3" + File.separator;
+    public static final String delimiter = ";";
 
     private static DataManager instance;
 
-    public String[] readData(String fileName) {
-        String fullPath = dataPath + fileName;
+    public String[] readData(Table table) {
+        String fullPath = dataPath + table.getFileName();
         try(BufferedReader reader = new BufferedReader(new FileReader(fullPath))) {
             Vector<String> data = new Vector<>();
             while(reader.ready())
@@ -26,9 +23,35 @@ public class DataManager {
         return null;
     }
 
+    public boolean insertData(Table table, String data) {
+        String fullPath = dataPath + table.getFileName();
+        try(PrintWriter writer = new PrintWriter(new FileOutputStream(fullPath, true))) {
+            writer.println(data);
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
     public static DataManager getInstance() {
         if (instance == null)
             instance = new DataManager();
         return instance;
+    }
+
+    public enum Table {
+        USERS("users.csv");
+
+        private final String fileName;
+
+        Table(String fileName) {
+            this.fileName = fileName;
+        }
+
+        public String getFileName() {
+            return fileName;
+        }
     }
 }

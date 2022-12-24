@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="370.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unipa.prog3.view.controller.SignupController">
+   <children>
+      <Label fx:id="errorLabel" alignment="CENTER" textFill="RED" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="0.0" />
+      <Label text="Nome:" AnchorPane.leftAnchor="180.0" AnchorPane.topAnchor="45.0" />
+      <TextField fx:id="nameField" AnchorPane.leftAnchor="235.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="40.0" />
+      <Label layoutX="10.0" layoutY="10.0" text="Cognome:" AnchorPane.leftAnchor="160.0" AnchorPane.topAnchor="90.0" />
+      <TextField fx:id="surnameField" layoutX="10.0" layoutY="10.0" AnchorPane.leftAnchor="235.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="85.0" />
+      <Label layoutX="10.0" layoutY="10.0" text="Email:" AnchorPane.leftAnchor="185.0" AnchorPane.topAnchor="135.0" />
+      <TextField fx:id="emailField" layoutX="10.0" layoutY="10.0" AnchorPane.leftAnchor="235.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="130.0" />
+      <Label layoutX="10.0" layoutY="10.0" text="Crea password:" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="180.0" />
+      <PasswordField fx:id="passwordField" AnchorPane.leftAnchor="235.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="175.0">
+         <font>
+            <Font name="Liberation Sans" size="13.0" />
+         </font></PasswordField>
+      <Label layoutX="10.0" layoutY="10.0" text="Conferma password:" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="225.0" />
+      <PasswordField fx:id="passConfirmField" AnchorPane.leftAnchor="235.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="220.0">
+         <font>
+            <Font name="Liberation Sans" size="13.0" />
+         </font></PasswordField>
+      <Button defaultButton="true" layoutX="180.0" layoutY="268.0" mnemonicParsing="false" onAction="#onSubmitSignup" text="Registrati" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="270.0" />
+   </children>
+   <padding>
+      <Insets bottom="20.0" left="30.0" right="30.0" top="20.0" />
+   </padding>
+</AnchorPane>

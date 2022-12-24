@@ -27,7 +27,7 @@ public class MainController {
 
     @FXML
     public void onSignUp() {
-        loadView("/unipa/prog3/signup-form.fxml");
+        loadView("/unipa/prog3/signup-view.fxml");
     }
 
     public void loadView(String path) {
