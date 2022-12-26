@@ -3,7 +3,7 @@ package unipa.prog3.view.controller;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ScrollPane;
-import unipa.prog3.view.MainApplication;
+import unipa.prog3.MainApplication;
 
 import java.io.IOException;
 

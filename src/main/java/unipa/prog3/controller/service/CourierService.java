@@ -5,11 +5,8 @@ import unipa.prog3.model.entity.Courier;
 
 public class CourierService extends GenericService {
     public boolean signup(Courier courier) {
-        if (findCourierByEmail(courier.getEmail()) == null) {
-            dataManager.insertData(DataManager.Table.USERS, courierToString(courier));
-            return true;
-        }
-
+        if (findCourierByEmail(courier.getEmail()) == null)
+            return dataManager.insertData(DataManager.Table.USERS, courierToString(courier));
         return false;
     }
 

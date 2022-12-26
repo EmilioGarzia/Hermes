@@ -4,31 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7678a2eb-37a0-4ba8-ae44-296860f6a95e" name="Changes" comment="Created views">
-      <change afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/controller/service/CourierService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/controller/service/GenericService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/model/entity/Courier.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/controller/SignupController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/unipa/prog3/signup-view.fxml" afterDir="false" />
+    <list default="true" id="84d07227-441a-45ac-bbf6-7fe5dec144f1" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/controller/service/LoginService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/controller/service/CourierService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/controller/service/CourierService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/model/DataManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/model/DataManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/MainApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/controller/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/controller/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/unipa/prog3/login-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/unipa/prog3/login-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="FxmlFile" />
-        <option value="Class" />
-      </list>
-    </option>
   </component>
   <component name="Git.Settings">
     <favorite-branches>
@@ -41,42 +30,17 @@
               </list>
             </value>
           </entry>
-          <entry type="REMOTE">
-            <value>
-              <list>
-                <branch-info repo="$PROJECT_DIR$" source="main/main" />
-              </list>
-            </value>
-          </entry>
         </map>
       </branch-storage>
     </favorite-branches>
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="master" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="MavenImportPreferences">
-    <option name="generalSettings">
-      <MavenGeneralSettings>
-        <option name="mavenHome" value="Use Maven wrapper" />
-        <option name="useMavenConfig" value="true" />
-      </MavenGeneralSettings>
-    </option>
-    <option name="importingSettings">
-      <MavenImportingSettings>
-        <option name="workspaceImportEnabled" value="true" />
-      </MavenImportingSettings>
-    </option>
-  </component>
-  <component name="ProjectId" id="2JBJDYl8bOS7WcvGMHiKawrOOFR" />
+  <component name="ProjectId" id="2JQMh4qcfVK9VnBbu6KaLlSs3JD" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="2" id="Add" />
+    <OptionsSetting value="false" id="Update" />
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -86,61 +50,23 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/run/media/data/manuel/IdeaProjects/Prog3/src/main/resources/unipa/prog3/client&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+    &quot;last_opened_file_path&quot;: &quot;/home/manuel/IdeaProjects/Prog3&quot;
   }
 }</component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/resources/unipa/prog3" />
-      <recent name="$PROJECT_DIR$/src/main/resources/unipa/prog3/client" />
-      <recent name="$PROJECT_DIR$/src/main/resources/unipa/prog3/courier" />
-    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="unipa.prog3.prog3" />
+      <recent name="unipa.prog3" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="7678a2eb-37a0-4ba8-ae44-296860f6a95e" name="Changes" comment="" />
-      <created>1671545424392</created>
+      <changelist id="84d07227-441a-45ac-bbf6-7fe5dec144f1" name="Changes" comment="" />
+      <created>1672005973486</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1671545424392</updated>
+      <updated>1672005973486</updated>
     </task>
-    <task id="LOCAL-00001" summary="Project initial upload">
-      <created>1671547116527</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1671547116528</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Project dependencies update">
-      <created>1671547594297</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1671547594298</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Upload of project fundamentals">
-      <created>1671549336916</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1671549336916</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Created views">
-      <created>1671833748528</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1671833748528</updated>
-    </task>
-    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -154,7 +80,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="main/HEAD" />
+                        <option value="main/main" />
                       </list>
                     </value>
                   </entry>
@@ -165,12 +91,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="Project initial upload" />
-    <MESSAGE value="Project dependencies update" />
-    <MESSAGE value="Upload of project fundamentals" />
-    <MESSAGE value="Created views" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created views" />
   </component>
 </project>
