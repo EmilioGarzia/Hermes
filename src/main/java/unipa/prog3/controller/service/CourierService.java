@@ -3,10 +3,14 @@ package unipa.prog3.controller.service;
 import unipa.prog3.model.DataManager;
 import unipa.prog3.model.entity.Courier;
 
-public class CourierService extends GenericService {
+public class CourierService extends GenericService<Courier> {
+    public CourierService() {
+        super(DataManager.Table.COURIERS);
+    }
+
     public boolean signup(Courier courier) {
         if (findCourierByEmail(courier.getEmail()) == null) {
-            dataManager.insertData(DataManager.Table.USERS, courierToString(courier));
+            insert(courier);
             return true;
         }
 
@@ -19,10 +23,10 @@ public class CourierService extends GenericService {
     }
 
     private Courier findCourierByEmail(String email) {
-        String[] data = dataManager.readData(DataManager.Table.USERS);
+        String[] data = dataManager.readData(DataManager.Table.COURIERS);
         if (data != null)
             for (String s : data) {
-                Courier c = courierFromString(s);
+                Courier c = entityFromString(s);
                 if (c.getEmail().equals(email))
                     return c;
             }
@@ -30,12 +34,12 @@ public class CourierService extends GenericService {
         return null;
     }
 
-    private String courierToString(Courier courier) {
+    public String entityToString(Courier courier) {
         return courier.getNome() + DataManager.delimiter + courier.getCognome() + DataManager.delimiter +
                 courier.getEmail() + DataManager.delimiter + courier.getPassword();
     }
 
-    private Courier courierFromString(String s) {
+    public Courier entityFromString(String s) {
         String[] info = s.split(DataManager.delimiter);
         return new Courier(info[0], info[1], info[2], info[3]);
     }

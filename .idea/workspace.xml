@@ -4,18 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7678a2eb-37a0-4ba8-ae44-296860f6a95e" name="Changes" comment="Created views">
-      <change afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/controller/service/CourierService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/controller/service/GenericService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/model/entity/Courier.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/controller/SignupController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/unipa/prog3/signup-view.fxml" afterDir="false" />
+    <list default="true" id="7678a2eb-37a0-4ba8-ae44-296860f6a95e" name="Changes" comment="Added signup view">
+      <change afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/controller/service/ClientService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/controller/service/SendingService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/model/entity/Entity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/controller/SendController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/controller/TrackController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/unipa/prog3/send-view.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/unipa/prog3/track-view.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/controller/service/LoginService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/controller/service/CourierService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/controller/service/CourierService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/controller/service/GenericService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/controller/service/GenericService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/model/DataManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/model/DataManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/controller/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/unipa/prog3/login-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/unipa/prog3/login-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/model/entity/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/model/entity/Cliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/model/entity/Collo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/model/entity/Collo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/model/entity/Courier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/model/entity/Courier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/model/entity/Utente.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/controller/HomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/unipa/prog3/home-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/unipa/prog3/home-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/unipa/prog3/main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/unipa/prog3/main.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,7 +147,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671833748528</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Added signup view">
+      <created>1671892030810</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1671892030810</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -171,6 +185,7 @@
     <MESSAGE value="Project dependencies update" />
     <MESSAGE value="Upload of project fundamentals" />
     <MESSAGE value="Created views" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created views" />
+    <MESSAGE value="Added signup view" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added signup view" />
   </component>
 </project>

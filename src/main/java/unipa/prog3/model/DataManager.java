@@ -42,7 +42,9 @@ public class DataManager {
     }
 
     public enum Table {
-        USERS("users.csv");
+        COURIERS("couriers.csv"),
+        CLIENTS("clients.csv"),
+        PACKAGES("packages.csv");
 
         private final String fileName;
 

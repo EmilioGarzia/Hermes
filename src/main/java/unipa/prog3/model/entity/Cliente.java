@@ -1,12 +1,19 @@
 package unipa.prog3.model.entity;
 
-public class Cliente {
+public class Cliente extends Entity {
     private final String nome, cognome;
-    private String indirizzo, cap, città;
+    private String indirizzo, città, stato;
+    private int cap;
+    private String email, telefono;
 
-    public Cliente(String nome, String cognome) {
+    public Cliente(String id, String nome, String cognome) {
+        super(id);
         this.nome = nome;
         this.cognome = cognome;
+    }
+
+    public Cliente(String nome, String cognome) {
+        this(null, nome, cognome);
     }
 
     public String getNome() {
@@ -25,7 +32,7 @@ public class Cliente {
         this.indirizzo = indirizzo;
     }
 
-    public String getCap() {
+    public int getCap() {
         return cap;
     }
 
@@ -33,11 +40,35 @@ public class Cliente {
         return città;
     }
 
-    public void setCap(String cap) {
+    public void setCap(int cap) {
         this.cap = cap;
     }
 
     public void setCittà(String città) {
         this.città = città;
+    }
+
+    public String getStato() {
+        return stato;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setStato(String stato) {
+        this.stato = stato;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 }
