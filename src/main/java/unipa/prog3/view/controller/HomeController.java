@@ -1,7 +1,7 @@
 package unipa.prog3.view.controller;
 
 import javafx.fxml.FXML;
-import unipa.prog3.view.MainApplication;
+import unipa.prog3.MainApplication;
 
 public class HomeController {
     @FXML

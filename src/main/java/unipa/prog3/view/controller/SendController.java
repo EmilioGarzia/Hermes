@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import unipa.prog3.controller.service.SendingService;
 import unipa.prog3.model.entity.Cliente;
-import unipa.prog3.model.entity.Collo;
 
 public class SendController {
     // Mittente

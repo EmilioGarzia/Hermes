@@ -26,10 +26,6 @@ public class MainApplication extends Application {
         launch();
     }
 
-    public static Stage getStage() {
-        return stage;
-    }
-
     public static MainController getMainController() {
         return mainController;
     }
