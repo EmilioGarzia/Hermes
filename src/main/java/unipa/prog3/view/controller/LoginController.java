@@ -5,7 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import unipa.prog3.controller.service.CourierService;
-import unipa.prog3.view.MainApplication;
+import unipa.prog3.MainApplication;
 
 public class LoginController {
     private final CourierService service;

@@ -11,8 +11,8 @@ module unipa.prog {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
 
-    opens unipa.prog3.view to javafx.fxml;
-    exports unipa.prog3.view;
     exports unipa.prog3.view.controller;
     opens unipa.prog3.view.controller to javafx.fxml;
+    exports unipa.prog3;
+    opens unipa.prog3 to javafx.fxml;
 }

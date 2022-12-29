@@ -1,4 +1,4 @@
-package unipa.prog3.view;
+package unipa.prog3;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

@@ -9,6 +9,16 @@ public class DataManager {
 
     private static DataManager instance;
 
+    static {
+        try {
+            File dir = new File(dataPath);
+            if (!dir.exists() && !dir.mkdir())
+                throw new FileNotFoundException();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
     public String[] readData(Table table) {
         String fullPath = dataPath + table.getFileName();
         try(BufferedReader reader = new BufferedReader(new FileReader(fullPath))) {
