@@ -5,11 +5,9 @@ import unipa.prog3.model.entity.Entity;
 
 public abstract class GenericService<T extends Entity> {
     protected final DataManager.Table table;
-    protected final DataManager dataManager;
 
     protected GenericService(DataManager.Table table) {
         this.table = table;
-        dataManager = new DataManager();
     }
 
     protected String generateID() {
@@ -29,11 +27,11 @@ public abstract class GenericService<T extends Entity> {
 
     protected void insert(T t) {
         t.setID(generateID());
-        dataManager.insertData(table, entityToString(t));
+        DataManager.getInstance().insertData(table, entityToString(t));
     }
 
     protected T find(String id) {
-        String[] records = dataManager.readData(table);
+        String[] records = DataManager.getInstance().readData(table);
         if (records != null)
             for (String s : records) {
                 T t = entityFromString(s);

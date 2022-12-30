@@ -8,6 +8,17 @@ public class ClientService extends GenericService<Cliente> {
         super(DataManager.Table.CLIENTS);
     }
 
+    public Cliente findRecord(Cliente cliente) {
+        String[] records = DataManager.getInstance().readData(table);
+        for (String s : records) {
+            Cliente client = entityFromString(s);
+            if (client.equals(cliente))
+                return client;
+        }
+
+        return null;
+    }
+
     public Cliente entityFromString(String s) {
         String[] info = s.split(DataManager.delimiter);
         Cliente client = new Cliente(info[0], info[1], info[2]);

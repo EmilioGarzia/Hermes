@@ -13,18 +13,28 @@ public class SendingService extends GenericService<Collo> {
     }
 
     public Collo send(Cliente sender, Cliente receiver, float weight) {
-        clientService.insert(sender);
-        clientService.insert(receiver);
+        Cliente foundSender = clientService.findRecord(sender);
+        if (foundSender == null)
+            clientService.insert(sender);
+        else sender.setID(foundSender.getID());
+
+        Cliente foundReceiver = clientService.findRecord(receiver);
+        if (foundReceiver == null)
+            clientService.insert(receiver);
+        else receiver.setID(foundReceiver.getID());
+        
         Collo pack = new Collo(null, sender, receiver, weight);
         insert(pack);
         return pack;
     }
 
+    @Override
     public String entityToString(Collo pack) {
         return pack.getID() + DataManager.delimiter + pack.getMittente().getID() + DataManager.delimiter +
                 pack.getDestinatario().getID() + DataManager.delimiter + pack.getPeso();
     }
 
+    @Override
     public Collo entityFromString(String s) {
         String[] info = s.split(DataManager.delimiter);
         ClientService clientService = new ClientService();

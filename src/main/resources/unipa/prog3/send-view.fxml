@@ -8,15 +8,12 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unipa.prog3.view.controller.SendController">
-   <padding>
-      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-   </padding>
+<AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="588.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unipa.prog3.view.controller.SendController">
    <children>
       <AnchorPane AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Separator AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="320.0" AnchorPane.topAnchor="11.0" />
-            <Separator layoutX="10.0" layoutY="10.0" prefWidth="240.0" AnchorPane.leftAnchor="320.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="11.0" />
+            <Separator AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="315.0" AnchorPane.topAnchor="11.0" />
+            <Separator layoutX="10.0" layoutY="10.0" prefWidth="240.0" AnchorPane.leftAnchor="315.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="11.0" />
             <Label alignment="CENTER" text="Mittente" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <font>
                   <Font name="System Bold" size="15.0" />
@@ -57,32 +54,32 @@
       </AnchorPane>
       <AnchorPane AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="260.0">
          <children>
-            <Separator prefWidth="255.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="10.0" />
-            <Separator prefWidth="255.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0" />
+            <Separator prefWidth="255.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="302.0" AnchorPane.topAnchor="10.0" />
+            <Separator prefWidth="255.0" AnchorPane.leftAnchor="302.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0" />
             <Label alignment="CENTER" text="Collo" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
             <Label text="Dimensioni" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="25.0">
-            <font>
-               <Font name="System Bold" size="13.0" />
-            </font>
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
             </Label>
-            <Label text="Larghezza                         cm" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="55.0" />
-            <TextField fx:id="widthField" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="395.0" AnchorPane.topAnchor="50.0" />
-            <Label text="Altezza                         cm" AnchorPane.leftAnchor="217.5" AnchorPane.topAnchor="55.0" />
-            <TextField fx:id="heightField" AnchorPane.leftAnchor="267.5" AnchorPane.rightAnchor="217.5" AnchorPane.topAnchor="50.0" />
-            <Label text="Profondità                        cm" AnchorPane.leftAnchor="390.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="55.0" />
-            <TextField fx:id="depthField" AnchorPane.leftAnchor="460.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="50.0" />
-            <Label text="Peso                          kg" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="90.0" />
-            <TextField fx:id="weightField" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="445.0" AnchorPane.topAnchor="85.0" />
+            <Label text="Larghezza                        cm" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="55.0" />
+            <TextField fx:id="widthField" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="393.0" AnchorPane.topAnchor="50.0" />
+            <Label text="Altezza                        cm" AnchorPane.leftAnchor="217.5" AnchorPane.topAnchor="55.0" />
+            <TextField fx:id="heightField" AnchorPane.leftAnchor="267.5" AnchorPane.rightAnchor="215.5" AnchorPane.topAnchor="50.0" />
+            <Label text="Profondità                        cm" AnchorPane.leftAnchor="380.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="55.0" />
+            <TextField fx:id="depthField" AnchorPane.leftAnchor="450.0" AnchorPane.rightAnchor="33.0" AnchorPane.topAnchor="50.0" />
+            <Label text="Peso                         kg" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="95.0" />
+            <TextField fx:id="weightField" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="443.0" AnchorPane.topAnchor="90.0" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="10.0" layoutY="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="395.0">
+      <AnchorPane AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="395.0">
          <children>
-            <Separator prefWidth="227.5" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="10.0" />
-            <Separator prefWidth="227.5" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0" />
+            <Separator prefWidth="227.5" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="330.0" AnchorPane.topAnchor="10.0" />
+            <Separator prefWidth="227.5" AnchorPane.leftAnchor="330.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0" />
             <Label alignment="CENTER" text="Destinatario" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <font>
                   <Font name="System Bold" size="15.0" />
@@ -121,6 +118,9 @@
             <TextField fx:id="receiverPhoneField" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="215.0" />
          </children>
       </AnchorPane>
-      <Button defaultButton="true" mnemonicParsing="false" onAction="#send" prefHeight="35.0" text="Spedisci collo" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="180.0" AnchorPane.rightAnchor="180.0" AnchorPane.topAnchor="660.0" />
+      <Button defaultButton="true" mnemonicParsing="false" onAction="#send" prefHeight="35.0" text="Spedisci collo" AnchorPane.leftAnchor="180.0" AnchorPane.rightAnchor="180.0" AnchorPane.topAnchor="660.0" />
    </children>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
 </AnchorPane>

@@ -9,12 +9,10 @@ import unipa.prog3.view.controller.MainController;
 import java.io.IOException;
 
 public class MainApplication extends Application {
-    private static Stage stage;
     private static MainController mainController;
 
     @Override
     public void start(Stage stage) throws IOException {
-        MainApplication.stage = stage;
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("/unipa/prog3/main.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Progetto Programmazione 3");

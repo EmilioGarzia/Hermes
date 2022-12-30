@@ -23,7 +23,7 @@ public class CourierService extends GenericService<Courier> {
     }
 
     private Courier findCourierByEmail(String email) {
-        String[] data = dataManager.readData(DataManager.Table.COURIERS);
+        String[] data = DataManager.getInstance().readData(DataManager.Table.COURIERS);
         if (data != null)
             for (String s : data) {
                 Courier c = entityFromString(s);

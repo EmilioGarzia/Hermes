@@ -9,7 +9,7 @@ public class DataManager {
 
     private static DataManager instance;
 
-    static {
+    private DataManager() {
         try {
             File dir = new File(dataPath);
             if (!dir.exists() && !dir.mkdir())

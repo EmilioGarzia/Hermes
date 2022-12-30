@@ -1,1 +1,4 @@
 Implementare la gestione dei colli
+
+Design pattern utilizzati:
+    - Singleton -> DataManager
