@@ -2,3 +2,8 @@ Implementare la gestione dei colli
 
 Design pattern utilizzati:
     - Singleton -> DataManager
+
+Design pattern idee:
+    - Adapter/Proxy/Flyweight -> DataManager
+    - Memento -> per il rollback in Table
+    - Flyweight -> Per oggetti Service

@@ -2,9 +2,10 @@ package unipa.prog3.model.entity;
 
 public class Collo extends Entity {
     private final Cliente mittente, destinatario;
-    private final float peso;
+    private final double peso;
+    private Veicolo veicolo;
 
-    public Collo(String codice, Cliente mittente, Cliente destinatario, float peso) {
+    public Collo(String codice, Cliente mittente, Cliente destinatario, double peso) {
         super(codice);
         this.mittente = mittente;
         this.destinatario = destinatario;
@@ -19,7 +20,15 @@ public class Collo extends Entity {
         return destinatario;
     }
 
-    public float getPeso() {
+    public double getPeso() {
         return peso;
+    }
+
+    public Veicolo getVeicolo() {
+        return veicolo;
+    }
+
+    public void setVeicolo(Veicolo veicolo) {
+        this.veicolo = veicolo;
     }
 }

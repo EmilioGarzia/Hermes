@@ -1,40 +1,20 @@
 package unipa.prog3.model.entity;
 
-public class Veicolo {
-    private final String codice, tipo;
-    private final int capienza;
-    private final Collo[] colli;
-    private int quantità;
+public class Veicolo extends Entity {
+    private final String tipo;
+    private final double capienza;
 
-    public Veicolo(String codice, String tipo, int capienza) {
-        this.codice = codice;
+    public Veicolo(String codice, String tipo, double capienza) {
+        super(codice);
         this.tipo = tipo;
         this.capienza = capienza;
-        colli = new Collo[capienza];
-    }
-
-    public boolean inserisciCollo(Collo collo) {
-        if (quantità < capienza) {
-            colli[quantità++] = collo;
-            return true;
-        }
-
-        return false;
-    }
-
-    public String getCodice() {
-        return codice;
     }
 
     public String getTipo() {
         return tipo;
     }
 
-    public int getCapienza() {
+    public double getCapienza() {
         return capienza;
-    }
-
-    public int getQuantità() {
-        return quantità;
     }
 }

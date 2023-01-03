@@ -1,11 +1,13 @@
 package unipa.prog3.controller.service;
 
-import unipa.prog3.model.DataManager;
+import unipa.prog3.model.io.DataManager;
 import unipa.prog3.model.entity.Courier;
+
+import java.util.Vector;
 
 public class CourierService extends GenericService<Courier> {
     public CourierService() {
-        super(DataManager.Table.COURIERS);
+        super(DataManager.COURIERS);
     }
 
     public boolean signup(Courier courier) {
@@ -18,20 +20,15 @@ public class CourierService extends GenericService<Courier> {
     }
 
     public boolean login(String email, String password) {
-        Courier courier = findCourierByEmail(email);
-        return courier != null && courier.getPassword().equals(password);
+        Vector<Courier> couriers = findCourierByEmail(email);
+        for (Courier c : couriers)
+            if (c.getPassword().equals(password))
+                return true;
+        return false;
     }
 
-    private Courier findCourierByEmail(String email) {
-        String[] data = DataManager.getInstance().readData(DataManager.Table.COURIERS);
-        if (data != null)
-            for (String s : data) {
-                Courier c = entityFromString(s);
-                if (c.getEmail().equals(email))
-                    return c;
-            }
-
-        return null;
+    private Vector<Courier> findCourierByEmail(String email) {
+        return find(courier -> courier.getEmail().equals(email));
     }
 
     public String entityToString(Courier courier) {

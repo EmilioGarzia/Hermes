@@ -1,6 +1,6 @@
 package unipa.prog3.controller.service;
 
-import unipa.prog3.model.DataManager;
+import unipa.prog3.model.io.DataManager;
 import unipa.prog3.model.entity.Cliente;
 import unipa.prog3.model.entity.Collo;
 
@@ -8,7 +8,7 @@ public class SendingService extends GenericService<Collo> {
     private final ClientService clientService;
 
     public SendingService() {
-        super(DataManager.Table.PACKAGES);
+        super(DataManager.PACKAGES);
         clientService = new ClientService();
     }
 
@@ -23,7 +23,7 @@ public class SendingService extends GenericService<Collo> {
             clientService.insert(receiver);
         else receiver.setID(foundReceiver.getID());
         
-        Collo pack = new Collo(null, sender, receiver, weight);
+        Collo pack = new Collo(generateID(), sender, receiver, weight);
         insert(pack);
         return pack;
     }

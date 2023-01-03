@@ -16,6 +16,15 @@ public class Cliente extends Entity {
         this(null, nome, cognome);
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Cliente))
+            return false;
+        Cliente cliente = (Cliente) obj;
+        return cliente.nome.equals(nome) && cliente.cognome.equals(cognome) && cliente.indirizzo.equals(indirizzo)
+                && cliente.città.equals(città) && cliente.stato.equals(stato) && cliente.cap == cap;
+    }
+
     public String getNome() {
         return nome;
     }

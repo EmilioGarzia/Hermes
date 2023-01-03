@@ -1,21 +1,20 @@
 package unipa.prog3.controller.service;
 
-import unipa.prog3.model.DataManager;
+import unipa.prog3.model.io.DataManager;
 import unipa.prog3.model.entity.Cliente;
+
+import java.util.Arrays;
+import java.util.Vector;
 
 public class ClientService extends GenericService<Cliente> {
     public ClientService() {
-        super(DataManager.Table.CLIENTS);
+        super(DataManager.CLIENTS);
     }
 
     public Cliente findRecord(Cliente cliente) {
-        String[] records = DataManager.getInstance().readData(table);
-        for (String s : records) {
-            Cliente client = entityFromString(s);
-            if (client.equals(cliente))
-                return client;
-        }
-
+        Vector<Cliente> clienti = find(cliente::equals);
+        if (!clienti.isEmpty())
+            return clienti.get(0);
         return null;
     }
 

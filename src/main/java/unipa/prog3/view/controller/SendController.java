@@ -1,9 +1,20 @@
 package unipa.prog3.view.controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.TextField;
+import unipa.prog3.controller.genetica.Cromosoma;
+import unipa.prog3.controller.genetica.Popolazione;
+import unipa.prog3.controller.service.PackageService;
 import unipa.prog3.controller.service.SendingService;
+import unipa.prog3.controller.service.VehicleService;
 import unipa.prog3.model.entity.Cliente;
+import unipa.prog3.model.entity.Collo;
+import unipa.prog3.model.entity.Veicolo;
+import unipa.prog3.model.io.DataManager;
+
+import java.util.List;
+import java.util.Vector;
 
 public class SendController {
     // Mittente
@@ -27,9 +38,20 @@ public class SendController {
     private TextField receiverEmailField, receiverPhoneField;
 
     private final SendingService service;
+    private final PackageService packageService;
+
+    private final Vector<Veicolo> veicoli;
+    private final Vector<Collo> colli;
+    private final Popolazione popolazione;
 
     public SendController() {
         service = new SendingService();
+        packageService = new PackageService(DataManager.PACKAGES);
+
+        veicoli = new VehicleService().readAll();
+        colli = packageService.readAll();
+
+        popolazione = new Popolazione(100);
     }
 
     @FXML
@@ -73,6 +95,23 @@ public class SendController {
         receiver.setIndirizzo(receiverAddress);
         receiver.setEmail(receiverEmail);
         receiver.setTelefono(receiverPhone);
-        service.send(sender, receiver, weight);
+        colli.add(service.send(sender, receiver, weight));
+        //spedisciVeicoli();
+    }
+
+    private void spedisciVeicoli() {
+        Cromosoma best = null;
+        for (Veicolo v : veicoli) {
+            Cromosoma soluzione = popolazione.findBestSolutionForSingleVehicle(v, colli, 10);
+            if (best == null || soluzione.fitness() > best.fitness())
+                best = soluzione;
+        }
+
+        if (best != null) {
+            for (Collo c : best) {
+                c.setVeicolo(best.getVeicolo());
+                packageService.update(c);
+            }
+        }
     }
 }
