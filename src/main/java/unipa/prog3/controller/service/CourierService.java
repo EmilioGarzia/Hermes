@@ -28,14 +28,16 @@ public class CourierService extends GenericService<Courier> {
     }
 
     private Vector<Courier> findCourierByEmail(String email) {
-        return find(courier -> courier.getEmail().equals(email));
+        return select(courier -> courier.getEmail().equals(email));
     }
 
+    @Override
     public String entityToString(Courier courier) {
         return courier.getNome() + DataManager.delimiter + courier.getCognome() + DataManager.delimiter +
                 courier.getEmail() + DataManager.delimiter + courier.getPassword();
     }
 
+    @Override
     public Courier entityFromString(String s) {
         String[] info = s.split(DataManager.delimiter);
         return new Courier(info[0], info[1], info[2], info[3]);

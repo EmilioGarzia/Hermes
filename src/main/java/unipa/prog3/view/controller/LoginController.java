@@ -6,10 +6,10 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import unipa.prog3.controller.service.CourierService;
 import unipa.prog3.MainApplication;
+import unipa.prog3.controller.service.util.ServiceProvider;
+import unipa.prog3.model.entity.Courier;
 
 public class LoginController {
-    private final CourierService service;
-
     @FXML
     private TextField emailField;
     @FXML
@@ -17,14 +17,11 @@ public class LoginController {
     @FXML
     private Label errorLabel;
 
-    public LoginController() {
-        service = new CourierService();
-    }
-
     @FXML
     protected void onSubmitLogin() {
         String email = emailField.getText();
         String password = passwordField.getText();
+        CourierService service = (CourierService) ServiceProvider.getService(Courier.class);
         if (service.login(email, password)) {
             errorLabel.setText("");
             MainApplication.getMainController().loadView("/unipa/prog3/courier-view.fxml");

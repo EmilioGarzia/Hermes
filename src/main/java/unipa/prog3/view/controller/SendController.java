@@ -1,19 +1,16 @@
 package unipa.prog3.view.controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.chart.PieChart;
 import javafx.scene.control.TextField;
 import unipa.prog3.controller.genetica.Cromosoma;
 import unipa.prog3.controller.genetica.Popolazione;
 import unipa.prog3.controller.service.PackageService;
-import unipa.prog3.controller.service.SendingService;
 import unipa.prog3.controller.service.VehicleService;
+import unipa.prog3.controller.service.util.ServiceProvider;
 import unipa.prog3.model.entity.Cliente;
 import unipa.prog3.model.entity.Collo;
 import unipa.prog3.model.entity.Veicolo;
-import unipa.prog3.model.io.DataManager;
 
-import java.util.List;
 import java.util.Vector;
 
 public class SendController {
@@ -37,7 +34,6 @@ public class SendController {
     @FXML
     private TextField receiverEmailField, receiverPhoneField;
 
-    private final SendingService service;
     private final PackageService packageService;
 
     private final Vector<Veicolo> veicoli;
@@ -45,12 +41,10 @@ public class SendController {
     private final Popolazione popolazione;
 
     public SendController() {
-        service = new SendingService();
-        packageService = new PackageService(DataManager.PACKAGES);
-
-        veicoli = new VehicleService().readAll();
-        colli = packageService.readAll();
-
+        packageService = (PackageService) ServiceProvider.getService(Collo.class);
+        VehicleService vehicleService = (VehicleService) ServiceProvider.getService(Veicolo.class);
+        veicoli = vehicleService.selectAll();
+        colli = packageService.selectAll();
         popolazione = new Popolazione(100);
     }
 
@@ -95,7 +89,7 @@ public class SendController {
         receiver.setIndirizzo(receiverAddress);
         receiver.setEmail(receiverEmail);
         receiver.setTelefono(receiverPhone);
-        colli.add(service.send(sender, receiver, weight));
+        colli.add(packageService.send(sender, receiver, weight));
         //spedisciVeicoli();
     }
 

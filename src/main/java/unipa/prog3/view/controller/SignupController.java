@@ -5,10 +5,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import unipa.prog3.controller.service.CourierService;
+import unipa.prog3.controller.service.util.ServiceProvider;
 import unipa.prog3.model.entity.Courier;
 
 public class SignupController {
-    private final CourierService service;
     @FXML
     private Label errorLabel;
     @FXML
@@ -21,10 +21,6 @@ public class SignupController {
     private TextField passwordField;
     @FXML
     private TextField passConfirmField;
-
-    public SignupController() {
-        service = new CourierService();
-    }
 
     @FXML
     public void onSubmitSignup() {
@@ -50,6 +46,7 @@ public class SignupController {
             errorLabel.setText("La password è troppo debole!");
         else {
             Courier courier = new Courier(name, surname, email, password);
+            CourierService service = (CourierService) ServiceProvider.getService(Courier.class);
             boolean success = service.signup(courier);
             if (success) {
                 errorLabel.setTextFill(Color.GREEN);

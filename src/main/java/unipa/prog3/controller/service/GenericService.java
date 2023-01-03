@@ -7,7 +7,7 @@ import unipa.prog3.model.io.Table;
 import java.util.Vector;
 import java.util.function.Predicate;
 
-public abstract class GenericService<T extends Entity> {
+public abstract class GenericService<T extends Entity> implements Service<T> {
     protected final Table table;
 
     protected GenericService(Table table) {
@@ -15,7 +15,8 @@ public abstract class GenericService<T extends Entity> {
         this.table = table;
     }
 
-    protected String generateID() {
+    @Override
+    public String generateID() {
         String language = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         final StringBuilder builder = new StringBuilder();
         do {
@@ -23,29 +24,19 @@ public abstract class GenericService<T extends Entity> {
                 int rand = (int) (Math.random() * language.length());
                 builder.append(language.charAt(rand));
             }
-        } while(!find(t -> t.getID().equals(builder.toString())).isEmpty());
+        } while(!select(t -> t.getID().equals(builder.toString())).isEmpty());
         return builder.toString();
     }
 
+    @Override
     public void insert(T t) {
         if (t.getID() == null)
             t.setID(generateID());
         DataManager.getInstance().insertData(table, entityToString(t));
     }
 
-    public void update(T t) {
-        DataManager.getInstance().updateData(table, entityToString(t));
-    }
-
-    public Vector<T> readAll() {
-        Vector<String> data = DataManager.getInstance().findData(table, null);
-        Vector<T> entities = new Vector<>();
-        for (String s : data)
-            entities.add(entityFromString(s));
-        return entities;
-    }
-
-    public Vector<T> find(Predicate<T> condition) {
+    @Override
+    public Vector<T> select(Predicate<T> condition) {
         Vector<String> records = DataManager.getInstance().findData(table, (condition != null) ?
                 data -> condition.test(entityFromString(data)) : null);
         Vector<T> entities = new Vector<>();
@@ -54,13 +45,23 @@ public abstract class GenericService<T extends Entity> {
         return entities;
     }
 
-    public T find(String id) {
-        Vector<T> entities = find(t -> t.getID().equals(id));
+    public Vector<T> selectAll() {
+        Vector<String> data = DataManager.getInstance().findData(table, null);
+        Vector<T> entities = new Vector<>();
+        for (String s : data)
+            entities.add(entityFromString(s));
+        return entities;
+    }
+
+    @Override
+    public void update(T t) {
+        DataManager.getInstance().updateData(table, entityToString(t));
+    }
+
+    public T select(String id) {
+        Vector<T> entities = select(t -> t.getID().equals(id));
         if (!entities.isEmpty())
             return entities.get(0);
         return null;
     }
-
-    public abstract T entityFromString(String s);
-    public abstract String entityToString(T t);
 }
