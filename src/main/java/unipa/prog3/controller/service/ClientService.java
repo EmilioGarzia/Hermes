@@ -7,7 +7,7 @@ import java.util.Vector;
 
 public class ClientService extends GenericService<Cliente> {
     public ClientService() {
-        super(DataManager.CLIENTS);
+        super("clients");
     }
 
     public Cliente findRecord(Cliente cliente) {

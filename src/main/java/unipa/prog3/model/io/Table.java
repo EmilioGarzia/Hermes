@@ -20,6 +20,7 @@ public class Table extends HashMap<String, Long> {
                 throw new FileNotFoundException();
 
             file = new RandomAccessFile(dataPath + fileName, "rw");
+            lastPosition = file.length();
         } catch(IOException e) {
             e.printStackTrace();
         }

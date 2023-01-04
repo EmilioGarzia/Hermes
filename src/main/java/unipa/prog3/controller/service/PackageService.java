@@ -9,24 +9,8 @@ public class PackageService extends GenericService<Collo> {
     private final ClientService clientService;
 
     public PackageService() {
-        super(DataManager.PACKAGES);
+        super("packages");
         clientService = (ClientService) ServiceProvider.getService(Cliente.class);
-    }
-
-    public Collo send(Cliente sender, Cliente receiver, float weight) {
-        Cliente foundSender = clientService.findRecord(sender);
-        if (foundSender == null)
-            clientService.insert(sender);
-        else sender.setID(foundSender.getID());
-
-        Cliente foundReceiver = clientService.findRecord(receiver);
-        if (foundReceiver == null)
-            clientService.insert(receiver);
-        else receiver.setID(foundReceiver.getID());
-
-        Collo pack = new Collo(generateID(), sender, receiver, weight);
-        insert(pack);
-        return pack;
     }
 
     @Override

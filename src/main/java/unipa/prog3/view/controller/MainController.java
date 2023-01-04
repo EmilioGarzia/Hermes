@@ -2,12 +2,14 @@ package unipa.prog3.view.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import unipa.prog3.MainApplication;
 
 import java.io.IOException;
+import java.util.Stack;
 
-public class MainController {
+public class MainController extends Stack<Controller> {
     @FXML
     private ScrollPane contentPane;
 
@@ -37,5 +39,12 @@ public class MainController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void navigateBack() {
+        pop();
+        Controller controller = get(size()-1);
+        contentPane.setContent(controller.getNode());
+        controller.onResume();
     }
 }

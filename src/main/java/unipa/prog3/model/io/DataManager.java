@@ -1,34 +1,30 @@
 package unipa.prog3.model.io;
 
+import java.util.HashMap;
 import java.util.Vector;
 import java.util.function.Predicate;
 
-public class DataManager {
+public abstract class DataManager {
     public static final String delimiter = ";";
-    public static final Table COURIERS = new Table("couriers.csv");
-    public static final Table CLIENTS = new Table("clients.csv");
-    public static final Table PACKAGES = new Table("packages.csv");
-    public static final Table VEHICLES = new Table("vehicles.csv");
+    private static final HashMap<String, Table> tablePool = new HashMap<>();
 
-    private static DataManager instance;
-
-    private DataManager() {}
-
-    public boolean insertData(Table table, String data) {
-        return table.addRecord(data);
+    public static Table getTable(String name) {
+        if (tablePool.containsKey(name))
+            return tablePool.get(name);
+        Table table = new Table(name.toLowerCase()+".csv");
+        tablePool.put(name, table);
+        return table;
     }
 
-    public Vector<String> findData(Table table, Predicate<String> condition) {
-        return table.selectRecords(condition);
+    public static boolean insertData(String tableName, String data) {
+        return getTable(tableName).addRecord(data);
     }
 
-    public boolean updateData(Table table, String data) {
-        return table.updateRecord(data);
+    public static Vector<String> findData(String tableName, Predicate<String> condition) {
+        return getTable(tableName).selectRecords(condition);
     }
 
-    public static DataManager getInstance() {
-        if (instance == null)
-            instance = new DataManager();
-        return instance;
+    public static boolean updateData(String tableName, String data) {
+        return getTable(tableName).updateRecord(data);
     }
 }

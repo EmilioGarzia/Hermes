@@ -7,7 +7,7 @@ import java.util.Vector;
 
 public class CourierService extends GenericService<Courier> {
     public CourierService() {
-        super(DataManager.COURIERS);
+        super("couriers");
     }
 
     public boolean signup(Courier courier) {

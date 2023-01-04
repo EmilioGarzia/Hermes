@@ -5,7 +5,7 @@ import unipa.prog3.model.entity.Veicolo;
 
 public class VehicleService extends GenericService<Veicolo> {
     public VehicleService() {
-        super(DataManager.VEHICLES);
+        super("vehicles");
     }
 
     @Override

@@ -2,17 +2,16 @@ package unipa.prog3.controller.service;
 
 import unipa.prog3.model.io.DataManager;
 import unipa.prog3.model.entity.Entity;
-import unipa.prog3.model.io.Table;
 
 import java.util.Vector;
 import java.util.function.Predicate;
 
 public abstract class GenericService<T extends Entity> implements Service<T> {
-    protected final Table table;
+    protected final String tableName;
 
-    protected GenericService(Table table) {
+    protected GenericService(String tableName) {
         super();
-        this.table = table;
+        this.tableName = tableName;
     }
 
     @Override
@@ -32,12 +31,12 @@ public abstract class GenericService<T extends Entity> implements Service<T> {
     public void insert(T t) {
         if (t.getID() == null)
             t.setID(generateID());
-        DataManager.getInstance().insertData(table, entityToString(t));
+        DataManager.insertData(tableName, entityToString(t));
     }
 
     @Override
     public Vector<T> select(Predicate<T> condition) {
-        Vector<String> records = DataManager.getInstance().findData(table, (condition != null) ?
+        Vector<String> records = DataManager.findData(tableName, (condition != null) ?
                 data -> condition.test(entityFromString(data)) : null);
         Vector<T> entities = new Vector<>();
         for (String s : records)
@@ -46,7 +45,7 @@ public abstract class GenericService<T extends Entity> implements Service<T> {
     }
 
     public Vector<T> selectAll() {
-        Vector<String> data = DataManager.getInstance().findData(table, null);
+        Vector<String> data = DataManager.findData(tableName, null);
         Vector<T> entities = new Vector<>();
         for (String s : data)
             entities.add(entityFromString(s));
@@ -55,7 +54,7 @@ public abstract class GenericService<T extends Entity> implements Service<T> {
 
     @Override
     public void update(T t) {
-        DataManager.getInstance().updateData(table, entityToString(t));
+        DataManager.updateData(tableName, entityToString(t));
     }
 
     public T select(String id) {

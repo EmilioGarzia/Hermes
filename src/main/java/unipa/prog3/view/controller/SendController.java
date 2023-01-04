@@ -1,9 +1,18 @@
 package unipa.prog3.view.controller;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.ObservableListBase;
 import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.util.StringConverter;
+import unipa.prog3.MainApplication;
 import unipa.prog3.controller.genetica.Cromosoma;
 import unipa.prog3.controller.genetica.Popolazione;
+import unipa.prog3.controller.service.ClientService;
 import unipa.prog3.controller.service.PackageService;
 import unipa.prog3.controller.service.VehicleService;
 import unipa.prog3.controller.service.util.ServiceProvider;
@@ -11,29 +20,17 @@ import unipa.prog3.model.entity.Cliente;
 import unipa.prog3.model.entity.Collo;
 import unipa.prog3.model.entity.Veicolo;
 
+import java.awt.*;
+import java.util.HashMap;
 import java.util.Vector;
 
-public class SendController {
-    // Mittente
+public class SendController extends Controller {
     @FXML
-    private TextField senderNameField, senderSurnameField;
+    private ChoiceBox<String> senderChooser, receiverChooser;
     @FXML
-    private TextField senderCountryField, senderTownField, senderCAPField, senderAddressField;
-    @FXML
-    private TextField senderEmailField, senderPhoneField;
+    private TextField weightField;
 
-    // Collo
-    @FXML
-    private TextField widthField, heightField, depthField, weightField;
-
-    // Destinatario
-    @FXML
-    private TextField receiverNameField, receiverSurnameField;
-    @FXML
-    private TextField receiverCountryField, receiverTownField, receiverCAPField, receiverAddressField;
-    @FXML
-    private TextField receiverEmailField, receiverPhoneField;
-
+    private final HashMap<String, Cliente> clientsMap;
     private final PackageService packageService;
 
     private final Vector<Veicolo> veicoli;
@@ -41,55 +38,40 @@ public class SendController {
     private final Popolazione popolazione;
 
     public SendController() {
+        super();
+        clientsMap = new HashMap<>();
         packageService = (PackageService) ServiceProvider.getService(Collo.class);
+        popolazione = new Popolazione(100);
+
         VehicleService vehicleService = (VehicleService) ServiceProvider.getService(Veicolo.class);
         veicoli = vehicleService.selectAll();
         colli = packageService.selectAll();
-        popolazione = new Popolazione(100);
+    }
+
+    public void initialize() {
+        populateChooser();
+        ChangeListener<Number> listener = (observable, oldValue, newValue) -> {
+            if (newValue.intValue() == clientsMap.size())
+                MainApplication.getMainController().loadView("/unipa/prog3/client-view.fxml");
+        };
+
+        senderChooser.getSelectionModel().selectedIndexProperty().addListener(listener);
+        receiverChooser.getSelectionModel().selectedIndexProperty().addListener(listener);
     }
 
     @FXML
     public void send() {
-        // Mittente
-        String senderName = senderNameField.getText();
-        String senderSurname = senderSurnameField.getText();
-        String senderCountry = senderCountryField.getText();
-        String senderTown = senderTownField.getText();
-        int senderCAP = Integer.parseInt(senderCAPField.getText());
-        String senderAddress = senderAddressField.getText();
-        String senderEmail = senderEmailField.getText();
-        String senderPhone = senderPhoneField.getText();
-        Cliente sender = new Cliente(senderName, senderSurname);
-        sender.setStato(senderCountry);
-        sender.setCittà(senderTown);
-        sender.setCap(senderCAP);
-        sender.setIndirizzo(senderAddress);
-        sender.setEmail(senderEmail);
-        sender.setTelefono(senderPhone);
+        Cliente sender = clientsMap.get(senderChooser.getValue());
+        Cliente receiver = clientsMap.get(receiverChooser.getValue());
+        if (sender == receiver) {
+            // TODO Add error label to update it here
+            return;
+        }
 
-        // Collo
-        float width = Float.parseFloat(widthField.getText());
-        float height = Float.parseFloat(heightField.getText());
-        float depth = Float.parseFloat(depthField.getText());
         float weight = Float.parseFloat(weightField.getText());
-
-        // Destinatario
-        String receiverName = receiverNameField.getText();
-        String receiverSurname = receiverSurnameField.getText();
-        String receiverCountry = receiverCountryField.getText();
-        String receiverTown = receiverTownField.getText();
-        int receiverCAP = Integer.parseInt(receiverCAPField.getText());
-        String receiverAddress = receiverAddressField.getText();
-        String receiverEmail = receiverEmailField.getText();
-        String receiverPhone = receiverPhoneField.getText();
-        Cliente receiver = new Cliente(receiverName, receiverSurname);
-        receiver.setStato(receiverCountry);
-        receiver.setCittà(receiverTown);
-        receiver.setCap(receiverCAP);
-        receiver.setIndirizzo(receiverAddress);
-        receiver.setEmail(receiverEmail);
-        receiver.setTelefono(receiverPhone);
-        colli.add(packageService.send(sender, receiver, weight));
+        Collo collo = new Collo(null, sender, receiver, weight);
+        packageService.insert(collo);
+        colli.add(collo);
         //spedisciVeicoli();
     }
 
@@ -107,5 +89,32 @@ public class SendController {
                 packageService.update(c);
             }
         }
+    }
+
+    @Override
+    public void onResume() {
+        populateChooser();
+    }
+
+    private void populateChooser() {
+        ClientService clientService = (ClientService) ServiceProvider.getService(Cliente.class);
+        Vector<Cliente> clienti = clientService.selectAll();
+        Vector<String> nomi = new Vector<>();
+
+        clientsMap.clear();
+        for (Cliente cliente : clienti) {
+            String nome = cliente.getNome() + " " + cliente.getCognome();
+            nomi.add(nome);
+            clientsMap.put(nome, cliente);
+        }
+        nomi.add("+ Aggiungi indirizzo");
+
+        int selectedSender = senderChooser.getSelectionModel().getSelectedIndex();
+        senderChooser.setItems(FXCollections.observableList(nomi));
+        senderChooser.getSelectionModel().select(selectedSender);
+
+        int selectedReceiver = receiverChooser.getSelectionModel().getSelectedIndex();
+        receiverChooser.setItems(FXCollections.observableList(nomi));
+        receiverChooser.getSelectionModel().select(selectedReceiver);
     }
 }
