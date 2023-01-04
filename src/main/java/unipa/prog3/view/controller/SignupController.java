@@ -8,7 +8,7 @@ import unipa.prog3.controller.service.CourierService;
 import unipa.prog3.controller.service.util.ServiceProvider;
 import unipa.prog3.model.entity.Courier;
 
-public class SignupController {
+public class SignupController extends Controller {
     @FXML
     private Label errorLabel;
     @FXML
@@ -53,5 +53,10 @@ public class SignupController {
                 errorLabel.setText("Registrazione avvenuta con successo!");
             } else errorLabel.setText("L'email è già presente nel nostro database!");
         }
+    }
+
+    @Override
+    public void onResume() {
+
     }
 }

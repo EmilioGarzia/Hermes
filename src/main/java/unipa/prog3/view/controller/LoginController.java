@@ -9,7 +9,7 @@ import unipa.prog3.MainApplication;
 import unipa.prog3.controller.service.util.ServiceProvider;
 import unipa.prog3.model.entity.Courier;
 
-public class LoginController {
+public class LoginController extends Controller {
     @FXML
     private TextField emailField;
     @FXML
@@ -27,4 +27,7 @@ public class LoginController {
             MainApplication.getMainController().loadView("/unipa/prog3/courier-view.fxml");
         } else errorLabel.setText("Email o password errati!");
     }
+
+    @Override
+    public void onResume() {}
 }

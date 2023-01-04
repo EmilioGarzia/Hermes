@@ -34,11 +34,6 @@ public class ClientController extends Controller {
         MainApplication.getMainController().navigateBack();
     }
 
-    @FXML
-    public void annulla() {
-        MainApplication.getMainController().navigateBack();
-    }
-
     @Override
     public void onResume() {
 

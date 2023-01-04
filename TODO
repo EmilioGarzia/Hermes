@@ -3,8 +3,8 @@ Implementare la gestione dei colli
 Design pattern utilizzati:
     - Template -> GenericService
     - Flyweight e Factory Pattern -> ServiceProvider
+    - Flyweight -> DataManager
+    - Builder -> ClientBuilder
 
-Design pattern idee:
-    - Adapter/Proxy/Flyweight -> DataManager
+Design pattern futuri:
     - Memento -> per il rollback in Table
-    - Builder -> per Cliente
