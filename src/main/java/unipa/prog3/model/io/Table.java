@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Vector;
 import java.util.function.Predicate;
 
-public class Table extends HashMap<String, Long> {
+public class Table {
     private static final String dataPath = System.getProperty("user.home") + File.separator + "prog3" + File.separator;
 
     private final String fileName;
@@ -29,7 +29,6 @@ public class Table extends HashMap<String, Long> {
     public boolean addRecord(String data) {
         try {
             writeRecord(lastPosition, data);
-            put(data, lastPosition);
             lastPosition = file.getFilePointer();
             return true;
         } catch(IOException e) {
@@ -39,14 +38,16 @@ public class Table extends HashMap<String, Long> {
         return false;
     }
 
-    public Vector<String> selectRecords(Predicate<String> condition) {
-        Vector<String> selected = new Vector<>();
+    public HashMap<Long, String> selectRecords(Predicate<String> condition) {
+        HashMap<Long, String> selected = new HashMap<>();
         try {
-            file.seek(0);
-            while (file.getFilePointer() < file.length()) {
+            long pos = 0;
+            file.seek(pos);
+            while(pos < file.length()) {
                 String record = file.readLine().trim();
                 if (condition == null || condition.test(record))
-                    selected.add(record);
+                    selected.put(pos, record);
+                pos = file.getFilePointer();
             }
         } catch(IOException e) {
             e.printStackTrace();
@@ -55,9 +56,8 @@ public class Table extends HashMap<String, Long> {
         return selected;
     }
 
-    public boolean updateRecord(String data) {
+    public boolean updateRecord(long pos, String data) {
         try {
-            long pos = get(data);
             file.seek(pos);
             String oldData = file.readLine();
             if (oldData.length() >= data.length()) {
@@ -71,7 +71,7 @@ public class Table extends HashMap<String, Long> {
             } else {
                 // Aggiorna la tabella creando un nuovo file
                 String tempFilePath = dataPath + "." + fileName + ".tmp";
-                RandomAccessFile raf = new RandomAccessFile(tempFilePath, "w");
+                RandomAccessFile raf = new RandomAccessFile(tempFilePath, "rw");
                 file.seek(0);
                 while(file.getFilePointer() < file.length()) {
                     if (file.getFilePointer() != pos)

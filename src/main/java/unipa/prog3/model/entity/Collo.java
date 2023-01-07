@@ -6,10 +6,15 @@ public class Collo extends Entity {
     private Veicolo veicolo;
 
     public Collo(String codice, Cliente mittente, Cliente destinatario, double peso) {
+        this(codice, mittente, destinatario, peso, null);
+    }
+
+    public Collo(String codice, Cliente mittente, Cliente destinatario, double peso, Veicolo veicolo) {
         super(codice);
         this.mittente = mittente;
         this.destinatario = destinatario;
         this.peso = peso;
+        this.veicolo = veicolo;
     }
 
     public Cliente getMittente() {

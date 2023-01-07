@@ -11,7 +11,7 @@ public class VehicleService extends GenericService<Veicolo> {
     @Override
     public Veicolo entityFromString(String s) {
         String[] info = s.split(DataManager.delimiter);
-        return new Veicolo(info[0], info[1], Integer.parseInt(info[2]));
+        return new Veicolo(info[0], info[1], Double.parseDouble(info[2]));
     }
 
     @Override

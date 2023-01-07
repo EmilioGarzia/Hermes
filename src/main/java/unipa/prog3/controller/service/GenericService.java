@@ -4,6 +4,8 @@ import unipa.prog3.model.io.DataManager;
 import unipa.prog3.model.entity.Entity;
 
 import java.util.Vector;
+import java.util.concurrent.locks.Condition;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 public abstract class GenericService<T extends Entity> implements Service<T> {
@@ -54,7 +56,7 @@ public abstract class GenericService<T extends Entity> implements Service<T> {
 
     @Override
     public void update(T t) {
-        DataManager.updateData(tableName, entityToString(t));
+        DataManager.updateData(tableName, () -> entityToString(t), data -> entityFromString(data).getID().equals(t.getID()));
     }
 
     public T select(String id) {

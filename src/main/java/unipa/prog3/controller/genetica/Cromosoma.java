@@ -10,19 +10,17 @@ public class Cromosoma extends Vector<Collo> {
     private static final double frequenzaMutazioni = 0.2;
 
     private final Veicolo veicolo;
-    private float pesoTotale;
+    private double pesoTotale, fitness;
 
     public Cromosoma(Veicolo veicolo) {
         super();
         this.veicolo = veicolo;
+        fitness = -1;
     }
 
     public void randomizza(List<Collo> allPackages) {
-        while(pesoTotale < veicolo.getCapienza()) {
-            Collo selezionato = selezionaCasuale(allPackages);
-            add(selezionato);
-            pesoTotale += selezionato.getPeso();
-        }
+        while(size() < allPackages.size() && pesoTotale < veicolo.getCapienza())
+            add(selezionaCasuale(allPackages));
 
         if (pesoTotale > veicolo.getCapienza())
             remove(size()-1);
@@ -53,6 +51,9 @@ public class Cromosoma extends Vector<Collo> {
     }
 
     public void muta(List<Collo> allPackages) {
+        if (size() == allPackages.size())
+            return;
+
         for (int i = 0; i < size(); i++)
             if (Math.random() < frequenzaMutazioni)
                 do
@@ -68,14 +69,24 @@ public class Cromosoma extends Vector<Collo> {
     }
 
     public double fitness() {
-        return pesoTotale/veicolo.getCapienza();
+        if (fitness == -1)
+            return fitness = pesoTotale/veicolo.getCapienza();
+        return fitness;
     }
 
     public Veicolo getVeicolo() {
         return veicolo;
     }
 
-    public float getPesoTotale() {
+    public double getPesoTotale() {
         return pesoTotale;
+    }
+
+    @Override
+    public Object clone() {
+        Cromosoma clone = new Cromosoma(veicolo);
+        clone.pesoTotale = pesoTotale;
+        clone.addAll(this);
+        return clone;
     }
 }
