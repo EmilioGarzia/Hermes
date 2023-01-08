@@ -2,7 +2,6 @@ package unipa.prog3.model.io;
 
 import java.io.*;
 import java.util.HashMap;
-import java.util.Vector;
 import java.util.function.Predicate;
 
 public class Table {
@@ -26,90 +25,58 @@ public class Table {
         }
     }
 
-    public boolean addRecord(String data) {
-        try {
-            writeRecord(lastPosition, data);
-            lastPosition = file.getFilePointer();
-            return true;
-        } catch(IOException e) {
-            e.printStackTrace();
-        }
-
-        return false;
+    public void addRecord(String data) throws IOException {
+        file.seek(lastPosition);
+        file.writeBytes(data + "\n");
+        lastPosition = file.getFilePointer();
     }
 
-    public HashMap<Long, String> selectRecords(Predicate<String> condition) {
+    public HashMap<Long, String> selectRecords(Predicate<String> condition) throws IOException {
         HashMap<Long, String> selected = new HashMap<>();
-        try {
-            long pos = 0;
-            file.seek(pos);
-            while(pos < file.length()) {
-                String record = file.readLine().trim();
-                if (condition == null || condition.test(record))
-                    selected.put(pos, record);
-                pos = file.getFilePointer();
-            }
-        } catch(IOException e) {
-            e.printStackTrace();
+        long pos = 0;
+
+        file.seek(pos);
+        while(pos < file.length()) {
+            String record = file.readLine().trim();
+            if (condition == null || condition.test(record))
+                selected.put(pos, record);
+            pos = file.getFilePointer();
         }
 
         return selected;
     }
 
-    public boolean updateRecord(long pos, String data) {
-        try {
+    public void updateRecord(long pos, String data) throws IOException {
+        file.seek(pos);
+        String oldData = file.readLine();
+        if (oldData.length() >= data.length()) {
+            // Sovrascrive il nuovo record su quello vecchio
             file.seek(pos);
-            String oldData = file.readLine();
-            if (oldData.length() >= data.length()) {
-                // Sovrascrive il nuovo record su quello vecchio
-                file.seek(pos);
-                file.writeBytes(data);
-                int overflow = oldData.length() - data.length();
-                for (int i = 0; i < overflow; i++)
-                    file.writeChar(' ');
-                return true;
-            } else {
-                // Aggiorna la tabella creando un nuovo file
-                String tempFilePath = dataPath + "." + fileName + ".tmp";
-                RandomAccessFile raf = new RandomAccessFile(tempFilePath, "rw");
-                file.seek(0);
-                while(file.getFilePointer() < file.length()) {
-                    if (file.getFilePointer() != pos)
-                        raf.writeBytes(file.readLine().trim());
-                    else {
-                        raf.writeBytes(data+"\n");
-                        file.readLine();
-                    }
-                }
-                raf.close();
-
-                File tempFile = new File(tempFilePath);
-                File originalFile = new File(dataPath + fileName);
-                File oldFile = new File(dataPath + "." + fileName + ".old");
-                if (originalFile.renameTo(oldFile) && tempFile.renameTo(originalFile)) {
-                    oldFile.delete();
-                    return true;
-                } else {
-                    // Implement rollback
-                    return false;
+            file.writeBytes(data);
+            int overflow = oldData.length() - data.length();
+            for (int i = 0; i < overflow; i++)
+                file.writeChar(' ');
+        } else {
+            // Aggiorna la tabella creando un nuovo file
+            String tempFilePath = dataPath + "." + fileName + ".tmp";
+            RandomAccessFile raf = new RandomAccessFile(tempFilePath, "rw");
+            file.seek(0);
+            while (file.getFilePointer() < file.length()) {
+                if (file.getFilePointer() != pos)
+                    raf.writeBytes(file.readLine().trim());
+                else {
+                    raf.writeBytes(data + "\n");
+                    file.readLine();
                 }
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+            raf.close();
+
+            File tempFile = new File(tempFilePath);
+            File originalFile = new File(dataPath + fileName);
+            File oldFile = new File(dataPath + "." + fileName + ".old");
+            if (!originalFile.renameTo(oldFile) || !tempFile.renameTo(originalFile) || !oldFile.delete()) {
+                // Implement rollback
+            }
         }
-
-        return false;
-    }
-
-    private boolean writeRecord(long pos, String data) {
-        try {
-            file.seek(pos);
-            file.writeBytes(data + "\n");
-            return true;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return false;
     }
 }

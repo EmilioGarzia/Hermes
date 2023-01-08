@@ -9,7 +9,5 @@ public class TrackController extends Controller {
     }
 
     @Override
-    public void onResume() {
-
-    }
+    public void onResume() {}
 }

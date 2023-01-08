@@ -7,17 +7,23 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="node" minHeight="0.0" minWidth="0.0" prefHeight="371.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unipa.prog3.view.controller.SendController">
-   <children>
-      <Label text="Mittente:" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="104.0" />
-      <ChoiceBox fx:id="senderChooser" prefWidth="150.0" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="100.0" />
-      <Label text="Destinatario:" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="104.0" />
-      <ChoiceBox fx:id="receiverChooser" prefWidth="150.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="100.0" />
-      <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" text="Peso del collo:                         kg" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="164.0" />
-      <TextField fx:id="weightField" layoutX="10.0" layoutY="10.0" AnchorPane.leftAnchor="280.0" AnchorPane.rightAnchor="207.0" AnchorPane.topAnchor="160.0" />
-      <Button defaultButton="true" mnemonicParsing="false" onAction="#send" prefHeight="35.0" text="Spedisci collo" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="180.0" AnchorPane.rightAnchor="180.0" AnchorPane.topAnchor="216.0" />
-   </children>
+<AnchorPane fx:id="node" minHeight="0.0" minWidth="0.0" prefHeight="371.0" prefWidth="600.0"
+            xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="unipa.prog3.view.controller.SendController">
    <padding>
-      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
    </padding>
+   <Label fx:id="errorLabel" alignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+          AnchorPane.topAnchor="60.0"/>
+   <Label text="Mittente:" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="104.0"/>
+   <ChoiceBox fx:id="senderChooser" prefWidth="150.0" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="100.0"/>
+   <Label text="Destinatario:" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="104.0"/>
+   <ChoiceBox fx:id="receiverChooser" prefWidth="150.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="100.0"/>
+   <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" text="Peso del collo:                         kg"
+          AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="164.0"/>
+   <TextField fx:id="weightField" layoutX="10.0" layoutY="10.0" AnchorPane.leftAnchor="280.0"
+              AnchorPane.rightAnchor="207.0" AnchorPane.topAnchor="160.0"/>
+   <Button defaultButton="true" mnemonicParsing="false" onAction="#send" prefHeight="35.0" text="Spedisci collo"
+           AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="180.0" AnchorPane.rightAnchor="180.0"
+           AnchorPane.topAnchor="216.0"/>
 </AnchorPane>

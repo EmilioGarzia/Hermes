@@ -4,7 +4,9 @@ import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import unipa.prog3.MainApplication;
 import unipa.prog3.controller.genetica.Cromosoma;
 import unipa.prog3.controller.genetica.Popolazione;
@@ -24,6 +26,8 @@ public class SendController extends Controller {
     private ChoiceBox<String> senderChooser, receiverChooser;
     @FXML
     private TextField weightField;
+    @FXML
+    private Label errorLabel;
 
     private final HashMap<String, Cliente> clientsMap;
     private final PackageService packageService;
@@ -52,16 +56,19 @@ public class SendController extends Controller {
 
     @FXML
     public void send() {
+        errorLabel.setTextFill(Color.RED);
         Cliente sender = clientsMap.get(senderChooser.getValue());
         Cliente receiver = clientsMap.get(receiverChooser.getValue());
         if (sender == receiver) {
-            // TODO Add error label and update it here
+            errorLabel.setText("Il destinatario non può coincidere con il mittente!");
             return;
         }
 
         float weight = Float.parseFloat(weightField.getText());
         Collo collo = new Collo(null, sender, receiver, weight);
         packageService.insert(collo);
+        errorLabel.setTextFill(Color.GREEN);
+        errorLabel.setText("Utilizza il codice " + collo.getID() + " per tracciare la tua spedizione");
         spedisciVeicoli(collo);
     }
 

@@ -1,10 +1,9 @@
 package unipa.prog3.model.io;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
-import java.util.function.Consumer;
-import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
@@ -20,18 +19,32 @@ public abstract class DataManager {
         return table;
     }
 
-    public static boolean insertData(String tableName, String data) {
-        return getTable(tableName).addRecord(data);
+    public static void insertData(String tableName, String data) {
+        try {
+            getTable(tableName).addRecord(data);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static Vector<String> findData(String tableName, Predicate<String> condition) {
-        return new Vector<>(getTable(tableName).selectRecords(condition).values());
+        Vector<String> records = new Vector<>();
+        try {
+            records.addAll(getTable(tableName).selectRecords(condition).values());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return records;
     }
 
-    public static boolean updateData(String tableName, Supplier<String> newData, Predicate<String> condition) {
-        HashMap<Long, String> records = getTable(tableName).selectRecords(condition);
-        for (Map.Entry<Long, String> entry : records.entrySet())
-            getTable(tableName).updateRecord(entry.getKey(), newData.get());
-        return true;
+    public static void updateData(String tableName, Supplier<String> newData, Predicate<String> condition) {
+        try {
+            HashMap<Long, String> records = getTable(tableName).selectRecords(condition);
+            for (Map.Entry<Long, String> entry : records.entrySet())
+                getTable(tableName).updateRecord(entry.getKey(), newData.get());
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
     }
 }

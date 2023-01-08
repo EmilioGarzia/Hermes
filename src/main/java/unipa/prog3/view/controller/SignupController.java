@@ -56,7 +56,5 @@ public class SignupController extends Controller {
     }
 
     @Override
-    public void onResume() {
-
-    }
+    public void onResume() {}
 }

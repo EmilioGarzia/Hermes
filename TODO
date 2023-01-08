@@ -1,9 +1,10 @@
-Implementare la gestione dei colli
+Gestire la disponibilità dei veicoli? Come?
+Gestire l'assegnazione dei colli ai centri di smistamento
 
 Design pattern utilizzati:
     - Template -> GenericService
     - Flyweight e Factory Pattern -> ServiceProvider
-    - Flyweight -> DataManager
+    - Flyweight e Adapter -> DataManager (da rivedere)
     - Builder -> ClientBuilder
 
 Design pattern futuri:
