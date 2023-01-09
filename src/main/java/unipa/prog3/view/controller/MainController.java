@@ -8,15 +8,9 @@ import unipa.prog3.MainApplication;
 import java.io.IOException;
 import java.util.Stack;
 
-public class MainController {
+public class MainController extends Stack<Controller> {
     @FXML
     private ScrollPane contentPane;
-
-    private final Stack<Controller> viewStack;
-
-    public MainController() {
-        viewStack = new Stack<>();
-    }
 
     @FXML
     public void initialize() {
@@ -44,8 +38,8 @@ public class MainController {
     }
 
     public void navigateBack() {
-        viewStack.pop();
-        Controller controller = viewStack.get(viewStack.size()-1);
+        pop();
+        Controller controller = get(size()-1);
         contentPane.setContent(controller.getNode());
         controller.onResume();
     }

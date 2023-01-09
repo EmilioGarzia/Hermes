@@ -1,13 +1,14 @@
 package unipa.prog3.controller.service;
 
-import unipa.prog3.model.io.DataManager;
+import unipa.prog3.model.io.Table;
+import unipa.prog3.model.io.TableProvider;
 import unipa.prog3.model.entity.Cliente;
 
 import java.util.Vector;
 
 public class ClientService extends GenericService<Cliente> {
     public ClientService() {
-        super("clients");
+        super(TableProvider.TableName.CLIENTS);
     }
 
     public Cliente findRecord(Cliente cliente) {
@@ -19,7 +20,7 @@ public class ClientService extends GenericService<Cliente> {
 
     @Override
     public Cliente entityFromString(String s) {
-        String[] info = s.split(DataManager.delimiter);
+        String[] info = s.split(Table.delimiter);
         Cliente client = new Cliente(info[0], info[1], info[2]);
         client.setStato(info[3]);
         client.setCittà(info[4]);
@@ -32,9 +33,9 @@ public class ClientService extends GenericService<Cliente> {
 
     @Override
     public String entityToString(Cliente cliente) {
-        return cliente.getID() + DataManager.delimiter + cliente.getNome() + DataManager.delimiter + cliente.getCognome()
-                + DataManager.delimiter + cliente.getStato() + DataManager.delimiter + cliente.getCittà()
-                + DataManager.delimiter + cliente.getCap() + DataManager.delimiter + cliente.getIndirizzo()
-                + DataManager.delimiter + cliente.getEmail() + DataManager.delimiter + cliente.getTelefono();
+        return cliente.getID() + Table.delimiter + cliente.getNome() + Table.delimiter + cliente.getCognome()
+                + Table.delimiter + cliente.getStato() + Table.delimiter + cliente.getCittà()
+                + Table.delimiter + cliente.getCap() + Table.delimiter + cliente.getIndirizzo()
+                + Table.delimiter + cliente.getEmail() + Table.delimiter + cliente.getTelefono();
     }
 }

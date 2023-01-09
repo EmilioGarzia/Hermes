@@ -1,17 +1,17 @@
 package unipa.prog3.controller.service;
 
-import unipa.prog3.model.io.DataManager;
+import unipa.prog3.model.io.TableAdapter;
+import unipa.prog3.model.io.TableProvider;
 import unipa.prog3.model.entity.Entity;
 
 import java.util.Vector;
 import java.util.function.Predicate;
 
 public abstract class GenericService<T extends Entity> implements Service<T> {
-    protected final String tableName;
+    protected final TableAdapter table;
 
-    protected GenericService(String tableName) {
-        super();
-        this.tableName = tableName;
+    protected GenericService(TableProvider.TableName tableName) {
+        table = new TableAdapter(TableProvider.getTable(tableName));
     }
 
     @Override
@@ -31,13 +31,12 @@ public abstract class GenericService<T extends Entity> implements Service<T> {
     public void insert(T t) {
         if (t.getID() == null)
             t.setID(generateID());
-        DataManager.insertData(tableName, entityToString(t));
+        table.insert(entityToString(t));
     }
 
     @Override
     public Vector<T> select(Predicate<T> condition) {
-        Vector<String> records = DataManager.findData(tableName, (condition != null) ?
-                data -> condition.test(entityFromString(data)) : null);
+        Vector<String> records = table.select((condition != null) ? data -> condition.test(entityFromString(data)) : null);
         Vector<T> entities = new Vector<>();
         for (String s : records)
             entities.add(entityFromString(s));
@@ -45,7 +44,7 @@ public abstract class GenericService<T extends Entity> implements Service<T> {
     }
 
     public Vector<T> selectAll() {
-        Vector<String> data = DataManager.findData(tableName, null);
+        Vector<String> data = table.select(null);
         Vector<T> entities = new Vector<>();
         for (String s : data)
             entities.add(entityFromString(s));
@@ -54,7 +53,7 @@ public abstract class GenericService<T extends Entity> implements Service<T> {
 
     @Override
     public void update(T t) {
-        DataManager.updateData(tableName, () -> entityToString(t), data -> entityFromString(data).getID().equals(t.getID()));
+        table.update(data -> entityFromString(data).getID().equals(t.getID()), () -> entityToString(t));
     }
 
     public T select(String id) {

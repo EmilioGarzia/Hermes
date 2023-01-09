@@ -4,7 +4,8 @@ Gestire l'assegnazione dei colli ai centri di smistamento
 Design pattern utilizzati:
     - Template -> GenericService
     - Flyweight e Factory Pattern -> ServiceProvider
-    - Flyweight e Adapter -> DataManager (da rivedere)
+    - Adapter -> TableAdapter
+    - Flyweight -> TableProvider
     - Builder -> ClientBuilder
 
 Design pattern futuri:

@@ -4,16 +4,17 @@ import unipa.prog3.controller.service.util.ServiceProvider;
 import unipa.prog3.model.entity.Cliente;
 import unipa.prog3.model.entity.Collo;
 import unipa.prog3.model.entity.Veicolo;
-import unipa.prog3.model.io.DataManager;
+import unipa.prog3.model.io.Table;
+import unipa.prog3.model.io.TableProvider;
 
 public class PackageService extends GenericService<Collo> {
     public PackageService() {
-        super("packages");
+        super(TableProvider.TableName.PACKAGES);
     }
 
     @Override
     public Collo entityFromString(String s) {
-        String[] info = s.split(DataManager.delimiter);
+        String[] info = s.split(Table.delimiter);
 
         ClientService clientService = (ClientService) ServiceProvider.getService(Cliente.class);
         Cliente mittente = clientService.select(info[1]);
@@ -33,12 +34,12 @@ public class PackageService extends GenericService<Collo> {
     @Override
     public String entityToString(Collo collo) {
         StringBuilder builder = new StringBuilder();
-        builder.append(collo.getID()).append(DataManager.delimiter).append(collo.getMittente().getID())
-                .append(DataManager.delimiter).append(collo.getDestinatario().getID()).append(DataManager.delimiter)
-                .append(collo.getPeso()).append(DataManager.delimiter);
+        builder.append(collo.getID()).append(Table.delimiter).append(collo.getMittente().getID())
+                .append(Table.delimiter).append(collo.getDestinatario().getID()).append(Table.delimiter)
+                .append(collo.getPeso()).append(Table.delimiter);
         if (collo.getVeicolo() != null)
             builder.append(collo.getVeicolo().getID());
-        else builder.append("null");;
+        else builder.append("null");
         return builder.toString();
     }
 }
