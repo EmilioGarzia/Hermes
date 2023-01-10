@@ -2,11 +2,12 @@ Gestire la disponibilità dei veicoli? Come?
 Gestire l'assegnazione dei colli ai centri di smistamento
 
 Design pattern utilizzati:
-    - Template -> GenericService
-    - Flyweight e Factory Pattern -> ServiceProvider
+    - Template -> GenericService (?)
+    - Factory Pattern e Flyweight -> ServiceProvider
     - Adapter -> TableAdapter
     - Flyweight -> TableProvider
     - Builder -> ClientBuilder
+    - Prototype -> Cromosoma
 
 Design pattern futuri:
     - Memento -> per il rollback in Table
