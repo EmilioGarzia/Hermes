@@ -20,7 +20,7 @@ public class PackageService extends GenericService<Collo> {
         Cliente mittente = clientService.select(info[1]);
         Cliente destinatario = clientService.select(info[2]);
 
-        double peso = Double.parseDouble(info[3]);
+        float peso = Float.parseFloat(info[3]);
 
         Veicolo veicolo = null;
         if (!info[4].equals("null")) {

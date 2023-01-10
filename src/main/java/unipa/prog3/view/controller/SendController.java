@@ -86,7 +86,7 @@ public class SendController extends Controller {
             Cromosoma best = null;
             for (Veicolo v : veicoli) {
                 Cromosoma soluzione = popolazione.findBestSolutionForSingleVehicle(v, colli, 10);
-                if (best == null || soluzione.fitness() > best.fitness())
+                if (best == null || soluzione.weightRatio() > best.weightRatio())
                     best = soluzione;
             }
 

@@ -1,7 +1,9 @@
 package unipa.prog3.model.io;
 
 import java.io.*;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
@@ -19,9 +21,7 @@ public class Table {
             File dir = new File(dataPath);
             if (!dir.exists() && !dir.mkdir())
                 throw new FileNotFoundException();
-
-            file = new RandomAccessFile(dataPath + fileName, "rw");
-            lastPosition = file.length();
+            openFile(new File(dataPath + fileName));
         } catch(IOException e) {
             e.printStackTrace();
         }
@@ -44,7 +44,7 @@ public class Table {
         try {
             file.seek(pos);
             while (pos < file.length()) {
-                String record = file.readLine().trim();
+                String record = file.readLine();
                 if (condition == null || condition.test(record))
                     selected.put(pos, record);
                 pos = file.getFilePointer();
@@ -57,46 +57,42 @@ public class Table {
     }
 
     public void updateRecords(Predicate<String> condition, Supplier<String> newData) {
-        HashMap<Long, String> oldData = selectRecords(condition);
-        for (long pos : oldData.keySet())
-            update(pos, newData.get());
+        HashMap<Long, String> data = selectRecords(condition);
+        if (data.isEmpty()) return;
+
+        for (long pos : data.keySet())
+            data.replace(pos, newData.get());
+        update(data);
     }
 
-    private void update(long pos, String data) {
-        try {
-            file.seek(pos);
-            String oldData = file.readLine();
-            if (oldData.length() >= data.length()) {
-                // Sovrascrive il nuovo record su quello vecchio
-                file.seek(pos);
-                file.writeBytes(data);
-                int overflow = oldData.length() - data.length();
-                for (int i = 0; i < overflow; i++)
-                    file.writeChar(' ');
-            } else {
-                // Aggiorna la tabella creando un nuovo file
-                String tempFilePath = dataPath + "." + fileName + ".tmp";
-                RandomAccessFile raf = new RandomAccessFile(tempFilePath, "rw");
-                file.seek(0);
-                while (file.getFilePointer() < file.length()) {
-                    if (file.getFilePointer() != pos)
-                        raf.writeBytes(file.readLine().trim());
-                    else {
-                        raf.writeBytes(data + "\n");
-                        file.readLine();
-                    }
-                }
-                raf.close();
+    private void update(HashMap<Long, String> records) {
+        // Aggiorna la tabella utilizzando un file temporaneo
+        String tempFilePath = dataPath + "." + fileName + ".tmp";
 
-                File tempFile = new File(tempFilePath);
-                File originalFile = new File(dataPath + fileName);
-                File oldFile = new File(dataPath + "." + fileName + ".old");
-                if (!originalFile.renameTo(oldFile) || !tempFile.renameTo(originalFile) || !oldFile.delete()) {
-                    // Implement rollback
-                }
+        try {
+            file.seek(0);
+            RandomAccessFile raf = new RandomAccessFile(tempFilePath, "rw");
+            raf.seek(0);
+            while (file.getFilePointer() < file.length()) {
+                long pos = file.getFilePointer();
+                String oldData = file.readLine();
+                raf.writeBytes(records.getOrDefault(pos, oldData) + "\n");
             }
+            raf.close();
+
+            File tempFile = new File(tempFilePath);
+            File originalFile = new File(dataPath + fileName);
+            File oldFile = new File(dataPath + "." + fileName + ".old");
+            if (!originalFile.renameTo(oldFile) || !tempFile.renameTo(originalFile) || !oldFile.delete()) {
+                // Implement rollback
+            } else openFile(originalFile);
         } catch(IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void openFile(File f) throws IOException {
+        file = new RandomAccessFile(f, "rw");
+        lastPosition = file.length();
     }
 }

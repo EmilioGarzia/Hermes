@@ -70,7 +70,7 @@ public class Cromosoma extends Vector<Collo> {
 
     public double fitness() {
         if (fitness == -1)
-            return fitness = pesoTotale/veicolo.getCapienza();
+            return fitness = size();
         return fitness;
     }
 
@@ -80,6 +80,10 @@ public class Cromosoma extends Vector<Collo> {
 
     public double getPesoTotale() {
         return pesoTotale;
+    }
+
+    public double weightRatio() {
+        return pesoTotale/veicolo.getCapienza();
     }
 
     @Override
