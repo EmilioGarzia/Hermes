@@ -118,12 +118,14 @@ public class SendController extends Controller {
         }
         nomi.add("+ Aggiungi indirizzo");
 
-        int selectedSender = senderChooser.getSelectionModel().getSelectedIndex();
-        senderChooser.setItems(FXCollections.observableList(nomi));
-        senderChooser.getSelectionModel().select(selectedSender);
+        updateChooser(senderChooser, nomi);
+        updateChooser(receiverChooser, nomi);
+    }
 
-        int selectedReceiver = receiverChooser.getSelectionModel().getSelectedIndex();
-        receiverChooser.setItems(FXCollections.observableList(nomi));
-        receiverChooser.getSelectionModel().select(selectedReceiver);
+    private void updateChooser(ChoiceBox<String> chooser, Vector<String> nomi) {
+        int selected = chooser.getSelectionModel().getSelectedIndex();
+        chooser.setItems(FXCollections.observableList(nomi));
+        if (selected < nomi.size()-1)
+            chooser.getSelectionModel().select(selected);
     }
 }

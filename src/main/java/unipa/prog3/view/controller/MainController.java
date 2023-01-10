@@ -12,9 +12,12 @@ public class MainController extends Stack<Controller> {
     @FXML
     private ScrollPane contentPane;
 
+    public MainController() {
+        MainApplication.setMainController(this);
+    }
+
     @FXML
     public void initialize() {
-        MainApplication.setMainController(this);
         loadView("/unipa/prog3/home-view.fxml");
     }
 
@@ -39,7 +42,7 @@ public class MainController extends Stack<Controller> {
 
     public void navigateBack() {
         pop();
-        Controller controller = get(size()-1);
+        Controller controller = lastElement();
         contentPane.setContent(controller.getNode());
         controller.onResume();
     }

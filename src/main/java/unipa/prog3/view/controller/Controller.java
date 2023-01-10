@@ -6,7 +6,7 @@ import unipa.prog3.MainApplication;
 
 public abstract class Controller {
     @FXML
-    public Node node;
+    private Node node;
 
     public Controller() {
         MainApplication.getMainController().push(this);

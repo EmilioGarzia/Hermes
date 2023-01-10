@@ -4,9 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="84d07227-441a-45ac-bbf6-7fe5dec144f1" name="Changes" comment="Fixed vehicle choice algorithm for shipping and the records update in Table">
+    <list default="true" id="84d07227-441a-45ac-bbf6-7fe5dec144f1" name="Changes" comment="Trash code cleaned">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TODO" beforeDir="false" afterPath="$PROJECT_DIR$/TODO" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/controller/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/controller/ClientController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/controller/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/controller/HomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/controller/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/controller/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/controller/SendController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/controller/SendController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/unipa/prog3/client-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/unipa/prog3/client-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/unipa/prog3/home-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/unipa/prog3/home-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,6 +56,7 @@
   <component name="ProjectId" id="2JQMh4qcfVK9VnBbu6KaLlSs3JD" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="false" id="Update" />
+    <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />

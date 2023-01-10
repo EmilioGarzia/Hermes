@@ -1,6 +1,7 @@
 package unipa.prog3.view.controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import unipa.prog3.MainApplication;
 
 public class HomeController extends Controller {
