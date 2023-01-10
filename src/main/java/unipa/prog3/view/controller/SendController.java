@@ -47,7 +47,7 @@ public class SendController extends Controller {
         populateChooser();
         ChangeListener<Number> listener = (observable, oldValue, newValue) -> {
             if (newValue.intValue() == clientsMap.size())
-                MainApplication.getMainController().loadView("/unipa/prog3/client-view.fxml");
+                MainApplication.getMainController().showView("/unipa/prog3/client-view.fxml");
         };
 
         senderChooser.getSelectionModel().selectedIndexProperty().addListener(listener);

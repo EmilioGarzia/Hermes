@@ -12,9 +12,8 @@ public class MainApplication extends Application {
     private static MainController mainController;
 
     @Override
-    public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("/unipa/prog3/main.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
+    public void start(Stage stage) {
+        Scene scene = new Scene(loadView("/unipa/prog3/main.fxml"));
         stage.setTitle("Progetto Programmazione 3");
         stage.setScene(scene);
         stage.show();
@@ -22,6 +21,14 @@ public class MainApplication extends Application {
 
     public static void main(String[] args) {
         launch();
+    }
+
+    public static <T> T loadView(String path) {
+        try {
+            return new FXMLLoader(MainApplication.class.getResource(path)).load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static MainController getMainController() {

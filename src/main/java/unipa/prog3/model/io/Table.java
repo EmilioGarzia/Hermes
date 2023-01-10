@@ -1,9 +1,9 @@
 package unipa.prog3.model.io;
 
+import unipa.prog3.model.io.util.*;
+
 import java.io.*;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
@@ -67,26 +67,45 @@ public class Table {
 
     private void update(HashMap<Long, String> records) {
         // Aggiorna la tabella utilizzando un file temporaneo
+        String originalPath = dataPath + fileName;
         String tempFilePath = dataPath + "." + fileName + ".tmp";
+        String oldPath = dataPath + "." + fileName + ".old";
+
+        FileInvoker invoker = new FileInvoker();
+        invoker.executeCommand(new Command() {
+            @Override
+            public boolean execute() {
+                try {
+                    file.seek(0);
+                    RandomAccessFile raf = new RandomAccessFile(tempFilePath, "rw");
+                    raf.seek(0);
+                    while (file.getFilePointer() < file.length()) {
+                        long pos = file.getFilePointer();
+                        String oldData = file.readLine();
+                        raf.writeBytes(records.getOrDefault(pos, oldData) + "\n");
+                    }
+                    raf.close();
+                    return true;
+                } catch(IOException e) {
+                    e.printStackTrace();
+                }
+
+                return false;
+            }
+
+            @Override
+            public boolean undo() {
+                return new File(tempFilePath).delete();
+            }
+        });
+
+        invoker.executeCommand(new FileRenameCommand(originalPath, oldPath));
+        invoker.executeCommand(new FileRenameCommand(tempFilePath, originalPath));
+        invoker.executeCommand(new FileDeleteCommand(oldPath));
 
         try {
-            file.seek(0);
-            RandomAccessFile raf = new RandomAccessFile(tempFilePath, "rw");
-            raf.seek(0);
-            while (file.getFilePointer() < file.length()) {
-                long pos = file.getFilePointer();
-                String oldData = file.readLine();
-                raf.writeBytes(records.getOrDefault(pos, oldData) + "\n");
-            }
-            raf.close();
-
-            File tempFile = new File(tempFilePath);
-            File originalFile = new File(dataPath + fileName);
-            File oldFile = new File(dataPath + "." + fileName + ".old");
-            if (!originalFile.renameTo(oldFile) || !tempFile.renameTo(originalFile) || !oldFile.delete()) {
-                // Implement rollback
-            } else openFile(originalFile);
-        } catch(IOException e) {
+            openFile(new File(originalPath));
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
