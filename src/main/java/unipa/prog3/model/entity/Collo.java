@@ -4,6 +4,7 @@ public class Collo extends Entity {
     private final Cliente mittente, destinatario;
     private final float peso;
     private Veicolo veicolo;
+    private boolean consegnato;
 
     public Collo(String codice, Cliente mittente, Cliente destinatario, float peso) {
         this(codice, mittente, destinatario, peso, null);
@@ -35,5 +36,13 @@ public class Collo extends Entity {
 
     public void setVeicolo(Veicolo veicolo) {
         this.veicolo = veicolo;
+    }
+
+    public boolean isConsegnato() {
+        return consegnato;
+    }
+
+    public void setConsegnato(boolean consegnato) {
+        this.consegnato = consegnato;
     }
 }

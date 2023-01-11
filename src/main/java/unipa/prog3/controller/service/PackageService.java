@@ -18,6 +18,10 @@ public class PackageService extends GenericService<Collo> {
         return select(collo -> collo.getVeicolo() == null);
     }
 
+    public Vector<Collo> selectByVehicle(Veicolo veicolo) {
+        return select(collo -> collo.getVeicolo().getID().equals(veicolo.getID()));
+    }
+
     @Override
     public Collo entityFromString(String s) {
         String[] info = s.split(Table.delimiter);
