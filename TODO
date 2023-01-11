@@ -7,4 +7,4 @@ Design pattern utilizzati:
     - Flyweight -> TableProvider
     - Builder -> ClientBuilder
     - Prototype -> Cromosoma
-    - Command -> per il rollback in Table
+    - Command -> per effettuare le transazioni in Table

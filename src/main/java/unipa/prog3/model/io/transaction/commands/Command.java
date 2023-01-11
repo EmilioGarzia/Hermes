@@ -1,4 +1,4 @@
-package unipa.prog3.model.io.util;
+package unipa.prog3.model.io.transaction.commands;
 
 public interface Command {
     boolean execute();

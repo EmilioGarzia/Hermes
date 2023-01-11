@@ -79,7 +79,7 @@ public class SendController extends Controller {
         }
 
         if (colli == null)
-            colli = packageService.selectAll();
+            colli = packageService.selectNotSent();
         else colli.add(collo);
 
         while(!colli.isEmpty() && !veicoli.isEmpty()) {

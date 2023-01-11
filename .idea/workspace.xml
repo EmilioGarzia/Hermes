@@ -4,19 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="84d07227-441a-45ac-bbf6-7fe5dec144f1" name="Changes" comment="Fixed back navigation bug on package send">
-      <change afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/model/io/util/Command.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/model/io/util/FileDeleteCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/model/io/util/FileInvoker.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/model/io/util/FileRenameCommand.java" afterDir="false" />
+    <list default="true" id="84d07227-441a-45ac-bbf6-7fe5dec144f1" name="Changes" comment="Added command design pattern to implement rollback in Table">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TODO" beforeDir="false" afterPath="$PROJECT_DIR$/TODO" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/MainApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/controller/service/util/ServiceProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/controller/service/util/ServiceProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/controller/service/PackageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/controller/service/PackageService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/model/io/Table.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/model/io/Table.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/controller/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/controller/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/model/io/util/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/model/io/transaction/commands/Command.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/model/io/util/FileDeleteCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/model/io/transaction/commands/FileDeleteCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/model/io/util/FileInvoker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/model/io/transaction/TransactionInvoker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/model/io/util/FileRenameCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/model/io/transaction/commands/FileRenameCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/controller/SendController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/controller/SendController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -169,7 +165,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673375487439</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Added command design pattern to implement rollback in Table">
+      <created>1673393155456</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1673393155456</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -206,7 +209,8 @@
     <MESSAGE value="Refactored DataManager using Adapter and Flyweight design patterns" />
     <MESSAGE value="Fixed vehicle choice algorithm for shipping and the records update in Table" />
     <MESSAGE value="Fixed back navigation bug on package send" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed back navigation bug on package send" />
+    <MESSAGE value="Added command design pattern to implement rollback in Table" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added command design pattern to implement rollback in Table" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

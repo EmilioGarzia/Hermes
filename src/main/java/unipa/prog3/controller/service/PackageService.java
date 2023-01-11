@@ -7,9 +7,15 @@ import unipa.prog3.model.entity.Veicolo;
 import unipa.prog3.model.io.Table;
 import unipa.prog3.model.io.TableProvider;
 
+import java.util.Vector;
+
 public class PackageService extends GenericService<Collo> {
     public PackageService() {
         super(TableProvider.TableName.PACKAGES);
+    }
+
+    public Vector<Collo> selectNotSent() {
+        return select(collo -> collo.getVeicolo() == null);
     }
 
     @Override

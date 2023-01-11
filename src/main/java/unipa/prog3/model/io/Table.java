@@ -1,6 +1,9 @@
 package unipa.prog3.model.io;
 
-import unipa.prog3.model.io.util.*;
+import unipa.prog3.model.io.transaction.*;
+import unipa.prog3.model.io.transaction.commands.Command;
+import unipa.prog3.model.io.transaction.commands.FileDeleteCommand;
+import unipa.prog3.model.io.transaction.commands.FileRenameCommand;
 
 import java.io.*;
 import java.util.HashMap;
@@ -28,31 +31,61 @@ public class Table {
     }
 
     public void addRecord(String data) {
-        try {
-            file.seek(lastPosition);
-            file.writeBytes(data + "\n");
-            lastPosition = file.getFilePointer();
-        } catch(IOException e) {
-            e.printStackTrace();
-        }
+        TransactionInvoker invoker = new TransactionInvoker();
+        invoker.addCommand(new Command() {
+            @Override
+            public boolean execute() {
+                try {
+                    file.seek(lastPosition);
+                    file.writeBytes(data + "\n");
+                    lastPosition = file.getFilePointer();
+                    return true;
+                } catch(IOException e) {
+                    e.printStackTrace();
+                }
+
+                return false;
+            }
+
+            @Override
+            public boolean undo() {
+                return true;
+            }
+        });
+        invoker.commit();
     }
 
     public HashMap<Long, String> selectRecords(Predicate<String> condition) {
         HashMap<Long, String> selected = new HashMap<>();
-        long pos = 0;
 
-        try {
-            file.seek(pos);
-            while (pos < file.length()) {
-                String record = file.readLine();
-                if (condition == null || condition.test(record))
-                    selected.put(pos, record);
-                pos = file.getFilePointer();
+        TransactionInvoker invoker = new TransactionInvoker();
+        invoker.addCommand(new Command() {
+            @Override
+            public boolean execute() {
+                try {
+                    long pos = 0;
+                    file.seek(pos);
+                    while (pos < file.length()) {
+                        String record = file.readLine();
+                        if (condition == null || condition.test(record))
+                            selected.put(pos, record);
+                        pos = file.getFilePointer();
+                    }
+                    return true;
+                } catch(IOException e) {
+                    e.printStackTrace();
+                }
+
+                return false;
             }
-        } catch(IOException e) {
-            e.printStackTrace();
-        }
 
+            @Override
+            public boolean undo() {
+                return false;
+            }
+        });
+
+        invoker.commit();
         return selected;
     }
 
@@ -71,8 +104,8 @@ public class Table {
         String tempFilePath = dataPath + "." + fileName + ".tmp";
         String oldPath = dataPath + "." + fileName + ".old";
 
-        FileInvoker invoker = new FileInvoker();
-        invoker.executeCommand(new Command() {
+        TransactionInvoker invoker = new TransactionInvoker();
+        invoker.addCommand(new Command() {
             @Override
             public boolean execute() {
                 try {
@@ -99,15 +132,35 @@ public class Table {
             }
         });
 
-        invoker.executeCommand(new FileRenameCommand(originalPath, oldPath));
-        invoker.executeCommand(new FileRenameCommand(tempFilePath, originalPath));
-        invoker.executeCommand(new FileDeleteCommand(oldPath));
+        invoker.addCommand(new FileRenameCommand(originalPath, oldPath));
+        invoker.addCommand(new FileRenameCommand(tempFilePath, originalPath));
+        invoker.addCommand(new FileDeleteCommand(oldPath));
+        invoker.addCommand(new Command() {
+            @Override
+            public boolean execute() {
+                try {
+                    openFile(new File(originalPath));
+                    return true;
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
-        try {
-            openFile(new File(originalPath));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+                return false;
+            }
+
+            @Override
+            public boolean undo() {
+                try {
+                    file.close();
+                    return true;
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                return false;
+            }
+        });
+        invoker.commit();
     }
 
     private void openFile(File f) throws IOException {
