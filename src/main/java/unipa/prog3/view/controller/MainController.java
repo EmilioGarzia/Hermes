@@ -20,13 +20,13 @@ public class MainController extends Stack<Controller> {
     }
 
     @FXML
-    public void onLogin() {
-        showView("/unipa/prog3/login-view.fxml");
+    public void send() {
+        MainApplication.getMainController().showView("/unipa/prog3/send-view.fxml");
     }
 
     @FXML
-    public void onSignUp() {
-        showView("/unipa/prog3/signup-view.fxml");
+    public void track() {
+        MainApplication.getMainController().showView("/unipa/prog3/track-view.fxml");
     }
 
     public void showView(String path) {

@@ -1,0 +1,28 @@
+.internalBorderPane{
+    -fx-background-color:  #222A35;
+}
+
+.button{
+    -fx-background-color: #3297c4;
+    -fx-background-radius: 50 0 50 0;
+    -fx-text-fill: white;
+    -fx-font-size: 2em;
+}
+.button:hover{
+    -fx-background-color: #32b8c4;
+}
+
+.buttonContainer{
+    -fx-background-color: #404040;
+}
+
+.menuLabel{
+    -fx-text-fill: white;
+    -fx-text-alignment: center;
+    -fx-font-size: 3em;
+    -fx-font-family: "Century Gothic";
+}
+.labelContainer{
+    -fx-background-color: #363636;
+    -fx-background-radius: 0 30 30 0;
+}

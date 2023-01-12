@@ -14,7 +14,7 @@ public class MainApplication extends Application {
     @Override
     public void start(Stage stage) {
         Scene scene = new Scene(loadView("/unipa/prog3/main.fxml"));
-        stage.setTitle("Progetto Programmazione 3");
+        stage.setTitle("Hermès");
         stage.setScene(scene);
         stage.show();
     }
