@@ -5,25 +5,117 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="node" minHeight="0.0" minWidth="0.0" prefHeight="371.0" prefWidth="600.0"
-            xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="unipa.prog3.view.controller.SendController">
-   <padding>
-      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-   </padding>
-   <Label fx:id="errorLabel" alignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-          AnchorPane.topAnchor="60.0"/>
-   <Label text="Mittente:" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="104.0"/>
-   <ChoiceBox fx:id="senderChooser" prefWidth="150.0" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="100.0"/>
-   <Label text="Destinatario:" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="104.0"/>
-   <ChoiceBox fx:id="receiverChooser" prefWidth="150.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="100.0"/>
-   <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" text="Peso del collo:                         kg"
-          AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="164.0"/>
-   <TextField fx:id="weightField" layoutX="10.0" layoutY="10.0" AnchorPane.leftAnchor="280.0"
-              AnchorPane.rightAnchor="207.0" AnchorPane.topAnchor="160.0"/>
-   <Button defaultButton="true" mnemonicParsing="false" onAction="#send" prefHeight="35.0" text="Spedisci collo"
-           AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="180.0" AnchorPane.rightAnchor="180.0"
-           AnchorPane.topAnchor="216.0"/>
-</AnchorPane>
+
+<BorderPane styleClass="mainContainer" stylesheets="@css/send.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unipa.prog3.view.controller.SendController">
+   <center>
+      <AnchorPane>
+         <children>
+            <GridPane prefHeight="385.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="466.6000244140625" minWidth="10.0" prefWidth="291.80000000000007" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="466.6000244140625" minWidth="0.0" prefWidth="291.80000000000007" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="466.6000244140625" minWidth="10.0" prefWidth="291.80000000000007" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints maxHeight="175.19998474121093" minHeight="10.0" prefHeight="49.599999999999994" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="175.19998474121093" minHeight="10.0" prefHeight="49.599999999999994" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="155.00000610351563" minHeight="10.0" prefHeight="30.799981689453112" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="179.0000099182129" minHeight="10.0" prefHeight="52.60000610351564" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="187.0000244140625" minHeight="10.0" prefHeight="50.199987792968756" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="185.00000228881837" minHeight="10.0" prefHeight="67.00001220703126" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <VBox maxWidth="-Infinity" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <children>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0">
+                           <left>
+                              <Label prefHeight="32.0" prefWidth="90.0" text="Mittente:" BorderPane.alignment="CENTER">
+                                 <BorderPane.margin>
+                                    <Insets top="30.0" />
+                                 </BorderPane.margin>
+                              </Label>
+                           </left>
+                           <top>
+                              <Label fx:id="errorLabel" alignment="CENTER" styleClass="errorLabel" text="ERROR LABEL TEST" BorderPane.alignment="CENTER" />
+                           </top>
+                           <right>
+                              <ChoiceBox fx:id="senderChooser" prefWidth="150.0" BorderPane.alignment="CENTER">
+                                 <BorderPane.margin>
+                                    <Insets top="30.0" />
+                                 </BorderPane.margin>
+                              </ChoiceBox>
+                           </right>
+                        </BorderPane>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0">
+                           <left>
+                              <Label text="Destinatario:" BorderPane.alignment="CENTER">
+                                 <BorderPane.margin>
+                                    <Insets top="30.0" />
+                                 </BorderPane.margin>
+                              </Label>
+                           </left>
+                           <right>
+                              <ChoiceBox fx:id="receiverChooser" prefWidth="150.0" BorderPane.alignment="CENTER">
+                                 <BorderPane.margin>
+                                    <Insets left="10.0" top="30.0" />
+                                 </BorderPane.margin>
+                              </ChoiceBox>
+                           </right>
+                        </BorderPane>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0">
+                           <left>
+                              <Label text="Peso del collo" BorderPane.alignment="CENTER">
+                                 <BorderPane.margin>
+                                    <Insets top="30.0" />
+                                 </BorderPane.margin>
+                              </Label>
+                           </left>
+                           <center>
+                              <TextField fx:id="weightField" maxWidth="-Infinity" prefHeight="26.0" prefWidth="115.0" BorderPane.alignment="CENTER">
+                                 <BorderPane.margin>
+                                    <Insets left="5.0" top="30.0" />
+                                 </BorderPane.margin>
+                              </TextField>
+                           </center>
+                           <right>
+                              <Label styleClass="kgLabel" text="kg" BorderPane.alignment="CENTER">
+                                 <BorderPane.margin>
+                                    <Insets left="5.0" top="30.0" />
+                                 </BorderPane.margin>
+                              </Label>
+                           </right>
+                           <bottom>
+                              <Button defaultButton="true" mnemonicParsing="false" onAction="#send" prefHeight="35.0" styleClass="sendButton" text="Spedisci collo" BorderPane.alignment="CENTER">
+                                 <BorderPane.margin>
+                                    <Insets top="30.0" />
+                                 </BorderPane.margin>
+                              </Button>
+                           </bottom>
+                        </BorderPane>
+                     </children>
+                  </VBox>
+               </children>
+            </GridPane>
+         </children>
+      </AnchorPane>
+   </center>
+   <top>
+      <ImageView fitHeight="120.0" fitWidth="341.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+         <image>
+            <Image url="@image/logo.png" />
+         </image>
+         <BorderPane.margin>
+            <Insets top="15.0" />
+         </BorderPane.margin>
+      </ImageView>
+   </top>
+</BorderPane>
