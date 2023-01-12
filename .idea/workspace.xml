@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="84d07227-441a-45ac-bbf6-7fe5dec144f1" name="Changes" comment="Emilio Garzia: Update to GUI">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/unipa/prog3/css/track.css" afterDir="false" />
+    <list default="true" id="84d07227-441a-45ac-bbf6-7fe5dec144f1" name="Changes" comment="Emilio Garzia: Update to Responsive">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/unipa/prog3/css/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/unipa/prog3/css/home.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/unipa/prog3/main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/unipa/prog3/main.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/unipa/prog3/track-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/unipa/prog3/track-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/unipa/prog3/css/track.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/unipa/prog3/css/track.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -197,7 +195,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673544421071</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Emilio Garzia: Update to Responsive">
+      <created>1673549466041</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1673549466041</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -240,7 +245,8 @@
     <MESSAGE value="Improved package shipping algorithm and added CourierController" />
     <MESSAGE value="Added transactions for table accesses" />
     <MESSAGE value="Emilio Garzia: Update to GUI" />
-    <option name="LAST_COMMIT_MESSAGE" value="Emilio Garzia: Update to GUI" />
+    <MESSAGE value="Emilio Garzia: Update to Responsive" />
+    <option name="LAST_COMMIT_MESSAGE" value="Emilio Garzia: Update to Responsive" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
