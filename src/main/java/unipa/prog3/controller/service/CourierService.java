@@ -1,5 +1,6 @@
 package unipa.prog3.controller.service;
 
+import unipa.prog3.model.entity.Veicolo;
 import unipa.prog3.model.io.Table;
 import unipa.prog3.model.io.TableProvider;
 import unipa.prog3.model.entity.Courier;
@@ -19,37 +20,18 @@ public class CourierService extends GenericService<Courier> {
         return select(courier -> courier.getVehicle() != null);
     }
 
-    public boolean signup(Courier courier) {
-        if (findCourierByEmail(courier.getEmail()).isEmpty()) {
-            insert(courier);
-            return true;
-        }
-
-        return false;
-    }
-
-    public boolean login(String email, String password) {
-        Vector<Courier> couriers = findCourierByEmail(email);
-        for (Courier c : couriers)
-            if (c.getPassword().equals(password))
-                return true;
-        return false;
-    }
-
-    private Vector<Courier> findCourierByEmail(String email) {
-        return select(courier -> courier.getEmail().equals(email));
-    }
-
     @Override
     public String entityToString(Courier courier) {
-        return courier.getName() + Table.delimiter + courier.getSurname()
-                + Table.delimiter + courier.getEmail()
-                + Table.delimiter + courier.getPassword();
+        return courier.getID() + Table.delimiter + courier.getName() + Table.delimiter + courier.getSurname();
     }
 
     @Override
     public Courier entityFromString(String s) {
         String[] info = s.split(Table.delimiter);
-        return new Courier(info[0], info[1], info[2], info[3]);
+
+        VehicleService vehicleService = (VehicleService) ServiceProvider.getService(Veicolo.class);
+        Veicolo vehicle = vehicleService.select(info[3]);
+
+        return new Courier(info[0], info[1], info[2], vehicle);
     }
 }

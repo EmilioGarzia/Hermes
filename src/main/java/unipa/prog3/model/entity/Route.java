@@ -3,8 +3,8 @@ package unipa.prog3.model.entity;
 public class Route extends Entity {
     private final Centro centro1, centro2;
 
-    public Route(String id, Centro centro1, Centro centro2) {
-        super(id);
+    public Route(Centro centro1, Centro centro2) {
+        super(null);
         this.centro1 = centro1;
         this.centro2 = centro2;
     }

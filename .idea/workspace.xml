@@ -5,32 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="84d07227-441a-45ac-bbf6-7fe5dec144f1" name="Changes" comment="Improved package shipping algorithm and added CourierController">
-      <change afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/controller/helper/CarrierHelper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/controller/service/CenterService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/controller/service/DeliveryService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/controller/service/RouteService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/controller/service/util/BFSNode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/controller/service/util/Graph.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/controller/service/util/Node.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/model/entity/Centro.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/model/entity/Delivery.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/model/entity/Route.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/controller/CourierController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TODO" beforeDir="false" afterPath="$PROJECT_DIR$/TODO" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/controller/genetica/Cromosoma.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/controller/genetica/Cromosoma.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/controller/service/CourierService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/controller/service/CourierService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/controller/service/PackageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/controller/service/PackageService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/controller/service/VehicleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/controller/service/VehicleService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/controller/service/util/ServiceProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/controller/service/ServiceProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/controller/service/RouteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/controller/service/RouteService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/model/entity/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/model/entity/Cliente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/model/entity/Collo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/model/entity/Collo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/model/entity/Courier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/model/entity/Courier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/model/io/TableProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/model/io/TableProvider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/controller/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/controller/ClientController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/controller/SendController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/controller/SendController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/controller/SignupController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/controller/SignupController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/model/entity/Route.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/model/entity/Route.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/controller/LoginController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/controller/SignupController.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -203,7 +185,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673442285189</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Improved package shipping algorithm and added CourierController">
+      <created>1673542158839</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1673542158839</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

@@ -14,14 +14,13 @@ public class RouteService extends GenericService<Route> {
     public Route entityFromString(String s) {
         String[] info = s.split(Table.delimiter);
         CenterService centerService = (CenterService) ServiceProvider.getService(Centro.class);
-        Centro partenza = centerService.select(info[1]);
-        Centro destinazione = centerService.select(info[2]);
-        return new Route(info[0], partenza, destinazione);
+        Centro partenza = centerService.select(info[0]);
+        Centro destinazione = centerService.select(info[1]);
+        return new Route(partenza, destinazione);
     }
 
     @Override
     public String entityToString(Route route) {
-        return route.getID() + Table.delimiter + route.getCentro1().getID()
-                + Table.delimiter + route.getCentro2().getID();
+        return route.getCentro1().getID() + Table.delimiter + route.getCentro2().getID();
     }
 }

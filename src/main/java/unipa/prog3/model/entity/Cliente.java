@@ -13,6 +13,10 @@ public class Cliente extends Entity {
         this.cognome = cognome;
     }
 
+    public Cliente() {
+        this(null, null, null);
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (!(obj instanceof Cliente cliente))
