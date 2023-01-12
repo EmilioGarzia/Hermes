@@ -1,6 +1,5 @@
-package unipa.prog3.controller.service.util;
+package unipa.prog3.controller.service;
 
- import unipa.prog3.controller.service.*;
 import unipa.prog3.model.entity.*;
 
 import java.util.HashMap;
@@ -30,6 +29,12 @@ public abstract class ServiceProvider {
             return new CourierService();
         else if (Veicolo.class.equals(type))
             return new VehicleService();
+        else if (Centro.class.equals(type))
+            return new CenterService();
+        else if (Delivery.class.equals(type))
+            return new DeliveryService();
+        else if (Route.class.equals(type))
+            return new RouteService();
         return null;
     }
 }

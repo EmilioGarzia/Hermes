@@ -5,7 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import unipa.prog3.controller.service.CourierService;
-import unipa.prog3.controller.service.util.ServiceProvider;
+import unipa.prog3.controller.service.ServiceProvider;
 import unipa.prog3.model.entity.Courier;
 
 public class SignupController extends Controller {

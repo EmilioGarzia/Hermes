@@ -7,22 +7,22 @@ import java.util.List;
 import java.util.Vector;
 
 public class Cromosoma extends Vector<Collo> {
-    private static final double frequenzaMutazioni = 0.2;
+    private static final double mutationRate = 0.2;
 
-    private final Veicolo veicolo;
-    private double pesoTotale, fitness;
+    private final Veicolo vehicle;
+    private double totalWeight, fitness;
 
-    public Cromosoma(Veicolo veicolo) {
+    public Cromosoma(Veicolo vehicle) {
         super();
-        this.veicolo = veicolo;
+        this.vehicle = vehicle;
         fitness = -1;
     }
 
     public void randomizza(List<Collo> allPackages) {
-        while(size() < allPackages.size() && pesoTotale < veicolo.getCapienza())
+        while(size() < allPackages.size() && totalWeight < vehicle.getCapienza())
             add(selezionaCasuale(allPackages));
 
-        if (pesoTotale > veicolo.getCapienza())
+        if (totalWeight > vehicle.getCapienza())
             remove(size()-1);
     }
 
@@ -37,16 +37,19 @@ public class Cromosoma extends Vector<Collo> {
 
     @Override
     public boolean add(Collo collo) {
-        boolean result = super.add(collo);
-        pesoTotale += collo.getPeso();
-        return result;
+        if (super.add(collo)) {
+            totalWeight += collo.getPeso();
+            return true;
+        }
+
+        return false;
     }
 
     @Override
     public Collo set(int index, Collo collo) {
         Collo old = super.set(index, collo);
-        pesoTotale -= old.getPeso();
-        pesoTotale += collo.getPeso();
+        totalWeight -= old.getPeso();
+        totalWeight += collo.getPeso();
         return old;
     }
 
@@ -55,41 +58,37 @@ public class Cromosoma extends Vector<Collo> {
             return;
 
         for (int i = 0; i < size(); i++)
-            if (Math.random() < frequenzaMutazioni)
+            if (Math.random() < mutationRate)
                 do
                     set(i, selezionaCasuale(allPackages));
-                while (pesoTotale > veicolo.getCapienza());
+                while (totalWeight > vehicle.getCapienza());
     }
 
     @Override
     public Collo remove(int index) {
         Collo collo = super.remove(index);
-        pesoTotale -= collo.getPeso();
+        totalWeight -= collo.getPeso();
         return collo;
     }
 
     public double fitness() {
         if (fitness == -1)
-            return fitness = size();
+            fitness = size();
         return fitness;
     }
 
-    public Veicolo getVeicolo() {
-        return veicolo;
-    }
-
-    public double getPesoTotale() {
-        return pesoTotale;
+    public Veicolo getVehicle() {
+        return vehicle;
     }
 
     public double weightRatio() {
-        return pesoTotale/veicolo.getCapienza();
+        return totalWeight / vehicle.getCapienza();
     }
 
     @Override
     public Object clone() {
-        Cromosoma clone = new Cromosoma(veicolo);
-        clone.pesoTotale = pesoTotale;
+        Cromosoma clone = new Cromosoma(vehicle);
+        clone.totalWeight = totalWeight;
         clone.addAll(this);
         return clone;
     }

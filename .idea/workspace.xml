@@ -4,11 +4,33 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="84d07227-441a-45ac-bbf6-7fe5dec144f1" name="Changes" comment="Added transactions for table accesses">
+    <list default="true" id="84d07227-441a-45ac-bbf6-7fe5dec144f1" name="Changes" comment="Improved package shipping algorithm and added CourierController">
+      <change afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/controller/helper/CarrierHelper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/controller/service/CenterService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/controller/service/DeliveryService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/controller/service/RouteService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/controller/service/util/BFSNode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/controller/service/util/Graph.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/controller/service/util/Node.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/model/entity/Centro.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/model/entity/Delivery.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/model/entity/Route.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/controller/CourierController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TODO" beforeDir="false" afterPath="$PROJECT_DIR$/TODO" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/controller/genetica/Cromosoma.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/controller/genetica/Cromosoma.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/controller/service/CourierService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/controller/service/CourierService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/controller/service/PackageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/controller/service/PackageService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/controller/service/VehicleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/controller/service/VehicleService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/controller/service/util/ServiceProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/controller/service/ServiceProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/model/entity/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/model/entity/Cliente.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/model/entity/Collo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/model/entity/Collo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/model/entity/Courier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/model/entity/Courier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/model/io/TableProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/model/io/TableProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/controller/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/controller/ClientController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/controller/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/controller/SendController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/controller/SendController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/controller/SignupController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unipa/prog3/view/controller/SignupController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -174,7 +196,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673436408103</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Managed vehicles availability">
+      <created>1673442285189</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1673442285189</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -213,7 +242,10 @@
     <MESSAGE value="Fixed back navigation bug on package send" />
     <MESSAGE value="Added command design pattern to implement rollback in Table" />
     <MESSAGE value="Added transactions for table accesses" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added transactions for table accesses" />
+    <MESSAGE value="Managed vehicles availability" />
+    <MESSAGE value="Improved package shipping algorithm" />
+    <MESSAGE value="Improved package shipping algorithm and added CourierController" />
+    <option name="LAST_COMMIT_MESSAGE" value="Improved package shipping algorithm and added CourierController" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

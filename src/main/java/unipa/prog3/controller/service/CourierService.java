@@ -11,6 +11,14 @@ public class CourierService extends GenericService<Courier> {
         super(TableProvider.TableName.COURIERS);
     }
 
+    public Vector<Courier> selectAvailable() {
+        return select(courier -> courier.getVehicle() == null);
+    }
+
+    public Vector<Courier> selectTraveling() {
+        return select(courier -> courier.getVehicle() != null);
+    }
+
     public boolean signup(Courier courier) {
         if (findCourierByEmail(courier.getEmail()).isEmpty()) {
             insert(courier);
@@ -34,7 +42,7 @@ public class CourierService extends GenericService<Courier> {
 
     @Override
     public String entityToString(Courier courier) {
-        return courier.getNome() + Table.delimiter + courier.getCognome()
+        return courier.getName() + Table.delimiter + courier.getSurname()
                 + Table.delimiter + courier.getEmail()
                 + Table.delimiter + courier.getPassword();
     }

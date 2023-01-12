@@ -7,14 +7,15 @@ public class Collo extends Entity {
     private boolean consegnato;
 
     public Collo(String codice, Cliente mittente, Cliente destinatario, float peso) {
-        this(codice, mittente, destinatario, peso, null);
+        this(codice, mittente, destinatario, peso, false, null);
     }
 
-    public Collo(String codice, Cliente mittente, Cliente destinatario, float peso, Veicolo veicolo) {
+    public Collo(String codice, Cliente mittente, Cliente destinatario, float peso, boolean consegnato, Veicolo veicolo) {
         super(codice);
         this.mittente = mittente;
         this.destinatario = destinatario;
         this.peso = peso;
+        this.consegnato = consegnato;
         this.veicolo = veicolo;
     }
 
@@ -36,6 +37,14 @@ public class Collo extends Entity {
 
     public void setVeicolo(Veicolo veicolo) {
         this.veicolo = veicolo;
+    }
+
+    public Centro getPartenza() {
+        return mittente.getCentro();
+    }
+
+    public Centro getDestinazione() {
+        return destinatario.getCentro();
     }
 
     public boolean isConsegnato() {

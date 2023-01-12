@@ -19,6 +19,6 @@ public class TableProvider {
     }
 
     public enum TableName {
-        CLIENTS, COURIERS, VEHICLES, PACKAGES
+        CLIENTS, COURIERS, VEHICLES, PACKAGES, CENTERS, DELIVERIES, ROUTES
     }
 }

@@ -1,12 +1,10 @@
 package unipa.prog3.view.controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import unipa.prog3.MainApplication;
 import unipa.prog3.controller.service.ClientService;
-import unipa.prog3.controller.service.util.ServiceProvider;
+import unipa.prog3.controller.service.ServiceProvider;
 import unipa.prog3.model.entity.Cliente;
 import unipa.prog3.model.entity.util.ClientBuilder;
 

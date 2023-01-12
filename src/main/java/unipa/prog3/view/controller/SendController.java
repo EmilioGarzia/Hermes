@@ -10,13 +10,9 @@ import javafx.scene.paint.Color;
 import unipa.prog3.MainApplication;
 import unipa.prog3.controller.genetica.Cromosoma;
 import unipa.prog3.controller.genetica.Popolazione;
-import unipa.prog3.controller.service.ClientService;
-import unipa.prog3.controller.service.PackageService;
-import unipa.prog3.controller.service.VehicleService;
-import unipa.prog3.controller.service.util.ServiceProvider;
-import unipa.prog3.model.entity.Cliente;
-import unipa.prog3.model.entity.Collo;
-import unipa.prog3.model.entity.Veicolo;
+import unipa.prog3.controller.helper.CarrierHelper;
+import unipa.prog3.controller.service.*;
+import unipa.prog3.model.entity.*;
 
 import java.util.HashMap;
 import java.util.Vector;
@@ -32,8 +28,7 @@ public class SendController extends Controller {
     private final HashMap<String, Cliente> clientsMap;
     private final PackageService packageService;
 
-    private Vector<Veicolo> veicoli;
-    private Vector<Collo> colli;
+    private CarrierHelper carrierHelper;
     private final Popolazione popolazione;
 
     public SendController() {
@@ -52,6 +47,9 @@ public class SendController extends Controller {
 
         senderChooser.getSelectionModel().selectedIndexProperty().addListener(listener);
         receiverChooser.getSelectionModel().selectedIndexProperty().addListener(listener);
+
+        RouteService routeService = (RouteService) ServiceProvider.getService(Route.class);
+        carrierHelper = new CarrierHelper(routeService.selectAll());
     }
 
     @FXML
@@ -69,34 +67,38 @@ public class SendController extends Controller {
         packageService.insert(collo);
         errorLabel.setTextFill(Color.GREEN);
         errorLabel.setText("Utilizza il codice " + collo.getID() + " per tracciare la tua spedizione");
-        spedisciVeicoli(collo);
+        spedisciVeicoli();
     }
 
-    private void spedisciVeicoli(Collo collo) {
-        if (veicoli == null) {
-            VehicleService vehicleService = (VehicleService) ServiceProvider.getService(Veicolo.class);
-            veicoli = vehicleService.selectAll();
-        }
+    private void spedisciVeicoli() {
+        CourierService courierService = (CourierService) ServiceProvider.getService(Courier.class);
+        Vector<Courier> couriers = courierService.selectAvailable();
+        VehicleService vehicleService = (VehicleService) ServiceProvider.getService(Veicolo.class);
+        Vector<Veicolo> veicoli = vehicleService.selectAvailable();
+        Vector<Collo> colli = packageService.selectNotSent();
 
-        if (colli == null)
-            colli = packageService.selectNotSent();
-        else colli.add(collo);
-
-        while(!colli.isEmpty() && !veicoli.isEmpty()) {
+        while(!colli.isEmpty() && !veicoli.isEmpty() && !couriers.isEmpty()) {
+            Vector<Collo> bestLoad = carrierHelper.findBestLoad(colli);
             Cromosoma best = null;
             for (Veicolo v : veicoli) {
-                Cromosoma soluzione = popolazione.findBestSolutionForSingleVehicle(v, colli, 10);
+                Cromosoma soluzione = popolazione.findBestSolutionForSingleVehicle(v, bestLoad, 10);
                 if (best == null || soluzione.weightRatio() > best.weightRatio())
                     best = soluzione;
             }
 
+            if (best == null) return;
             for (Collo c : best) {
-                c.setVeicolo(best.getVeicolo());
+                c.setVeicolo(best.getVehicle());
                 packageService.update(c);
                 colli.remove(c);
-                System.out.println("Il collo " + c.getID() + " è stato assegnato al veicolo " + best.getVeicolo().getID());
+                System.out.println("Il collo " + c.getID() + " è stato assegnato al veicolo " + best.getVehicle().getID());
             }
-            veicoli.remove(best.getVeicolo());
+            veicoli.remove(best.getVehicle());
+
+            Courier courier = couriers.get((int) (Math.random()*couriers.size()));
+            courier.setVehicle(best.getVehicle());
+            courierService.update(courier);
+            couriers.remove(courier);
         }
     }
 

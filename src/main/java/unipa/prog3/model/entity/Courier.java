@@ -1,26 +1,28 @@
 package unipa.prog3.model.entity;
 
 public class Courier extends Entity {
-    private final String nome, cognome, email, password;
+    private final String name, surname, email, password;
+    private Veicolo vehicle;
 
-    public Courier(String id, String nome, String cognome, String email, String password) {
+    public Courier(String id, String name, String surname, String email, String password, Veicolo vehicle) {
         super(id);
-        this.nome = nome;
-        this.cognome = cognome;
+        this.name = name;
+        this.surname = surname;
         this.email = email;
         this.password = password;
+        this.vehicle = vehicle;
     }
 
-    public Courier(String nome, String cognome, String email, String password) {
-        this(null, nome, cognome, email, password);
+    public Courier(String name, String surname, String email, String password) {
+        this(null, name, surname, email, password, null);
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public String getCognome() {
-        return cognome;
+    public String getSurname() {
+        return surname;
     }
 
     public String getEmail() {
@@ -29,5 +31,13 @@ public class Courier extends Entity {
 
     public String getPassword() {
         return password;
+    }
+
+    public Veicolo getVehicle() {
+        return vehicle;
+    }
+
+    public void setVehicle(Veicolo vehicle) {
+        this.vehicle = vehicle;
     }
 }

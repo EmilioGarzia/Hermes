@@ -5,6 +5,7 @@ public class Cliente extends Entity {
     private String indirizzo, città, stato;
     private int cap;
     private String email, telefono;
+    private Centro centro;
 
     public Cliente(String id, String nome, String cognome) {
         super(id);
@@ -12,19 +13,10 @@ public class Cliente extends Entity {
         this.cognome = cognome;
     }
 
-    public Cliente(String nome, String cognome) {
-        this(null, nome, cognome);
-    }
-
-    public Cliente() {
-        this(null, null, null);
-    }
-
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof Cliente))
+        if (!(obj instanceof Cliente cliente))
             return false;
-        Cliente cliente = (Cliente) obj;
         return cliente.nome.equals(nome) && cliente.cognome.equals(cognome) && cliente.indirizzo.equals(indirizzo)
                 && cliente.città.equals(città) && cliente.stato.equals(stato) && cliente.cap == cap;
     }
@@ -91,5 +83,13 @@ public class Cliente extends Entity {
 
     public void setCognome(String cognome) {
         this.cognome = cognome;
+    }
+
+    public Centro getCentro() {
+        return centro;
+    }
+
+    public void setCentro(Centro centro) {
+        this.centro = centro;
     }
 }

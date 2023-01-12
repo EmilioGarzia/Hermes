@@ -6,7 +6,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import unipa.prog3.controller.service.CourierService;
 import unipa.prog3.MainApplication;
-import unipa.prog3.controller.service.util.ServiceProvider;
+import unipa.prog3.controller.service.ServiceProvider;
 import unipa.prog3.model.entity.Courier;
 
 public class LoginController extends Controller {

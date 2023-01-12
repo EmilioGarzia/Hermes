@@ -1,6 +1,5 @@
 package unipa.prog3.controller.service;
 
-import unipa.prog3.controller.service.util.ServiceProvider;
 import unipa.prog3.model.entity.Collo;
 import unipa.prog3.model.io.Table;
 import unipa.prog3.model.io.TableProvider;
