@@ -29,6 +29,11 @@ public class MainController extends Stack<Controller> {
         MainApplication.getMainController().showView("/unipa/prog3/track-view.fxml");
     }
 
+    @FXML
+    public void reportDelivery() {
+        MainApplication.getMainController().showView("/unipa/prog3/courier-view.fxml");
+    }
+
     public void showView(String path) {
         contentPane.setContent(MainApplication.loadView(path));
     }

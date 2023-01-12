@@ -12,18 +12,18 @@ import java.util.Vector;
 
 public class CourierController extends Controller {
     @FXML
-    private ChoiceBox<Courier> courierField;
+    private ChoiceBox<Courier> courierChooser;
     @FXML
-    private ChoiceBox<Collo> packageField;
+    private ChoiceBox<Collo> packageChooser;
     @FXML
-    private ChoiceBox<Centro> centerField;
+    private ChoiceBox<Centro> centerChooser;
 
     public void initialize() {
         CourierService courierService = (CourierService) ServiceProvider.getService(Courier.class);
         PackageService packageService = (PackageService) ServiceProvider.getService(Collo.class);
         CenterService centerService = (CenterService) ServiceProvider.getService(Centro.class);
 
-        courierField.setConverter(new StringConverter<>() {
+        courierChooser.setConverter(new StringConverter<>() {
             @Override
             public String toString(Courier courier) {
                 return courier.getID();
@@ -34,11 +34,11 @@ public class CourierController extends Controller {
                 return courierService.select(s);
             }
         });
-        courierField.setItems(FXCollections.observableList(courierService.selectTraveling()));
-        courierField.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, newValue) ->
-            packageField.setItems(FXCollections.observableList(packageService.selectByVehicle(newValue.getVehicle()))));
+        courierChooser.setItems(FXCollections.observableList(courierService.selectTraveling()));
+        courierChooser.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, newValue) ->
+            packageChooser.setItems(FXCollections.observableList(packageService.selectByVehicle(newValue.getVehicle()))));
 
-        packageField.setConverter(new StringConverter<>() {
+        packageChooser.setConverter(new StringConverter<>() {
             @Override
             public String toString(Collo collo) {
                 return collo.getID();
@@ -49,10 +49,10 @@ public class CourierController extends Controller {
                 return packageService.select(s);
             }
         });
-        packageField.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
-                centerField.setItems(FXCollections.observableList(findCentersByPackage(newValue))));
+        packageChooser.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
+                centerChooser.setItems(FXCollections.observableList(findCentersByPackage(newValue))));
 
-        centerField.setConverter(new StringConverter<>() {
+        centerChooser.setConverter(new StringConverter<>() {
             @Override
             public String toString(Centro centro) {
                 return centro.getCittà() + " - " + centro.getStato();
@@ -74,9 +74,9 @@ public class CourierController extends Controller {
 
     @FXML
     public void report() {
-        Courier courier = courierField.getValue();
-        Collo pack = packageField.getValue();
-        Centro center = centerField.getValue();
+        Courier courier = courierChooser.getValue();
+        Collo pack = packageChooser.getValue();
+        Centro center = centerChooser.getValue();
 
         if (center.equals(pack.getDestinazione())) {
             pack.setConsegnato(true);

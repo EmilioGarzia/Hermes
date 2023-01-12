@@ -36,7 +36,7 @@
                   <VBox prefHeight="34.0" prefWidth="144.0" />
                   <Button mnemonicParsing="false" onAction="#send" prefHeight="90.0" prefWidth="334.0" styleClass="menuButton" text="Spedisci un collo" />
                   <VBox prefHeight="34.0" prefWidth="337.0" />
-                  <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="334.0" styleClass="menuButton" text="Segnala una consegna" />
+                  <Button mnemonicParsing="false" onAction="#reportDelivery" prefHeight="90.0" prefWidth="334.0" styleClass="menuButton" text="Segnala una consegna" />
                   <VBox prefHeight="200.0" prefWidth="100.0" />
                </children>
             </VBox>
