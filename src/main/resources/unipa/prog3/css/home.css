@@ -2,13 +2,13 @@
     -fx-background-color:  #222A35;
 }
 
-.button{
+.menuButton{
     -fx-background-color: #3297c4;
     -fx-background-radius: 50 0 50 0;
     -fx-text-fill: white;
     -fx-font-size: 2em;
 }
-.button:hover{
+.menuButton:hover{
     -fx-background-color: #32b8c4;
 }
 

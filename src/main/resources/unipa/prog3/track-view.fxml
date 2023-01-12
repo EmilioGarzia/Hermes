@@ -1,51 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unipa.prog3.view.controller.TrackController">
+<BorderPane prefHeight="500.0" prefWidth="1000.0" styleClass="mainContainer" stylesheets="@css/track.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unipa.prog3.view.controller.TrackController">
    <left>
-      <HBox prefHeight="294.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <HBox prefHeight="271.0" prefWidth="40.0" BorderPane.alignment="CENTER" />
    </left>
-   <bottom>
-      <VBox prefHeight="0.0" prefWidth="800.0" BorderPane.alignment="CENTER" />
-   </bottom>
    <right>
-      <HBox prefHeight="294.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <HBox prefHeight="271.0" prefWidth="40.0" BorderPane.alignment="CENTER" />
    </right>
    <top>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <bottom>
-            <Label alignment="CENTER" prefHeight="43.0" prefWidth="171.0" text="Traccia la tua spedizione" BorderPane.alignment="CENTER">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-         </bottom>
-         <top>
-            <VBox prefHeight="306.0" prefWidth="800.0" BorderPane.alignment="CENTER" />
-         </top>
+      <BorderPane BorderPane.alignment="CENTER">
+         <center>
+            <ImageView fitHeight="162.0" fitWidth="362.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+               <image>
+                  <Image url="@image/logo.png" />
+               </image>
+               <BorderPane.margin>
+                  <Insets bottom="20.0" top="20.0" />
+               </BorderPane.margin>
+            </ImageView>
+         </center>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
       </BorderPane>
    </top>
    <center>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <right>
-            <Button mnemonicParsing="false" onAction="#onTrace" prefHeight="25.0" prefWidth="69.0" text="Traccia" BorderPane.alignment="CENTER" />
-         </right>
-         <left>
-            <Label text="Codice collo:" BorderPane.alignment="CENTER" />
-         </left>
          <center>
-            <TextField fx:id="codeField" prefHeight="30.0" prefWidth="207.0" BorderPane.alignment="CENTER" />
+            <VBox prefHeight="221.0" prefWidth="920.0" BorderPane.alignment="CENTER">
+               <children>
+                  <BorderPane minWidth="-Infinity" prefHeight="214.0" prefWidth="923.0">
+                     <top>
+                        <Label alignment="CENTER" prefHeight="43.0" prefWidth="293.0" text="Traccia la tua spedizione" BorderPane.alignment="CENTER">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                     </top>
+                     <center>
+                        <AnchorPane maxHeight="50.0" prefHeight="50.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Label layoutX="167.0" prefHeight="35.0" prefWidth="150.0" text="Codice collo:" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="167.0" AnchorPane.topAnchor="0.0" />
+                              <TextField fx:id="codeField" alignment="CENTER" layoutX="317.0" maxHeight="-Infinity" maxWidth="500.0" prefHeight="57.0" prefWidth="290.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="317.0" AnchorPane.rightAnchor="316.0" AnchorPane.topAnchor="0.0" />
+                              <Button layoutX="617.0" mnemonicParsing="false" onAction="#onTrace" prefHeight="38.0" prefWidth="114.0" styleClass="trackButton" text="Traccia" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="192.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                     </center>
+                  </BorderPane>
+               </children>
+            </VBox>
          </center>
+         <top>
+            <VBox prefHeight="154.0" prefWidth="920.0" BorderPane.alignment="CENTER" />
+         </top>
          <bottom>
-            <VBox prefHeight="222.0" prefWidth="400.0" BorderPane.alignment="CENTER" />
+            <VBox prefHeight="137.0" prefWidth="920.0" BorderPane.alignment="CENTER" />
          </bottom>
       </BorderPane>
    </center>
