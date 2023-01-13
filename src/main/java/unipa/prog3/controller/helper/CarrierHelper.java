@@ -2,9 +2,9 @@ package unipa.prog3.controller.helper;
 
 import unipa.prog3.controller.service.util.BFSNode;
 import unipa.prog3.controller.service.util.Graph;
-import unipa.prog3.model.entity.Centro;
-import unipa.prog3.model.entity.Collo;
-import unipa.prog3.model.entity.Route;
+import unipa.prog3.model.relation.Centro;
+import unipa.prog3.model.relation.Collo;
+import unipa.prog3.model.relation.Route;
 
 import java.util.Vector;
 

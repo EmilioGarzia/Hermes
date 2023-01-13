@@ -1,8 +1,8 @@
 package unipa.prog3.controller.service;
 
-import unipa.prog3.model.entity.Cliente;
-import unipa.prog3.model.entity.Collo;
-import unipa.prog3.model.entity.Veicolo;
+import unipa.prog3.model.relation.Cliente;
+import unipa.prog3.model.relation.Collo;
+import unipa.prog3.model.relation.Veicolo;
 import unipa.prog3.model.io.Table;
 import unipa.prog3.model.io.TableProvider;
 
@@ -17,39 +17,26 @@ public class PackageService extends GenericService<Collo> {
         return select(collo -> collo.getVeicolo() == null);
     }
 
-    public Vector<Collo> selectByVehicle(Veicolo veicolo) {
-        return select(collo -> collo.getVeicolo().getID().equals(veicolo.getID()));
+    public Vector<Collo> selectByVehicleNotDelivered(Veicolo veicolo) {
+        return select(collo -> collo.getVeicolo() != null && !collo.isConsegnato()
+                && collo.getVeicolo().equals(veicolo));
     }
 
     @Override
-    public Collo entityFromString(String s) {
-        String[] info = s.split(Table.delimiter);
-
+    public Collo relationFromFields(String[] fields) {
         ClientService clientService = (ClientService) ServiceProvider.getService(Cliente.class);
-        Cliente mittente = clientService.select(info[1]);
-        Cliente destinatario = clientService.select(info[2]);
+        Cliente mittente = clientService.select(fields[1]);
+        Cliente destinatario = clientService.select(fields[2]);
 
-        float peso = Float.parseFloat(info[3]);
-        boolean consegnato = Boolean.parseBoolean(info[4]);
+        float peso = Float.parseFloat(fields[3]);
+        boolean consegnato = Boolean.parseBoolean(fields[4]);
 
         Veicolo veicolo = null;
-        if (!info[4].equals("null")) {
+        if (!fields[4].equals("null")) {
             VehicleService vehicleService = (VehicleService) ServiceProvider.getService(Veicolo.class);
-            veicolo = vehicleService.select(info[5]);
+            veicolo = vehicleService.select(fields[5]);
         }
 
-        return new Collo(info[0], mittente, destinatario, peso, consegnato, veicolo);
-    }
-
-    @Override
-    public String entityToString(Collo collo) {
-        StringBuilder builder = new StringBuilder();
-        builder.append(collo.getID()).append(Table.delimiter).append(collo.getMittente().getID())
-                .append(Table.delimiter).append(collo.getDestinatario().getID()).append(Table.delimiter)
-                .append(collo.getPeso()).append(Table.delimiter).append(collo.isConsegnato()).append(Table.delimiter);
-        if (collo.getVeicolo() != null)
-            builder.append(collo.getVeicolo().getID());
-        else builder.append("null");
-        return builder.toString();
+        return new Collo(fields[0], mittente, destinatario, peso, consegnato, veicolo);
     }
 }

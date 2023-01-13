@@ -1,9 +1,8 @@
 package unipa.prog3.controller.service;
 
-import unipa.prog3.model.entity.Collo;
-import unipa.prog3.model.io.Table;
+import unipa.prog3.model.relation.Collo;
 import unipa.prog3.model.io.TableProvider;
-import unipa.prog3.model.entity.Veicolo;
+import unipa.prog3.model.relation.Veicolo;
 
 import java.util.Vector;
 
@@ -15,22 +14,13 @@ public class VehicleService extends GenericService<Veicolo> {
     public Vector<Veicolo> selectAvailable() {
         return select(v -> {
             PackageService packageService = (PackageService) ServiceProvider.getService(Collo.class);
-            Vector<Collo> packages = packageService.selectByVehicle(v);
-            for (Collo collo : packages)
-                if (!collo.isConsegnato())
-                    return false;
-            return true;
+            Vector<Collo> packages = packageService.selectByVehicleNotDelivered(v);
+            return packages.isEmpty();
         });
     }
 
     @Override
-    public Veicolo entityFromString(String s) {
-        String[] info = s.split(Table.delimiter);
-        return new Veicolo(info[0], info[1], Double.parseDouble(info[2]));
-    }
-
-    @Override
-    public String entityToString(Veicolo veicolo) {
-        return veicolo.getID() + Table.delimiter + veicolo.getTipo() + Table.delimiter + veicolo.getCapienza();
+    public Veicolo relationFromFields(String[] fields) {
+        return new Veicolo(fields[0], fields[1], Double.parseDouble(fields[2]));
     }
 }

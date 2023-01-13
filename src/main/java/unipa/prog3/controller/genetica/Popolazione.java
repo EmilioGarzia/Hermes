@@ -1,7 +1,7 @@
 package unipa.prog3.controller.genetica;
 
-import unipa.prog3.model.entity.Collo;
-import unipa.prog3.model.entity.Veicolo;
+import unipa.prog3.model.relation.Collo;
+import unipa.prog3.model.relation.Veicolo;
 
 import java.util.Vector;
 

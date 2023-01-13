@@ -3,10 +3,12 @@ package unipa.prog3.view.controller;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
 import javafx.util.StringConverter;
 import unipa.prog3.controller.helper.CarrierHelper;
 import unipa.prog3.controller.service.*;
-import unipa.prog3.model.entity.*;
+import unipa.prog3.model.relation.*;
 
 import java.util.Vector;
 
@@ -17,16 +19,31 @@ public class CourierController extends Controller {
     private ChoiceBox<Collo> packageChooser;
     @FXML
     private ChoiceBox<Centro> centerChooser;
+    @FXML
+    private Label statusLabel;
+    @FXML
+    private BorderPane formPane;
 
     public void initialize() {
         CourierService courierService = (CourierService) ServiceProvider.getService(Courier.class);
         PackageService packageService = (PackageService) ServiceProvider.getService(Collo.class);
         CenterService centerService = (CenterService) ServiceProvider.getService(Centro.class);
 
+        Vector<Courier> couriers = courierService.selectTraveling();
+        if (couriers.isEmpty()) {
+            statusLabel.setText("Non ci sono corrieri in viaggio al momento!");
+            return;
+        }
+
+        statusLabel.setText("");
+        formPane.setDisable(false);
+
         courierChooser.setConverter(new StringConverter<>() {
             @Override
             public String toString(Courier courier) {
-                return courier.getID();
+                if (courier != null)
+                    return courier.getID();
+                return null;
             }
 
             @Override
@@ -34,14 +51,16 @@ public class CourierController extends Controller {
                 return courierService.select(s);
             }
         });
-        courierChooser.setItems(FXCollections.observableList(courierService.selectTraveling()));
+        courierChooser.setItems(FXCollections.observableList(couriers));
         courierChooser.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, newValue) ->
-            packageChooser.setItems(FXCollections.observableList(packageService.selectByVehicle(newValue.getVehicle()))));
+            packageChooser.setItems(FXCollections.observableList(packageService.selectByVehicleNotDelivered(newValue.getVehicle()))));
 
         packageChooser.setConverter(new StringConverter<>() {
             @Override
             public String toString(Collo collo) {
-                return collo.getID();
+                if (collo != null)
+                    return collo.getCodice();
+                return null;
             }
 
             @Override
@@ -55,7 +74,9 @@ public class CourierController extends Controller {
         centerChooser.setConverter(new StringConverter<>() {
             @Override
             public String toString(Centro centro) {
-                return centro.getCittà() + " - " + centro.getStato();
+                if (centro != null)
+                    return centro.getCittà() + " - " + centro.getStato();
+                return null;
             }
 
             @Override
@@ -69,7 +90,12 @@ public class CourierController extends Controller {
     private Vector<Centro> findCentersByPackage(Collo pack) {
         RouteService routeService = (RouteService) ServiceProvider.getService(Route.class);
         CarrierHelper helper = new CarrierHelper(routeService.selectAll());
-        return helper.findPath(pack.getPartenza(), pack.getDestinazione());
+        Vector<Centro> centers = helper.findPath(pack.getPartenza(), pack.getDestinazione());
+
+        DeliveryService deliveryService = (DeliveryService) ServiceProvider.getService(Delivery.class);
+        Vector<Delivery> deliveries = deliveryService.selectByPackage(pack);
+        deliveries.forEach(delivery -> centers.remove(delivery.getCentro()));
+        return centers;
     }
 
     @FXML

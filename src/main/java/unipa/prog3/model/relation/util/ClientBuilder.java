@@ -1,12 +1,18 @@
-package unipa.prog3.model.entity.util;
+package unipa.prog3.model.relation.util;
 
-import unipa.prog3.model.entity.Cliente;
+import unipa.prog3.model.relation.Centro;
+import unipa.prog3.model.relation.Cliente;
 
 public class ClientBuilder {
     private final Cliente cliente;
 
     public ClientBuilder() {
         cliente = new Cliente();
+    }
+
+    public ClientBuilder setID(String id) {
+        cliente.setKeys(id);
+        return this;
     }
 
     public ClientBuilder setNome(String nome) {
@@ -19,13 +25,8 @@ public class ClientBuilder {
         return this;
     }
 
-    public ClientBuilder setStato(String stato) {
-        cliente.setStato(stato);
-        return this;
-    }
-
-    public ClientBuilder setCittà(String città) {
-        cliente.setCittà(città);
+    public ClientBuilder setCentro(Centro centro) {
+        cliente.setCentro(centro);
         return this;
     }
 
@@ -36,6 +37,11 @@ public class ClientBuilder {
 
     public ClientBuilder setIndirizzo(String indirizzo) {
         cliente.setIndirizzo(indirizzo);
+        return this;
+    }
+
+    public ClientBuilder setCivico(int civico) {
+        cliente.setCivico(civico);
         return this;
     }
 

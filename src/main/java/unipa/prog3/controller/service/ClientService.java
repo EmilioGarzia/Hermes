@@ -1,9 +1,11 @@
 package unipa.prog3.controller.service;
 
-import unipa.prog3.model.io.Table;
 import unipa.prog3.model.io.TableProvider;
-import unipa.prog3.model.entity.Cliente;
+import unipa.prog3.model.relation.Centro;
+import unipa.prog3.model.relation.Cliente;
+import unipa.prog3.model.relation.util.ClientBuilder;
 
+import java.util.Arrays;
 import java.util.Vector;
 
 public class ClientService extends GenericService<Cliente> {
@@ -19,23 +21,14 @@ public class ClientService extends GenericService<Cliente> {
     }
 
     @Override
-    public Cliente entityFromString(String s) {
-        String[] info = s.split(Table.delimiter);
-        Cliente client = new Cliente(info[0], info[1], info[2]);
-        client.setStato(info[3]);
-        client.setCittà(info[4]);
-        client.setCap(Integer.parseInt(info[5]));
-        client.setIndirizzo(info[6]);
-        client.setEmail(info[7]);
-        client.setTelefono(info[8]);
-        return client;
-    }
+    public Cliente relationFromFields(String[] fields) {
+        CenterService centerService = (CenterService) ServiceProvider.getService(Centro.class);
+        Centro centro = centerService.selectByLocation(fields[3], fields[4]);
 
-    @Override
-    public String entityToString(Cliente cliente) {
-        return cliente.getID() + Table.delimiter + cliente.getNome() + Table.delimiter + cliente.getCognome()
-                + Table.delimiter + cliente.getStato() + Table.delimiter + cliente.getCittà()
-                + Table.delimiter + cliente.getCap() + Table.delimiter + cliente.getIndirizzo()
-                + Table.delimiter + cliente.getEmail() + Table.delimiter + cliente.getTelefono();
+        ClientBuilder clientBuilder = new ClientBuilder();
+        clientBuilder.setID(fields[0]).setNome(fields[1]).setCognome(fields[2]).setCentro(centro)
+                .setCap(Integer.parseInt(fields[5])).setIndirizzo(fields[6]).setCivico(Integer.parseInt(fields[7]))
+                .setEmail(fields[8]).setTelefono(fields[9]);
+        return clientBuilder.getCliente();
     }
 }

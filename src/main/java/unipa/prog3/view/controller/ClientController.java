@@ -1,28 +1,35 @@
 package unipa.prog3.view.controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import unipa.prog3.MainApplication;
+import unipa.prog3.controller.service.CenterService;
 import unipa.prog3.controller.service.ClientService;
 import unipa.prog3.controller.service.ServiceProvider;
-import unipa.prog3.model.entity.Cliente;
-import unipa.prog3.model.entity.util.ClientBuilder;
+import unipa.prog3.model.relation.Centro;
+import unipa.prog3.model.relation.Cliente;
+import unipa.prog3.model.relation.util.ClientBuilder;
 
 public class ClientController extends Controller {
     @FXML
     private TextField nameField, surnameField;
     @FXML
-    private TextField countryField, townField, CAPField, addressField;
+    private ComboBox<String> countryChooser, townChooser;
+    @FXML
+    private TextField CAPField, addressField, houseNumberField;
     @FXML
     private TextField emailField, phoneField;
 
     @FXML
     public void aggiungiIndirizzo() {
+        CenterService centerService = (CenterService) ServiceProvider.getService(Centro.class);
+        Centro centro = centerService.selectByLocation(townChooser.getValue(), countryChooser.getValue());
+
         ClientBuilder builder = new ClientBuilder();
         builder.setNome(nameField.getText())
                 .setCognome(surnameField.getText())
-                .setStato(countryField.getText())
-                .setCittà(townField.getText())
+                .setCentro(centro)
                 .setCap(Integer.parseInt(CAPField.getText()))
                 .setIndirizzo(addressField.getText())
                 .setEmail(emailField.getText())

@@ -12,7 +12,7 @@ import unipa.prog3.controller.genetica.Cromosoma;
 import unipa.prog3.controller.genetica.Popolazione;
 import unipa.prog3.controller.helper.CarrierHelper;
 import unipa.prog3.controller.service.*;
-import unipa.prog3.model.entity.*;
+import unipa.prog3.model.relation.*;
 
 import java.util.HashMap;
 import java.util.Vector;
@@ -66,7 +66,7 @@ public class SendController extends Controller {
         Collo collo = new Collo(null, sender, receiver, weight);
         packageService.insert(collo);
         errorLabel.setTextFill(Color.GREEN);
-        errorLabel.setText("Utilizza il codice " + collo.getID() + " per tracciare la tua spedizione");
+        errorLabel.setText("Utilizza il codice " + collo.getCodice() + " per tracciare la tua spedizione");
         spedisciVeicoli();
     }
 
@@ -91,7 +91,7 @@ public class SendController extends Controller {
                 c.setVeicolo(best.getVehicle());
                 packageService.update(c);
                 colli.remove(c);
-                System.out.println("Il collo " + c.getID() + " è stato assegnato al veicolo " + best.getVehicle().getID());
+                System.out.println("Il collo " + c.getCodice() + " è stato assegnato al veicolo " + best.getVehicle().getCodice());
             }
             veicoli.remove(best.getVehicle());
 

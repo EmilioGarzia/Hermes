@@ -1,13 +1,13 @@
 package unipa.prog3.controller.service;
 
-import unipa.prog3.model.entity.Centro;
-import unipa.prog3.model.entity.Collo;
-import unipa.prog3.model.entity.Courier;
-import unipa.prog3.model.entity.Delivery;
-import unipa.prog3.model.io.Table;
+import unipa.prog3.model.relation.Centro;
+import unipa.prog3.model.relation.Collo;
+import unipa.prog3.model.relation.Courier;
+import unipa.prog3.model.relation.Delivery;
 import unipa.prog3.model.io.TableProvider;
 
 import java.time.LocalDateTime;
+import java.util.Vector;
 
 public class DeliveryService extends GenericService<Delivery> {
     public DeliveryService() {
@@ -18,27 +18,22 @@ public class DeliveryService extends GenericService<Delivery> {
         return !select(delivery::equals).isEmpty();
     }
 
-    @Override
-    public Delivery entityFromString(String s) {
-        String[] info = s.split(Table.delimiter);
-
-        PackageService packageService = (PackageService) ServiceProvider.getService(Collo.class);
-        Collo pack = packageService.select(info[1]);
-
-        CenterService centerService = (CenterService) ServiceProvider.getService(Centro.class);
-        Centro center = centerService.select(info[2]);
-
-        CourierService courierService = (CourierService) ServiceProvider.getService(Courier.class);
-        Courier courier = courierService.select(info[3]);
-
-        LocalDateTime timestamp = LocalDateTime.parse(info[4]);
-        return new Delivery(info[0], pack, center, courier, timestamp);
+    public Vector<Delivery> selectByPackage(Collo pack) {
+        return select(delivery -> delivery.getCollo().equals(pack));
     }
 
     @Override
-    public String entityToString(Delivery delivery) {
-        return delivery.getID() + Table.delimiter + delivery.getCollo().getID() + Table.delimiter
-                + delivery.getCentro().getID() + Table.delimiter + delivery.getCorriere().getID() + Table.delimiter
-                + delivery.getTimestamp().toString();
+    public Delivery relationFromFields(String[] fields) {
+        PackageService packageService = (PackageService) ServiceProvider.getService(Collo.class);
+        Collo pack = packageService.select(fields[0]);
+
+        CenterService centerService = (CenterService) ServiceProvider.getService(Centro.class);
+        Centro center = centerService.select(fields[1]);
+
+        CourierService courierService = (CourierService) ServiceProvider.getService(Courier.class);
+        Courier courier = courierService.select(fields[2]);
+
+        LocalDateTime timestamp = LocalDateTime.parse(fields[3]);
+        return new Delivery(pack, center, courier, timestamp);
     }
 }

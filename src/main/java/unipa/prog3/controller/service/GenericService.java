@@ -1,13 +1,14 @@
 package unipa.prog3.controller.service;
 
+import unipa.prog3.model.io.Table;
 import unipa.prog3.model.io.TableAdapter;
 import unipa.prog3.model.io.TableProvider;
-import unipa.prog3.model.entity.Entity;
+import unipa.prog3.model.relation.Relation;
 
 import java.util.Vector;
 import java.util.function.Predicate;
 
-public abstract class GenericService<T extends Entity> implements Service<T> {
+public abstract class GenericService<T extends Relation> implements Service<T> {
     protected final TableAdapter table;
 
     protected GenericService(TableProvider.TableName tableName) {
@@ -23,23 +24,23 @@ public abstract class GenericService<T extends Entity> implements Service<T> {
                 int rand = (int) (Math.random() * language.length());
                 builder.append(language.charAt(rand));
             }
-        } while(!select(t -> t.getID().equals(builder.toString())).isEmpty());
+        } while(select(builder.toString()) != null);
         return builder.toString();
     }
 
     @Override
     public void insert(T t) {
-        if (t.getID() == null)
-            t.setID(generateID());
-        table.insert(entityToString(t));
+        if (t.getKeys() == null)
+            t.setKeys(generateID());
+        table.insert(relationToString(t));
     }
 
     @Override
     public Vector<T> select(Predicate<T> condition) {
-        Vector<String> records = table.select((condition != null) ? data -> condition.test(entityFromString(data)) : null);
+        Vector<String> records = table.select((condition != null) ? data -> condition.test(relationFromString(data)) : null);
         Vector<T> entities = new Vector<>();
         for (String s : records)
-            entities.add(entityFromString(s));
+            entities.add(relationFromString(s));
         return entities;
     }
 
@@ -47,19 +48,37 @@ public abstract class GenericService<T extends Entity> implements Service<T> {
         Vector<String> data = table.select(null);
         Vector<T> entities = new Vector<>();
         for (String s : data)
-            entities.add(entityFromString(s));
+            entities.add(relationFromString(s));
         return entities;
     }
 
     @Override
     public void update(T t) {
-        table.update(data -> entityFromString(data).getID().equals(t.getID()), () -> entityToString(t));
+        table.update(data -> relationFromString(data).equalKeys(t), () -> relationToString(t));
     }
 
-    public T select(String id) {
-        Vector<T> entities = select(t -> t.getID().equals(id));
+    public T select(Object... ids) {
+        Vector<T> entities = select(t -> t.equalKeys(ids));
         if (!entities.isEmpty())
             return entities.get(0);
         return null;
     }
+
+    private String relationToString(T t) {
+        Vector<String> fields = t.fieldsToString();
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < fields.size(); i++) {
+            builder.append(fields.get(i));
+            if (i < fields.size() - 1)
+                builder.append(Table.delimiter);
+        }
+
+        return builder.toString();
+    }
+
+    private T relationFromString(String s) {
+        return relationFromFields(s.split(Table.delimiter));
+    }
+
+    protected abstract T relationFromFields(String[] fields);
 }

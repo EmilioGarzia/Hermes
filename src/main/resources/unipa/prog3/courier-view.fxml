@@ -31,7 +31,12 @@
    <center>
       <VBox maxWidth="-Infinity" prefHeight="360.0" prefWidth="410.0" BorderPane.alignment="CENTER">
          <children>
-            <BorderPane prefHeight="360.0" prefWidth="418.0">
+            <Label fx:id="statusLabel" alignment="CENTER" prefWidth="437.0">
+               <VBox.margin>
+                  <Insets bottom="40.0" />
+               </VBox.margin>
+            </Label>
+            <BorderPane fx:id="formPane" disable="true" prefHeight="360.0" prefWidth="418.0">
                <left>
                   <Label text="Corriere" BorderPane.alignment="CENTER">
                      <BorderPane.margin>
