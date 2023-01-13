@@ -14,18 +14,20 @@ public class CarrierHelper {
     public CarrierHelper(Vector<Route> routes) {
         map = new Graph<>();
         for (Route route : routes) {
+            System.out.println("Centro1: " + route.getCentro1() + ", Centro2: " + route.getCentro2());
             BFSNode<Centro> n1 = add(route.getCentro1());
             BFSNode<Centro> n2 = add(route.getCentro2());
             n1.connectTo(n2);
         }
     }
 
-    private BFSNode<Centro> add(Centro centro) {
-        if (map.containsKey(centro))
-            return (BFSNode<Centro>) map.get(centro);
+    private BFSNode<Centro> add(Centro center) {
+        String centerString = joinStrings(center.keysToString());
+        if (map.containsKey(centerString))
+            return (BFSNode<Centro>) map.get(centerString);
 
-        BFSNode<Centro> node = new BFSNode<>(centro);
-        map.put(centro, node);
+        BFSNode<Centro> node = new BFSNode<>(center);
+        map.put(centerString, node);
         return node;
     }
 
@@ -37,7 +39,7 @@ public class CarrierHelper {
 
         for (int i = 1; i < packsToSend.size(); i++) {
             Collo collo = packsToSend.get(i);
-            Vector<Centro> path = findPath(collo.getMittente().getCentro(), collo.getDestinatario().getCentro());
+            Vector<Centro> path = findPath(collo.getPartenza(), collo.getDestinazione());
             for (Centro centro : path)
                 if (finalPath.contains(centro)) {
                     load.add(collo);
@@ -50,15 +52,22 @@ public class CarrierHelper {
     }
 
     public Vector<Centro> findPath(Centro partenza, Centro destinazione) {
-        map.breadthFirstSearch((BFSNode<Centro>) map.get(partenza));
+        System.out.println("Partenza: " + partenza + ", Destinazione: " + destinazione);
+        String partenzaString = joinStrings(partenza.keysToString());
+        String destinazioneString = joinStrings(destinazione.keysToString());
+        map.breadthFirstSearch((BFSNode<Centro>) map.get(partenzaString));
 
         Vector<Centro> path = new Vector<>();
-        BFSNode<Centro> node = (BFSNode<Centro>) map.get(destinazione);
+        BFSNode<Centro> node = (BFSNode<Centro>) map.get(destinazioneString);
         while(node != null) {
             path.add(node.getData());
             node = node.getParent();
         }
 
         return path;
+    }
+
+    private String joinStrings(Vector<String> strings) {
+        return String.join(":", strings);
     }
 }

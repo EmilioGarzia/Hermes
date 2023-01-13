@@ -1,4 +1,4 @@
-Gestire l'assegnazione dei colli ai centri di smistamento
+Risolvere bug sulla BFS
 
 Design pattern utilizzati:
     - Factory Pattern e Flyweight -> ServiceProvider
@@ -7,5 +7,6 @@ Design pattern utilizzati:
     - Builder -> ClientBuilder
     - Prototype -> Cromosoma
     - Command -> per effettuare le transazioni in Table
+    - Template -> GenericService
     
 Aggiungere tooltip agli elementi fondamentali per aumentare l'interazione UOMO/MACCHINA

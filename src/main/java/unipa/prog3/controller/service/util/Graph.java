@@ -2,7 +2,7 @@ package unipa.prog3.controller.service.util;
 
 import java.util.*;
 
-public class Graph<T> extends HashMap<T, Node<T>> {
+public class Graph<T> extends HashMap<String, Node<T>> {
     public void breadthFirstSearch(BFSNode<T> source) {
         for (Node<T> node : values()) {
             BFSNode<T> bfsNode = (BFSNode<T>) node;

@@ -30,7 +30,7 @@ public abstract class GenericService<T extends Relation> implements Service<T> {
 
     @Override
     public void insert(T t) {
-        if (t.getKeys() == null)
+        if (t.keysAreNull())
             t.setKeys(generateID());
         table.insert(relationToString(t));
     }
@@ -65,15 +65,7 @@ public abstract class GenericService<T extends Relation> implements Service<T> {
     }
 
     private String relationToString(T t) {
-        Vector<String> fields = t.fieldsToString();
-        StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < fields.size(); i++) {
-            builder.append(fields.get(i));
-            if (i < fields.size() - 1)
-                builder.append(Table.delimiter);
-        }
-
-        return builder.toString();
+        return String.join(Table.delimiter, t.fieldsToStrings());
     }
 
     private T relationFromString(String s) {

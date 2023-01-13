@@ -20,21 +20,23 @@ public abstract class Relation {
     }
 
     public final Vector<String> keysToString() {
-        return fieldsToString(keys);
+        return fieldsToStrings(keys);
     }
 
-    public final Vector<String> fieldsToString() {
-        Vector<String> keys = fieldsToString(this.keys);
-        Vector<String> data = fieldsToString(this.data);
+    public final Vector<String> fieldsToStrings() {
+        Vector<String> keys = fieldsToStrings(this.keys);
+        Vector<String> data = fieldsToStrings(this.data);
         keys.addAll(data);
         return keys;
     }
 
-    private Vector<String> fieldsToString(Object[] fields) {
+    private Vector<String> fieldsToStrings(Object[] fields) {
         Vector<String> fieldStrings = new Vector<>();
         for (Object field : fields)
             if (field instanceof Relation relation)
                 fieldStrings.addAll(relation.keysToString());
+            else if (field == null)
+                fieldStrings.add("null");
             else fieldStrings.add(field.toString());
 
         return fieldStrings;
@@ -54,8 +56,11 @@ public abstract class Relation {
         return true;
     }
 
-    public Object[] getKeys() {
-        return keys;
+    public boolean keysAreNull() {
+        for (Object key : keys)
+            if (key == null)
+                return true;
+        return false;
     }
 
     public void setKeys(Object... keys) {

@@ -12,8 +12,8 @@ public class RouteService extends GenericService<Route> {
     @Override
     public Route relationFromFields(String[] fields) {
         CenterService centerService = (CenterService) ServiceProvider.getService(Centro.class);
-        Centro partenza = centerService.select(fields[0]);
-        Centro destinazione = centerService.select(fields[1]);
+        Centro partenza = centerService.selectByLocation(fields[0], fields[1]);
+        Centro destinazione = centerService.selectByLocation(fields[2], fields[3]);
         return new Route(partenza, destinazione);
     }
 }
