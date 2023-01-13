@@ -7,3 +7,5 @@ Design pattern utilizzati:
     - Builder -> ClientBuilder
     - Prototype -> Cromosoma
     - Command -> per effettuare le transazioni in Table
+    
+Aggiungere tooltip agli elementi fondamentali per aumentare l'interazione UOMO/MACCHINA
