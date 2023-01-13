@@ -7,6 +7,7 @@
     -fx-background-radius: 50 0 50 0;
     -fx-text-fill: white;
     -fx-font-size: 26px;
+    -fx-cursor: hand;
 }
 .menuButton:hover{
     -fx-background-color: #32b8c4;
@@ -24,5 +25,4 @@
 }
 .labelContainer{
     -fx-background-color: #363636;
-    -fx-background-radius: 0 30 30 0;
 }

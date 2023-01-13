@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -16,14 +17,8 @@
                   <VBox disable="true" prefHeight="149.0" prefWidth="257.0">
                      <children>
                         <BorderPane prefHeight="61.0" prefWidth="334.0" styleClass="labelContainer">
-                           <left>
-                              <VBox prefHeight="149.0" prefWidth="37.0" BorderPane.alignment="CENTER" />
-                           </left>
-                           <right>
-                              <VBox prefHeight="200.0" prefWidth="37.0" BorderPane.alignment="CENTER" />
-                           </right>
                            <top>
-                              <Label prefHeight="83.0" prefWidth="103.0" styleClass="menuLabel" text="Menu" textAlignment="CENTER" BorderPane.alignment="CENTER">
+                              <Label prefHeight="83.0" prefWidth="75.0" styleClass="menuLabel" text="Menu" textAlignment="CENTER" BorderPane.alignment="CENTER">
                                  <font>
                                     <Font name="Calisto MT" size="10.0" />
                                  </font>
@@ -32,12 +27,18 @@
                         </BorderPane>
                      </children>
                   </VBox>
-                  <Button mnemonicParsing="false" onAction="#track" prefHeight="90.0" prefWidth="334.0" styleClass="menuButton" text="Traccia un collo" />
-                  <VBox prefHeight="34.0" prefWidth="144.0" />
-                  <Button mnemonicParsing="false" onAction="#send" prefHeight="90.0" prefWidth="334.0" styleClass="menuButton" text="Spedisci un collo" />
-                  <VBox prefHeight="34.0" prefWidth="337.0" />
-                  <Button mnemonicParsing="false" onAction="#reportDelivery" prefHeight="90.0" prefWidth="334.0" styleClass="menuButton" text="Segnala una consegna" />
-                  <VBox prefHeight="200.0" prefWidth="100.0" />
+                  <Button mnemonicParsing="false" onAction="#track" prefHeight="90.0" prefWidth="334.0" styleClass="menuButton" text="Traccia un collo">
+                     <VBox.margin>
+                        <Insets bottom="30.0" />
+                     </VBox.margin></Button>
+                  <Button mnemonicParsing="false" onAction="#send" prefHeight="90.0" prefWidth="334.0" styleClass="menuButton" text="Spedisci un collo">
+                     <VBox.margin>
+                        <Insets bottom="30.0" />
+                     </VBox.margin></Button>
+                  <Button mnemonicParsing="false" onAction="#reportDelivery" prefHeight="90.0" prefWidth="334.0" styleClass="menuButton" text="Segnala una consegna">
+                     <VBox.margin>
+                        <Insets bottom="30.0" />
+                     </VBox.margin></Button>
                </children>
             </VBox>
          </left>

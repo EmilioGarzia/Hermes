@@ -43,7 +43,7 @@
                <children>
                   <BorderPane minWidth="-Infinity" prefHeight="214.0" prefWidth="923.0">
                      <top>
-                        <Label alignment="CENTER" prefHeight="43.0" prefWidth="293.0" text="Traccia la tua spedizione" BorderPane.alignment="CENTER">
+                        <Label alignment="CENTER" prefHeight="43.0" prefWidth="925.0" styleClass="subtitle" text="TRACCIA LA TUA SPEDIZIONE" BorderPane.alignment="CENTER">
                            <font>
                               <Font size="15.0" />
                            </font>

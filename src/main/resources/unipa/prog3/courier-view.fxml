@@ -4,20 +4,85 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="370.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unipa.prog3.view.controller.CourierController">
-   <children>
-      <Label text="Corriere" AnchorPane.leftAnchor="175.0" AnchorPane.topAnchor="65.0" />
-      <ChoiceBox fx:id="courierChooser" prefWidth="150.0" AnchorPane.bottomAnchor="242.39533946113016" AnchorPane.rightAnchor="175.0" AnchorPane.topAnchor="60.0" />
-      <Label layoutX="10.0" layoutY="10.0" text="Codice collo" AnchorPane.leftAnchor="165.0" AnchorPane.topAnchor="122.0" />
-      <ChoiceBox fx:id="packageChooser" prefWidth="150.0" AnchorPane.bottomAnchor="185.39533946113016" AnchorPane.rightAnchor="165.0" AnchorPane.topAnchor="117.0" />
-      <Label layoutX="83.0" layoutY="170.0" text="Centro di smistamento" AnchorPane.bottomAnchor="135.0" AnchorPane.leftAnchor="130.0" />
-      <ChoiceBox fx:id="centerChooser" prefWidth="150.0" AnchorPane.bottomAnchor="130.0" AnchorPane.rightAnchor="130.0" AnchorPane.topAnchor="172.39533946113016" />
-      <Button alignment="CENTER" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="35.0" text="Segnala consegna" textAlignment="CENTER" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="190.0" AnchorPane.topAnchor="240.0" />
-      <Button defaultButton="true" mnemonicParsing="false" onAction="#report" prefHeight="35.0" text="Segnala" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" />
-   </children>
-   <padding>
-      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-   </padding>
-</AnchorPane>
+<BorderPane prefHeight="500.0" prefWidth="1000.0" styleClass="mainContainer" stylesheets="@css/courier.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unipa.prog3.view.controller.CourierController">
+   <top>
+      <VBox maxWidth="-Infinity" prefWidth="0.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="100.0" top="20.0" />
+         </BorderPane.margin>
+         <children>
+            <ImageView fitHeight="109.0" fitWidth="992.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/logo.png" />
+               </image>
+               <VBox.margin>
+                  <Insets bottom="180.0" />
+               </VBox.margin>
+            </ImageView>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="437.0" styleClass="subtitle" text="SEGNALA CONSEGNA" textAlignment="CENTER" />
+         </children>
+      </VBox>
+   </top>
+   <center>
+      <VBox maxWidth="-Infinity" prefHeight="360.0" prefWidth="410.0" BorderPane.alignment="CENTER">
+         <children>
+            <BorderPane prefHeight="360.0" prefWidth="418.0">
+               <left>
+                  <Label text="Corriere" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets bottom="20.0" />
+                     </BorderPane.margin>
+                  </Label>
+               </left>
+               <bottom>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <left>
+                        <Label prefHeight="32.0" prefWidth="214.0" text="Codice collo" BorderPane.alignment="CENTER">
+                           <BorderPane.margin>
+                              <Insets bottom="20.0" />
+                           </BorderPane.margin>
+                        </Label>
+                     </left>
+                     <bottom>
+                        <BorderPane prefHeight="120.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
+                           <left>
+                              <Label prefHeight="32.0" prefWidth="235.0" text="Centro di smistamento" BorderPane.alignment="CENTER" />
+                           </left>
+                           <bottom>
+                              <Button defaultButton="true" mnemonicParsing="false" onAction="#report" prefHeight="35.0" styleClass="acceptButton" text="Segnala" BorderPane.alignment="CENTER">
+                                 <BorderPane.margin>
+                                    <Insets top="30.0" />
+                                 </BorderPane.margin>
+                              </Button>
+                           </bottom>
+                           <right>
+                              <ChoiceBox fx:id="centerChooser" prefHeight="46.0" prefWidth="194.0" BorderPane.alignment="CENTER" />
+                           </right>
+                        </BorderPane>
+                     </bottom>
+                     <right>
+                        <ChoiceBox fx:id="packageChooser" maxWidth="-Infinity" prefHeight="46.0" prefWidth="150.0" BorderPane.alignment="CENTER">
+                           <BorderPane.margin>
+                              <Insets bottom="20.0" />
+                           </BorderPane.margin>
+                        </ChoiceBox>
+                     </right>
+                  </BorderPane>
+               </bottom>
+               <right>
+                  <ChoiceBox fx:id="courierChooser" prefWidth="150.0" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets bottom="20.0" />
+                     </BorderPane.margin>
+                  </ChoiceBox>
+               </right>
+            </BorderPane>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

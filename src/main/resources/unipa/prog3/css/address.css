@@ -1,0 +1,54 @@
+.mainContainer{
+    -fx-background-color: #222A35;
+}
+
+.subtitle{
+    -fx-font-weight: bold;
+    -fx-font-size: 28px;
+    -fx-text-fill: white;
+}
+
+.labelSection{
+    -fx-text-fill: #7F7F7F;
+    -fx-font-style: italic;
+    -fx-font-size: 22px;
+}
+
+.text-field{
+    -fx-background-radius: 100 100 100 100;
+    -fx-font-size: 18px;
+}
+
+.combo-box{
+    -fx-background-radius: 100 100 100 100;
+    -fx-font-size: 18px;
+}
+
+.button{
+    -fx-font-weight: bold;
+    -fx-text-fill: black;
+    -fx-font-size: 16px;
+    -fx-border-style: solid;
+    -fx-border-color: white;
+    -fx-border-width: 2;
+}
+
+.confirmButton{
+    -fx-background-color: #00ff00;
+    -fx-background-radius: 100 100 400 100;
+    -fx-border-radius: 100 100 400 100;
+}
+.confirmButton:hover{
+    -fx-background-color: #1a8c1a;
+    -fx-background-radius: 100 100 400 100;
+}
+
+.backButton{
+    -fx-background-color: red;
+    -fx-text-fill: white;
+    -fx-background-radius: 100 100 100 400;
+    -fx-border-radius: 100 100 100 400;
+}
+.backButton:hover {
+    -fx-background-color: #8c2a2a;
+}

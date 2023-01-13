@@ -2,18 +2,18 @@
     -fx-background-color: #222A35;
 }
 
+.label{
+    -fx-text-fill: white;
+    -fx-font-size: 22px;
+}
+
 .subtitle{
     -fx-font-weight: bold;
     -fx-font-size: 28px;
     -fx-text-fill: white;
 }
 
-.label{
-    -fx-text-fill: white;
-    -fx-font-size: 22px;
-}
-
-.trackButton{
+.acceptButton{
     -fx-background-radius: 100 100 100 100;
     -fx-background-color: #3297c4;
     -fx-text-fill: white;
@@ -22,17 +22,13 @@
     -fx-font-weight: bold;
     -fx-cursor: hand;
 }
-.trackButton:hover{
+.acceptButton:hover{
     -fx-background-color: #32b8c4;
     -fx-border-style: solid;
     -fx-border-radius: 100 100 100 100;
     -fx-border-color: white;
 }
 
-.text-field{
-    -fx-text-fill: #222A35;
-    -fx-font-weight: bold;
-    -fx-font-size: 22px;
+.choice-box{
     -fx-background-radius: 100 100 100 100;
-    -fx-background-color: #e1e1e1;
 }
