@@ -11,9 +11,9 @@
 
 <BorderPane prefHeight="500.0" prefWidth="1000.0" styleClass="mainContainer" stylesheets="@css/courier.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unipa.prog3.view.controller.CourierController">
    <top>
-      <VBox maxWidth="-Infinity" prefWidth="0.0" BorderPane.alignment="CENTER">
+      <VBox maxWidth="-Infinity" prefHeight="209.0" prefWidth="363.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
-            <Insets bottom="100.0" top="20.0" />
+            <Insets top="20.0" />
          </BorderPane.margin>
          <children>
             <ImageView fitHeight="109.0" fitWidth="992.0" pickOnBounds="true" preserveRatio="true">
@@ -24,7 +24,6 @@
                   <Insets bottom="180.0" />
                </VBox.margin>
             </ImageView>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="437.0" styleClass="subtitle" text="SEGNALA CONSEGNA" textAlignment="CENTER" />
          </children>
       </VBox>
    </top>
@@ -36,9 +35,13 @@
                   <Insets bottom="40.0" />
                </VBox.margin>
             </Label>
-            <BorderPane fx:id="formPane" disable="true" prefHeight="360.0" prefWidth="418.0">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="34.0" prefWidth="517.0" styleClass="subtitle" text="SEGNALA CONSEGNA" textAlignment="CENTER">
+               <VBox.margin>
+                  <Insets bottom="60.0" />
+               </VBox.margin></Label>
+            <BorderPane fx:id="formPane" prefHeight="252.0" prefWidth="508.0">
                <left>
-                  <Label text="Corriere" BorderPane.alignment="CENTER">
+                  <Label styleClass="allText" text="Corriere" BorderPane.alignment="CENTER">
                      <BorderPane.margin>
                         <Insets bottom="20.0" />
                      </BorderPane.margin>
@@ -47,31 +50,31 @@
                <bottom>
                   <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <left>
-                        <Label prefHeight="32.0" prefWidth="214.0" text="Codice collo" BorderPane.alignment="CENTER">
+                        <Label prefHeight="32.0" prefWidth="214.0" styleClass="allText" text="Codice collo" BorderPane.alignment="CENTER">
                            <BorderPane.margin>
                               <Insets bottom="20.0" />
                            </BorderPane.margin>
                         </Label>
                      </left>
                      <bottom>
-                        <BorderPane prefHeight="120.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
+                        <BorderPane prefHeight="40.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
                            <left>
-                              <Label prefHeight="32.0" prefWidth="235.0" text="Centro di smistamento" BorderPane.alignment="CENTER" />
+                              <Label prefHeight="32.0" prefWidth="235.0" styleClass="allText" text="Centro di smistamento" BorderPane.alignment="CENTER" />
                            </left>
                            <bottom>
-                              <Button defaultButton="true" mnemonicParsing="false" onAction="#report" prefHeight="35.0" styleClass="acceptButton" text="Segnala" BorderPane.alignment="CENTER">
+                              <Button defaultButton="true" mnemonicParsing="false" onAction="#report" prefHeight="62.0" prefWidth="183.0" styleClass="acceptButton" text="Segnala" BorderPane.alignment="CENTER">
                                  <BorderPane.margin>
-                                    <Insets top="30.0" />
+                                    <Insets bottom="20.0" top="40.0" />
                                  </BorderPane.margin>
                               </Button>
                            </bottom>
                            <right>
-                              <ChoiceBox fx:id="centerChooser" prefHeight="46.0" prefWidth="194.0" BorderPane.alignment="CENTER" />
+                              <ChoiceBox fx:id="centerChooser" prefHeight="30.0" prefWidth="195.0" BorderPane.alignment="CENTER" />
                            </right>
                         </BorderPane>
                      </bottom>
                      <right>
-                        <ChoiceBox fx:id="packageChooser" maxWidth="-Infinity" prefHeight="46.0" prefWidth="150.0" BorderPane.alignment="CENTER">
+                        <ChoiceBox fx:id="packageChooser" prefHeight="30.0" prefWidth="195.0" BorderPane.alignment="CENTER">
                            <BorderPane.margin>
                               <Insets bottom="20.0" />
                            </BorderPane.margin>
@@ -80,7 +83,7 @@
                   </BorderPane>
                </bottom>
                <right>
-                  <ChoiceBox fx:id="courierChooser" prefWidth="150.0" BorderPane.alignment="CENTER">
+                  <ChoiceBox fx:id="courierChooser" prefHeight="30.0" prefWidth="195.0" BorderPane.alignment="CENTER">
                      <BorderPane.margin>
                         <Insets bottom="20.0" />
                      </BorderPane.margin>

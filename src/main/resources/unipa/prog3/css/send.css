@@ -3,14 +3,14 @@
     -fx-background-color: #222A35;
 }
 
-.label{
+.allText{
     -fx-text-fill: white;
-    -fx-font-size: 22px;
+    -fx-font-size: 18px;
 }
 
 .subtitle{
     -fx-font-weight: bold;
-    -fx-font-size: 28px;
+    -fx-font-size: 23px;
     -fx-text-fill: white;
 }
 
@@ -25,10 +25,13 @@
 
 .choice-box{
     -fx-background-radius: 100 100 100 100;
+    -fx-text-fill: black;
 }
 
 .kgLabel{
     -fx-font-style: italic;
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
 }
 
 .errorLabel{
@@ -51,4 +54,9 @@
     -fx-border-style: solid;
     -fx-border-radius: 100 100 100 100;
     -fx-border-color: white;
+    -fx-effect: dropshadow(gaussian, #fff, 64.48, 0.0, 1.0, 0.0);
+}
+
+.tooltip{
+    -fx-font-size: 16px;
 }

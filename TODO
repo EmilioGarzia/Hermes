@@ -8,5 +8,5 @@ Design pattern utilizzati:
     - Prototype -> Cromosoma
     - Command -> per effettuare le transazioni in Table
     - Template -> GenericService
-    
-Aggiungere tooltip agli elementi fondamentali per aumentare l'interazione UOMO/MACCHINA
+
+* View di segnalata consegna: Da gestire lo stile del messaggio "Non ci sono corrieri"

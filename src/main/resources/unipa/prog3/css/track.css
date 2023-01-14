@@ -27,6 +27,7 @@
     -fx-border-style: solid;
     -fx-border-radius: 100 100 100 100;
     -fx-border-color: white;
+    -fx-effect: dropshadow(gaussian, #fff, 64.48, 0.0, 1.0, 0.0);
 }
 
 .text-field{

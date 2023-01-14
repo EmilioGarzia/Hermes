@@ -6,6 +6,7 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -16,84 +17,81 @@
    <center>
       <VBox maxWidth="-Infinity">
          <HBox>
-            <HBox maxWidth="-Infinity" prefHeight="40.0" prefWidth="31.0"/>
-            <Label prefHeight="40.0" prefWidth="216.0" styleClass="subtitle" text="SPEDISCI COLLO"
-                   textAlignment="CENTER"/>
-            <HBox maxWidth="-Infinity" prefHeight="40.0" prefWidth="20.0"/>
+            <Label alignment="CENTER" prefHeight="34.0" prefWidth="324.0" styleClass="subtitle" text="SPEDISCI COLLO" textAlignment="CENTER" />
          </HBox>
          <BorderPane prefHeight="200.0" prefWidth="200.0">
             <left>
-               <Label prefHeight="32.0" prefWidth="90.0" text="Mittente:" BorderPane.alignment="CENTER">
+               <Label prefHeight="32.0" prefWidth="90.0" styleClass="allText" text="Mittente:" BorderPane.alignment="CENTER">
                   <BorderPane.margin>
-                     <Insets top="30.0"/>
+                     <Insets top="30.0" />
                   </BorderPane.margin>
                </Label>
             </left>
             <top>
-               <Label fx:id="errorLabel" alignment="CENTER" styleClass="errorLabel" text="ERROR LABEL TEST"
-                      visible="false" BorderPane.alignment="CENTER"/>
+               <Label fx:id="errorLabel" alignment="CENTER" styleClass="errorLabel" text="ERROR LABEL TEST" visible="false" BorderPane.alignment="CENTER" />
             </top>
             <right>
-               <ChoiceBox fx:id="senderChooser" prefWidth="150.0" BorderPane.alignment="CENTER">
+               <ChoiceBox fx:id="senderChooser" minHeight="-Infinity" prefHeight="40.0" prefWidth="180.0" BorderPane.alignment="CENTER">
                   <BorderPane.margin>
-                     <Insets top="30.0"/>
+                     <Insets top="30.0" />
                   </BorderPane.margin>
                   <cursor>
-                     <Cursor fx:constant="HAND"/>
+                     <Cursor fx:constant="HAND" />
                   </cursor>
                </ChoiceBox>
             </right>
             <bottom>
                <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                   <left>
-                     <Label text="Destinatario:" BorderPane.alignment="CENTER">
+                     <Label styleClass="allText" text="Destinatario:" BorderPane.alignment="CENTER">
                         <BorderPane.margin>
-                           <Insets top="30.0"/>
+                           <Insets top="30.0" />
                         </BorderPane.margin>
                      </Label>
                   </left>
                   <right>
-                     <ChoiceBox fx:id="receiverChooser" prefWidth="150.0" BorderPane.alignment="CENTER">
+                     <ChoiceBox fx:id="receiverChooser" maxHeight="55.0" minHeight="-Infinity" prefHeight="40.0" prefWidth="180.0" BorderPane.alignment="CENTER">
                         <BorderPane.margin>
-                           <Insets left="10.0" top="30.0"/>
+                           <Insets left="10.0" top="30.0" />
                         </BorderPane.margin>
                         <cursor>
-                           <Cursor fx:constant="HAND"/>
+                           <Cursor fx:constant="HAND" />
                         </cursor>
                      </ChoiceBox>
                   </right>
                   <bottom>
-                     <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <BorderPane prefHeight="167.0" prefWidth="324.0" BorderPane.alignment="CENTER">
                         <left>
-                           <Label text="Peso del collo" BorderPane.alignment="CENTER">
+                           <Label styleClass="allText" text="Peso del collo" BorderPane.alignment="CENTER">
                               <BorderPane.margin>
-                                 <Insets top="30.0"/>
+                                 <Insets top="30.0" />
                               </BorderPane.margin>
                            </Label>
                         </left>
                         <center>
-                           <TextField fx:id="weightField" alignment="CENTER" maxWidth="-Infinity" prefHeight="26.0"
-                                      prefWidth="115.0" BorderPane.alignment="CENTER">
+                           <TextField fx:id="weightField" alignment="CENTER" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="40.0" prefWidth="119.0" BorderPane.alignment="CENTER">
                               <BorderPane.margin>
-                                 <Insets left="5.0" top="30.0"/>
+                                 <Insets left="5.0" top="30.0" />
                               </BorderPane.margin>
+                              <tooltip>
+                                 <Tooltip text="Specifica il peso in Kilogrammi del tuo collo" />
+                              </tooltip>
                            </TextField>
                         </center>
                         <right>
-                           <Label styleClass="kgLabel" text="kg" BorderPane.alignment="CENTER">
+                           <Label prefHeight="27.0" prefWidth="47.0" styleClass="kgLabel" text="kg" BorderPane.alignment="CENTER">
                               <BorderPane.margin>
-                                 <Insets left="5.0" top="30.0"/>
+                                 <Insets left="5.0" top="30.0" />
                               </BorderPane.margin>
                            </Label>
                         </right>
                         <bottom>
-                           <Button defaultButton="true" mnemonicParsing="false" onAction="#send" prefHeight="35.0"
-                                   styleClass="sendButton" text="Spedisci collo" BorderPane.alignment="CENTER">
+                           <Button defaultButton="true" mnemonicParsing="false" onAction="#send" prefHeight="35.0" styleClass="sendButton" text="Spedisci collo" BorderPane.alignment="CENTER">
                               <BorderPane.margin>
-                                 <Insets top="30.0"/>
+                                 <Insets bottom="50.0" top="50.0" />
                               </BorderPane.margin>
                               <cursor>
-                                 <Cursor fx:constant="HAND"/>
+                                 <Cursor fx:constant="HAND" />
                               </cursor>
                            </Button>
                         </bottom>
@@ -105,12 +103,11 @@
       </VBox>
    </center>
    <top>
-      <ImageView fitHeight="162.0" fitWidth="363.0" pickOnBounds="true" preserveRatio="true"
-                 BorderPane.alignment="CENTER">
+      <ImageView fitHeight="162.0" fitWidth="363.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
          <BorderPane.margin>
-            <Insets bottom="100.0" top="20.0"/>
+            <Insets bottom="100.0" top="20.0" />
          </BorderPane.margin>
-         <Image url="@image/logo.png"/>
+         <Image url="@image/logo.png" />
       </ImageView>
    </top>
 </BorderPane>

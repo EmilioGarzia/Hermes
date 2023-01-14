@@ -11,6 +11,7 @@
 }
 .menuButton:hover{
     -fx-background-color: #32b8c4;
+    -fx-effect: dropshadow(gaussian, #fff, 64.48, 0.0, 1.0, 0.0);
 }
 
 .buttonContainer{
@@ -25,4 +26,8 @@
 }
 .labelContainer{
     -fx-background-color: #363636;
+}
+
+.tooltip{
+    -fx-font-size: 16px;
 }

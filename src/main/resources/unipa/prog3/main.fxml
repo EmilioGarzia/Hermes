@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -30,15 +31,24 @@
                   <Button mnemonicParsing="false" onAction="#track" prefHeight="90.0" prefWidth="334.0" styleClass="menuButton" text="Traccia un collo">
                      <VBox.margin>
                         <Insets bottom="30.0" />
-                     </VBox.margin></Button>
+                     </VBox.margin>
+                     <tooltip>
+                        <Tooltip text="Traccia la tua spedizione attraverso il codice" />
+                     </tooltip></Button>
                   <Button mnemonicParsing="false" onAction="#send" prefHeight="90.0" prefWidth="334.0" styleClass="menuButton" text="Spedisci un collo">
                      <VBox.margin>
                         <Insets bottom="30.0" />
-                     </VBox.margin></Button>
+                     </VBox.margin>
+                     <tooltip>
+                        <Tooltip text="Apri menu per la spedizione" />
+                     </tooltip></Button>
                   <Button mnemonicParsing="false" onAction="#reportDelivery" prefHeight="90.0" prefWidth="334.0" styleClass="menuButton" text="Segnala una consegna">
                      <VBox.margin>
                         <Insets bottom="30.0" />
-                     </VBox.margin></Button>
+                     </VBox.margin>
+                     <tooltip>
+                        <Tooltip text="Segnala l'avvenuta consegna di un pacco (riservato ai corrieri)" />
+                     </tooltip></Button>
                </children>
             </VBox>
          </left>
