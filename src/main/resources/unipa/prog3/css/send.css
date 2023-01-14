@@ -36,7 +36,6 @@
 }
 
 .errorLabel{
-    -fx-background-color: rgba(255, 95, 95, 0.99);
     -fx-font-weight: bold;
     -fx-background-radius: 100 100 100 100;
     -fx-padding: 10;
