@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="node" prefHeight="500.0" prefWidth="400.0" styleClass="internalBorderPane" stylesheets="@css/home.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unipa.prog3.view.controller.HomeController">
+<BorderPane fx:id="node" prefHeight="500.0" prefWidth="400.0" styleClass="internalBorderPane" stylesheets="@../css/home.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unipa.prog3.view.controller.HomeController">
    <left>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
    </left>
@@ -15,7 +15,7 @@
    <center>
       <ImageView fitHeight="178.0" fitWidth="547.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
          <image>
-            <Image url="@image/logo.png" />
+            <Image url="@../image/logo.png" />
          </image>
       </ImageView>
    </center>

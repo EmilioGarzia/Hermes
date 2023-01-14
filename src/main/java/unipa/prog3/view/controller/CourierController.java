@@ -32,13 +32,10 @@ public class CourierController extends Controller {
 
         Vector<Courier> couriers = courierService.selectTraveling();
         if (couriers.isEmpty()) {
-            statusLabel.setTextFill(Color.RED);
-            statusLabel.setText("Non ci sono corrieri in viaggio al momento!");
             formPane.setDisable(true);
             return;
         }
 
-        statusLabel.setText("");
         formPane.setDisable(false);
 
         courierChooser.setConverter(new StringConverter<>() {
@@ -78,7 +75,18 @@ public class CourierController extends Controller {
     @FXML
     public void report() {
         Courier courier = courierChooser.getValue();
+        if (courier == null) {
+            statusLabel.setTextFill(Color.RED);
+            statusLabel.setText("Devi indicare il tuo codice da corriere!");
+            return;
+        }
+
         Collo pack = packageChooser.getValue();
+        if (pack == null) {
+            statusLabel.setTextFill(Color.RED);
+            statusLabel.setText("Devi selezionare un collo!");
+            return;
+        }
 
         RouteService routeService = (RouteService) ServiceProvider.getService(Route.class);
         CarrierHelper carrierHelper = new CarrierHelper(routeService.selectAll());

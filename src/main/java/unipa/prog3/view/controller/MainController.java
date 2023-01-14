@@ -16,22 +16,22 @@ public class MainController extends Stack<Controller> {
 
     @FXML
     public void initialize() {
-        showView("/unipa/prog3/home-view.fxml");
+        showView("/unipa/prog3/view/home-view.fxml");
     }
 
     @FXML
     public void send() {
-        MainApplication.getMainController().showView("/unipa/prog3/send-view.fxml");
+        MainApplication.getMainController().showView("/unipa/prog3/view/send-view.fxml");
     }
 
     @FXML
     public void track() {
-        MainApplication.getMainController().showView("/unipa/prog3/track-view.fxml");
+        MainApplication.getMainController().showView("/unipa/prog3/view/track-view.fxml");
     }
 
     @FXML
     public void reportDelivery() {
-        MainApplication.getMainController().showView("/unipa/prog3/courier-view.fxml");
+        MainApplication.getMainController().showView("/unipa/prog3/view/courier-view.fxml");
     }
 
     public void showView(String path) {

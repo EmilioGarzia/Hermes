@@ -38,13 +38,14 @@ public class ClientController extends Controller {
                 countries.add(centro.getStato());
         });
         countryChooser.setItems(FXCollections.observableList(countries));
-
-        Vector<String> towns = new Vector<>();
-        centers.forEach(centro -> {
-            if (!towns.contains(centro.getCittà()))
-                towns.add(centro.getCittà());
+        countryChooser.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            Vector<String> towns = new Vector<>();
+            centers.forEach(centro -> {
+                if (!towns.contains(centro.getCittà()) && centro.getStato().equals(newValue))
+                    towns.add(centro.getCittà());
+            });
+            townChooser.setItems(FXCollections.observableList(towns));
         });
-        townChooser.setItems(FXCollections.observableList(towns));
     }
 
     @FXML

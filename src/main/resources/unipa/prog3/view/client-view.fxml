@@ -13,11 +13,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="node" prefHeight="500.0" prefWidth="1000.0" styleClass="mainContainer" stylesheets="@css/address.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unipa.prog3.view.controller.ClientController">
+<BorderPane fx:id="node" prefHeight="500.0" prefWidth="1000.0" styleClass="mainContainer" stylesheets="@../css/address.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unipa.prog3.view.controller.ClientController">
    <top>
       <ImageView fitHeight="162.0" fitWidth="362.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
          <image>
-            <Image url="@image/logo.png" />
+            <Image url="@../image/logo.png" />
          </image>
          <BorderPane.margin>
             <Insets bottom="100.0" top="20.0" />

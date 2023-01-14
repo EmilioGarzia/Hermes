@@ -1,4 +1,5 @@
-Risolvere bug sulla BFS
+Aggiungere controllo sui campi di client view
+Rimuovere campo consegnato in Collo
 
 Design pattern utilizzati:
     - Factory Pattern e Flyweight -> ServiceProvider

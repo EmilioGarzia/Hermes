@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="rootPane" stylesheets="@css/home.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unipa.prog3.view.controller.MainController">
+<BorderPane fx:id="rootPane" stylesheets="@../css/home.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unipa.prog3.view.controller.MainController">
    <center>
       <BorderPane BorderPane.alignment="CENTER">
          <left>
@@ -53,7 +53,7 @@
             </VBox>
          </left>
          <center>
-            <ScrollPane fx:id="contentPane" fitToHeight="true" fitToWidth="true" prefHeight="500.0" prefWidth="1000.0" BorderPane.alignment="CENTER" />
+            <ScrollPane fx:id="contentPane" fitToHeight="true" fitToWidth="true" prefHeight="600.0" prefWidth="1000.0" BorderPane.alignment="CENTER" />
          </center>
       </BorderPane>
    </center>

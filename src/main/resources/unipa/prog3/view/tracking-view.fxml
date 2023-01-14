@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="node" styleClass="mainContainer" stylesheets="@css/status.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unipa.prog3.view.controller.PackageTrackController">
+<BorderPane fx:id="node" styleClass="mainContainer" stylesheets="@../css/status.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unipa.prog3.view.controller.PackageTrackController">
    <center>
       <BorderPane>
          <center>
@@ -49,7 +49,7 @@
    <top>
       <ImageView fitHeight="162.0" fitWidth="362.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
          <image>
-            <Image url="@image/logo.png" />
+            <Image url="@../image/logo.png" />
          </image>
          <BorderPane.margin>
             <Insets bottom="50.0" top="20.0" />

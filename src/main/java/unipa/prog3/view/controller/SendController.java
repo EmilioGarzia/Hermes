@@ -14,7 +14,6 @@ import unipa.prog3.controller.helper.CarrierHelper;
 import unipa.prog3.controller.service.*;
 import unipa.prog3.model.relation.*;
 
-import javax.print.attribute.SetOfIntegerSyntax;
 import java.util.HashMap;
 import java.util.Vector;
 
@@ -43,7 +42,7 @@ public class SendController extends Controller {
         populateChooser();
         ChangeListener<Number> listener = (observable, oldValue, newValue) -> {
             if (newValue.intValue() == clientsMap.size())
-                MainApplication.getMainController().showView("/unipa/prog3/client-view.fxml");
+                MainApplication.getMainController().showView("/unipa/prog3/view/client-view.fxml");
         };
 
         senderChooser.getSelectionModel().selectedIndexProperty().addListener(listener);
@@ -56,6 +55,14 @@ public class SendController extends Controller {
     @FXML
     public void send() {
         errorLabel.setTextFill(Color.RED);
+        if (senderChooser.getValue() == null) {
+            errorLabel.setText("Devi selezionare un mittente!");
+            return;
+        } else if (receiverChooser.getValue() == null) {
+            errorLabel.setText("Devi selezionare un destinatario!");
+            return;
+        }
+
         Cliente sender = clientsMap.get(senderChooser.getValue());
         Cliente receiver = clientsMap.get(receiverChooser.getValue());
         if (sender == receiver) {
@@ -63,7 +70,14 @@ public class SendController extends Controller {
             return;
         }
 
-        float weight = Float.parseFloat(weightField.getText());
+        float weight;
+        try {
+            weight = Float.parseFloat(weightField.getText());
+        } catch (NumberFormatException e) {
+            errorLabel.setText("Il peso inserito non è valido!");
+            return;
+        }
+
         Collo collo = new Collo(null, sender, receiver, weight);
         packageService.insert(collo);
         errorLabel.setTextFill(Color.GREEN);

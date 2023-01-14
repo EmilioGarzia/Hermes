@@ -13,7 +13,7 @@ public class MainApplication extends Application {
 
     @Override
     public void start(Stage stage) {
-        Scene scene = new Scene(loadView("/unipa/prog3/main.fxml"));
+        Scene scene = new Scene(loadView("/unipa/prog3/view/main.fxml"));
         stage.setTitle("Hermès");
         stage.setScene(scene);
         stage.show();

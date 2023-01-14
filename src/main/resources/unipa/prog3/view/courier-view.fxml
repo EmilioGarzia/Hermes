@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="500.0" prefWidth="1000.0" styleClass="mainContainer" stylesheets="@css/courier.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unipa.prog3.view.controller.CourierController">
+<BorderPane prefHeight="500.0" prefWidth="1000.0" styleClass="mainContainer" stylesheets="@../css/courier.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unipa.prog3.view.controller.CourierController">
    <top>
       <VBox maxWidth="-Infinity" prefHeight="100.0" prefWidth="363.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
@@ -18,7 +18,7 @@
          <children>
             <ImageView fitHeight="109.0" fitWidth="992.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@image/logo.png" />
+                  <Image url="@../image/logo.png" />
                </image>
                <VBox.margin>
                   <Insets />
@@ -28,17 +28,17 @@
       </VBox>
    </top>
    <center>
-      <VBox maxWidth="-Infinity" prefHeight="337.0" prefWidth="341.0" BorderPane.alignment="CENTER">
+      <VBox maxWidth="-Infinity" prefWidth="341.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="statusLabel" alignment="CENTER" prefWidth="437.0" styleClass="errorMSG">
-               <VBox.margin>
-                  <Insets bottom="40.0" />
-               </VBox.margin>
-            </Label>
             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="34.0" prefWidth="433.0" styleClass="subtitle" text="SEGNALA CONSEGNA" textAlignment="CENTER">
                <VBox.margin>
-                  <Insets bottom="60.0" />
+                  <Insets top="60.0" />
                </VBox.margin></Label>
+            <Label fx:id="statusLabel" alignment="CENTER" prefWidth="437.0" styleClass="errorMSG">
+               <VBox.margin>
+                  <Insets bottom="20.0" top="10.0" />
+               </VBox.margin>
+            </Label>
             <BorderPane fx:id="formPane" prefHeight="158.0" prefWidth="364.0">
                <bottom>
                   <BorderPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
