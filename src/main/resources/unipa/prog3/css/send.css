@@ -4,8 +4,9 @@
 }
 
 .allText{
-    -fx-text-fill: white;
-    -fx-font-size: 18px;
+    -fx-text-fill: #7F7F7F;
+    -fx-font-style: italic;
+    -fx-font-size: 22px;
 }
 
 .subtitle{

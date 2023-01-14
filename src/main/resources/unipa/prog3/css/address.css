@@ -34,21 +34,25 @@
 }
 
 .confirmButton{
-    -fx-background-color: #00ff00;
     -fx-background-radius: 100 100 400 100;
     -fx-border-radius: 100 100 400 100;
+    -fx-background-color: #3297c4;
+    -fx-text-fill: white;
+    -fx-cursor: hand;
 }
 .confirmButton:hover{
-    -fx-background-color: #1a8c1a;
-    -fx-background-radius: 100 100 400 100;
+    -fx-background-color: #32b8c4;
+    -fx-effect: dropshadow(gaussian, #fff, 64.48, 0.0, 1.0, 0.0);
 }
 
 .backButton{
-    -fx-background-color: red;
-    -fx-text-fill: white;
     -fx-background-radius: 100 100 100 400;
     -fx-border-radius: 100 100 100 400;
+    -fx-background-color: #3297c4;
+    -fx-text-fill: white;
+    -fx-cursor: hand;
 }
 .backButton:hover {
-    -fx-background-color: #8c2a2a;
+    -fx-background-color: #32b8c4;
+    -fx-effect: dropshadow(gaussian, #fff, 64.48, 0.0, 1.0, 0.0);
 }
