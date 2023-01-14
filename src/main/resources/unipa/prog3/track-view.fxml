@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="500.0" prefWidth="1000.0" styleClass="mainContainer" stylesheets="@css/track.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unipa.prog3.view.controller.TrackController">
+<BorderPane fx:id="node" prefHeight="500.0" prefWidth="1000.0" styleClass="mainContainer" stylesheets="@css/track.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unipa.prog3.view.controller.TrackController">
    <left>
       <HBox prefHeight="271.0" prefWidth="40.0" BorderPane.alignment="CENTER" />
    </left>

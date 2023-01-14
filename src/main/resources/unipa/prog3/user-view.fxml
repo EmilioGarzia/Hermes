@@ -11,40 +11,41 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-
-<BorderPane styleClass="mainContainer" stylesheets="@css/status.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="node" styleClass="mainContainer" stylesheets="@css/status.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unipa.prog3.view.controller.PackageTrackController">
    <center>
       <BorderPane>
-         <top>
-            <ProgressBar prefHeight="30.0" prefWidth="566.0" progress="0.35" BorderPane.alignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="DEFAULT" />
-               </cursor>
-            </ProgressBar>
-         </top>
          <center>
-            <TableView prefHeight="200.0" prefWidth="553.0" BorderPane.alignment="CENTER">
+            <TableView fx:id="historyTable" prefHeight="200.0" prefWidth="555.0" BorderPane.alignment="CENTER">
                <columns>
-                  <TableColumn minWidth="0.0" prefWidth="141.83080387115479" text="Data e ora" />
-                  <TableColumn editable="false" prefWidth="436.9152374267578" text="Descrizione" />
+                  <TableColumn fx:id="timestampField" minWidth="75.0" prefWidth="150.0" text="Data e ora" />
+                  <TableColumn fx:id="descriptionField" editable="false" minWidth="80.0" prefWidth="405.0" text="Descrizione" />
                </columns>
+               <BorderPane.margin>
+                  <Insets top="20.0" />
+               </BorderPane.margin>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
-               <BorderPane.margin>
-                  <Insets bottom="30.0" top="30.0" />
-               </BorderPane.margin>
             </TableView>
          </center>
+         <top>
+            <VBox BorderPane.alignment="CENTER">
+               <children>
+                  <ProgressBar fx:id="progressBar" prefHeight="30.0" prefWidth="566.0" progress="0.0">
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                  </ProgressBar>
+                  <Label fx:id="statusLabel" alignment="CENTER" prefHeight="18.0" prefWidth="566.0">
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+         </top>
       </BorderPane>
    </center>
-   <left>
-      <Label alignment="CENTER" BorderPane.alignment="CENTER">
-         <graphic>
-            <VBox prefHeight="200.0" prefWidth="200.0" />
-         </graphic>
-      </Label>
-   </left>
    <top>
       <ImageView fitHeight="162.0" fitWidth="362.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
          <image>
@@ -58,4 +59,10 @@
    <right>
       <VBox prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </right>
+   <left>
+      <VBox prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </left>
+   <bottom>
+      <VBox prefHeight="75.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+   </bottom>
 </BorderPane>

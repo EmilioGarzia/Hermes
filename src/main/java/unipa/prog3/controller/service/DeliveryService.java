@@ -15,7 +15,7 @@ public class DeliveryService extends GenericService<Delivery> {
     }
 
     public Vector<Delivery> selectByPackage(Collo pack) {
-        return select(delivery -> delivery.getCollo().equals(pack));
+        return select(delivery -> delivery.getCollo().equalKeys(pack));
     }
 
     @Override
