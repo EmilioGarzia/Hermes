@@ -30,7 +30,7 @@
    <center>
       <VBox maxWidth="-Infinity" prefHeight="360.0" prefWidth="410.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="statusLabel" alignment="CENTER" prefWidth="437.0">
+            <Label fx:id="statusLabel" alignment="CENTER" prefWidth="437.0" styleClass="errorMSG">
                <VBox.margin>
                   <Insets bottom="40.0" />
                </VBox.margin>
