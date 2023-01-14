@@ -14,10 +14,6 @@ public class DeliveryService extends GenericService<Delivery> {
         super(TableProvider.TableName.DELIVERIES);
     }
 
-    public boolean exists(Delivery delivery) {
-        return !select(delivery::equals).isEmpty();
-    }
-
     public Vector<Delivery> selectByPackage(Collo pack) {
         return select(delivery -> delivery.getCollo().equals(pack));
     }
@@ -28,12 +24,12 @@ public class DeliveryService extends GenericService<Delivery> {
         Collo pack = packageService.select(fields[0]);
 
         CenterService centerService = (CenterService) ServiceProvider.getService(Centro.class);
-        Centro center = centerService.select(fields[1]);
+        Centro center = centerService.selectByLocation(fields[1], fields[2]);
 
         CourierService courierService = (CourierService) ServiceProvider.getService(Courier.class);
-        Courier courier = courierService.select(fields[2]);
+        Courier courier = courierService.select(fields[3]);
 
-        LocalDateTime timestamp = LocalDateTime.parse(fields[3]);
+        LocalDateTime timestamp = LocalDateTime.parse(fields[4]);
         return new Delivery(pack, center, courier, timestamp);
     }
 }

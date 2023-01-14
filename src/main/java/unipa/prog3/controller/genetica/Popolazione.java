@@ -18,7 +18,7 @@ public class Popolazione extends Vector<Cromosoma> {
             add(soluzione);
         }
 
-        for (int i = 0; i < generazioni; i++) {
+        for (int i = 0; i < generazioni-1; i++) {
             double fitnessSum = sumFitness();
 
             // Crea una nuova generazione basandosi sulle soluzioni migliori di quella precedente
@@ -34,12 +34,13 @@ public class Popolazione extends Vector<Cromosoma> {
     }
 
     private Cromosoma pickOne(double fitnessSum) {
-        if (fitnessSum == 0)
+        double rand = Math.random()*fitnessSum;
+        if (rand == 0)
             return get(0);
 
         int index = 0;
-        while(fitnessSum > 0)
-            fitnessSum -= get(index++).fitness();
+        while(rand > 0)
+            rand -= get(index++).fitness();
         return get(index-1);
     }
 

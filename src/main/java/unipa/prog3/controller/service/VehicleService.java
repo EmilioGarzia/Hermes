@@ -12,15 +12,18 @@ public class VehicleService extends GenericService<Veicolo> {
     }
 
     public Vector<Veicolo> selectAvailable() {
+        PackageService packageService = (PackageService) ServiceProvider.getService(Collo.class);
+        Vector<Collo> packs = packageService.selectAll();
         return select(v -> {
-            PackageService packageService = (PackageService) ServiceProvider.getService(Collo.class);
-            Vector<Collo> packages = packageService.selectByVehicleNotDelivered(v);
-            return packages.isEmpty();
+            for (Collo pack : packs)
+                if (pack.getVeicolo() != null && pack.getVeicolo().equalKeys(v))
+                    return false;
+            return true;
         });
     }
 
     @Override
     public Veicolo relationFromFields(String[] fields) {
-        return new Veicolo(fields[0], fields[1], Double.parseDouble(fields[2]));
+        return new Veicolo(fields[0], fields[1], Float.parseFloat(fields[2]));
     }
 }

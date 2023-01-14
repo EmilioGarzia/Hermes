@@ -9,10 +9,8 @@ public class Centro extends Relation {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof Centro centro) {
-            System.out.println("Confronto i centri: " + this + " e " + centro);
+        if (obj instanceof Centro centro)
             return equalKeys(centro);
-        }
         return false;
     }
 

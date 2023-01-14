@@ -22,7 +22,7 @@
                   <Insets bottom="40.0" />
                </HBox.margin></Label>
          </HBox>
-         <Label fx:id="errorLabel" alignment="CENTER" maxHeight="-Infinity" prefHeight="37.0" prefWidth="578.0" styleClass="errorLabel" text="ERROR LABEL TEST" visible="false" />
+         <Label fx:id="errorLabel" alignment="CENTER" maxHeight="-Infinity" prefHeight="37.0" prefWidth="578.0" styleClass="errorLabel" />
          <BorderPane prefHeight="409.0" prefWidth="568.0">
             <bottom>
                <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">

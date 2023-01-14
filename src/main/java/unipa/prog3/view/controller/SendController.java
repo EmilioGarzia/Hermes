@@ -14,6 +14,7 @@ import unipa.prog3.controller.helper.CarrierHelper;
 import unipa.prog3.controller.service.*;
 import unipa.prog3.model.relation.*;
 
+import javax.print.attribute.SetOfIntegerSyntax;
 import java.util.HashMap;
 import java.util.Vector;
 
@@ -67,6 +68,7 @@ public class SendController extends Controller {
         packageService.insert(collo);
         errorLabel.setTextFill(Color.GREEN);
         errorLabel.setText("Utilizza il codice " + collo.getCodice() + " per tracciare la tua spedizione");
+        errorLabel.setVisible(true);
         spedisciVeicoli();
     }
 
@@ -76,17 +78,21 @@ public class SendController extends Controller {
         VehicleService vehicleService = (VehicleService) ServiceProvider.getService(Veicolo.class);
         Vector<Veicolo> veicoli = vehicleService.selectAvailable();
         Vector<Collo> colli = packageService.selectNotSent();
+        System.out.println("Colli: " + colli.size() + ", Veicoli: " + veicoli.size() + ", Corrieri: " + couriers.size());
 
         while(!colli.isEmpty() && !veicoli.isEmpty() && !couriers.isEmpty()) {
             Vector<Collo> bestLoad = carrierHelper.findBestLoad(colli);
             Cromosoma best = null;
             for (Veicolo v : veicoli) {
-                Cromosoma soluzione = popolazione.findBestSolutionForSingleVehicle(v, bestLoad, 10);
+                System.out.println("Capienza veicolo: " + v.getCapienza());
+                Cromosoma soluzione = popolazione.findBestSolutionForSingleVehicle(v, bestLoad, 1);
                 if (best == null || soluzione.weightRatio() > best.weightRatio())
                     best = soluzione;
             }
 
             if (best == null) return;
+            System.out.println("Dimensione della soluzione: " + best.size());
+
             for (Collo c : best) {
                 c.setVeicolo(best.getVehicle());
                 packageService.update(c);

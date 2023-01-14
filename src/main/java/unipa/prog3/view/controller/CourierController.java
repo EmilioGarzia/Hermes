@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.paint.Color;
 import javafx.util.StringConverter;
 import unipa.prog3.controller.helper.CarrierHelper;
 import unipa.prog3.controller.service.*;
@@ -25,12 +26,17 @@ public class CourierController extends Controller {
     private BorderPane formPane;
 
     public void initialize() {
+        courierChooser.getItems().clear();
+        packageChooser.getItems().clear();
+        centerChooser.getItems().clear();
+
         CourierService courierService = (CourierService) ServiceProvider.getService(Courier.class);
         PackageService packageService = (PackageService) ServiceProvider.getService(Collo.class);
         CenterService centerService = (CenterService) ServiceProvider.getService(Centro.class);
 
         Vector<Courier> couriers = courierService.selectTraveling();
         if (couriers.isEmpty()) {
+            statusLabel.setTextFill(Color.RED);
             statusLabel.setText("Non ci sono corrieri in viaggio al momento!");
             return;
         }
@@ -52,8 +58,10 @@ public class CourierController extends Controller {
             }
         });
         courierChooser.setItems(FXCollections.observableList(couriers));
-        courierChooser.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, newValue) ->
-            packageChooser.setItems(FXCollections.observableList(packageService.selectByVehicleNotDelivered(newValue.getVehicle()))));
+        courierChooser.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, newValue) -> {
+            if (newValue != null)
+                packageChooser.setItems(FXCollections.observableList(packageService.selectByVehicleNotDelivered(newValue.getVehicle())));
+        });
 
         packageChooser.setConverter(new StringConverter<>() {
             @Override
@@ -68,8 +76,10 @@ public class CourierController extends Controller {
                 return packageService.select(s);
             }
         });
-        packageChooser.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
-                centerChooser.setItems(FXCollections.observableList(findCentersByPackage(newValue))));
+        packageChooser.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null)
+                centerChooser.setItems(FXCollections.observableList(findCentersByPackage(newValue)));
+        });
 
         centerChooser.setConverter(new StringConverter<>() {
             @Override
@@ -104,15 +114,28 @@ public class CourierController extends Controller {
         Collo pack = packageChooser.getValue();
         Centro center = centerChooser.getValue();
 
-        if (center.equals(pack.getDestinazione())) {
-            pack.setConsegnato(true);
-            ((PackageService) ServiceProvider.getService(Collo.class)).update(pack);
-        }
-
         DeliveryService deliveryService = (DeliveryService) ServiceProvider.getService(Delivery.class);
         Delivery delivery = new Delivery(pack, center, courier);
-        if (!deliveryService.exists(delivery))
-            deliveryService.insert(delivery);
+        deliveryService.insert(delivery);
+
+        if (center.equals(pack.getDestinazione())) {
+            PackageService packageService = (PackageService) ServiceProvider.getService(Collo.class);
+            pack.setConsegnato(true);
+            packageService.update(pack);
+            statusLabel.setTextFill(Color.GREEN);
+            statusLabel.setText("Consegna del collo avvenuta!");
+
+            if (packageService.selectByVehicleNotDelivered(courier.getVehicle()).isEmpty()) {
+                courier.setVehicle(null);
+                CourierService courierService = (CourierService) ServiceProvider.getService(Courier.class);
+                courierService.update(courier);
+            }
+        } else {
+            statusLabel.setTextFill(Color.GREEN);
+            statusLabel.setText("Segnalazione avvenuta con successo!");
+        }
+
+        initialize();
     }
 
     @Override

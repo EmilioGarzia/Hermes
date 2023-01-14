@@ -14,7 +14,6 @@ public class CarrierHelper {
     public CarrierHelper(Vector<Route> routes) {
         map = new Graph<>();
         for (Route route : routes) {
-            System.out.println("Centro1: " + route.getCentro1() + ", Centro2: " + route.getCentro2());
             BFSNode<Centro> n1 = add(route.getCentro1());
             BFSNode<Centro> n2 = add(route.getCentro2());
             n1.connectTo(n2);
@@ -32,27 +31,29 @@ public class CarrierHelper {
     }
 
     public Vector<Collo> findBestLoad(Vector<Collo> packsToSend) {
-        Collo first = packsToSend.get(0);
         Vector<Collo> load = new Vector<>();
-        load.add(first);
-        Vector<Centro> finalPath = new Vector<>(findPath(first.getPartenza(), first.getDestinazione()));
 
-        for (int i = 1; i < packsToSend.size(); i++) {
-            Collo collo = packsToSend.get(i);
-            Vector<Centro> path = findPath(collo.getPartenza(), collo.getDestinazione());
-            for (Centro centro : path)
-                if (finalPath.contains(centro)) {
-                    load.add(collo);
-                    finalPath.addAll(path);
-                    break;
-                }
+        if (packsToSend.size() > 0) {
+            Collo first = packsToSend.get(0);
+            load.add(first);
+            Vector<Centro> finalPath = new Vector<>(findPath(first.getPartenza(), first.getDestinazione()));
+
+            for (int i = 1; i < packsToSend.size(); i++) {
+                Collo collo = packsToSend.get(i);
+                Vector<Centro> path = findPath(collo.getPartenza(), collo.getDestinazione());
+                for (Centro centro : path)
+                    if (finalPath.contains(centro)) {
+                        load.add(collo);
+                        finalPath.addAll(path);
+                        break;
+                    }
+            }
         }
 
         return load;
     }
 
     public Vector<Centro> findPath(Centro partenza, Centro destinazione) {
-        System.out.println("Partenza: " + partenza + ", Destinazione: " + destinazione);
         String partenzaString = joinStrings(partenza.keysToString());
         String destinazioneString = joinStrings(destinazione.keysToString());
         map.breadthFirstSearch((BFSNode<Centro>) map.get(partenzaString));

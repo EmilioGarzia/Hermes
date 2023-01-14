@@ -1,7 +1,7 @@
 package unipa.prog3.model.relation;
 
 public class Veicolo extends Relation {
-    public Veicolo(String codice, String tipo, double capienza) {
+    public Veicolo(String codice, String tipo, float capienza) {
         super(1, 2);
         addKey(codice);
         addData(tipo);
@@ -16,7 +16,7 @@ public class Veicolo extends Relation {
         return (String) data[0];
     }
 
-    public double getCapienza() {
-        return (double) data[1];
+    public float getCapienza() {
+        return (float) data[1];
     }
 }
