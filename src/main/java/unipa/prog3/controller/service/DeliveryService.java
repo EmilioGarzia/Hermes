@@ -7,6 +7,7 @@ import unipa.prog3.model.relation.Delivery;
 import unipa.prog3.model.io.TableProvider;
 
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.Vector;
 
 public class DeliveryService extends GenericService<Delivery> {
@@ -16,6 +17,15 @@ public class DeliveryService extends GenericService<Delivery> {
 
     public Vector<Delivery> selectByPackage(Collo pack) {
         return select(delivery -> delivery.getCollo().equalKeys(pack));
+    }
+
+    public Delivery selectLastByPackage(Collo pack) {
+        Vector<Delivery> deliveries = selectByPackage(pack);
+        Delivery last = deliveries.get(0);
+        for (Delivery delivery : deliveries)
+            if (delivery.getTimestamp().isAfter(last.getTimestamp()))
+                last = delivery;
+        return last;
     }
 
     @Override

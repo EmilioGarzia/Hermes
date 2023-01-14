@@ -6,6 +6,7 @@ import unipa.prog3.model.relation.Centro;
 import unipa.prog3.model.relation.Collo;
 import unipa.prog3.model.relation.Route;
 
+import java.awt.*;
 import java.util.Vector;
 
 public class CarrierHelper {
@@ -66,6 +67,20 @@ public class CarrierHelper {
         }
 
         return path;
+    }
+
+    public Centro nextStep(Vector<Centro> path, Centro current) {
+        String lastString = joinStrings(path.get(0).keysToString());
+        BFSNode<Centro> node = (BFSNode<Centro>) map.get(lastString);
+        String currentString = joinStrings(current.keysToString());
+        BFSNode<Centro> currentNode = (BFSNode<Centro>) map.get(currentString);
+        while(node != null) {
+            if (node.getParent() == currentNode)
+                return node.getData();
+            node = node.getParent();
+        }
+
+        return null;
     }
 
     private String joinStrings(Vector<String> strings) {

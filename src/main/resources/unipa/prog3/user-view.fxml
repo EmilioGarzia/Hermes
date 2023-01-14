@@ -17,8 +17,8 @@
          <center>
             <TableView fx:id="historyTable" prefHeight="200.0" prefWidth="555.0" BorderPane.alignment="CENTER">
                <columns>
-                  <TableColumn fx:id="timestampField" minWidth="75.0" prefWidth="150.0" text="Data e ora" />
-                  <TableColumn fx:id="descriptionField" editable="false" minWidth="80.0" prefWidth="405.0" text="Descrizione" />
+                  <TableColumn fx:id="timestampField" minWidth="75.0" prefWidth="150.0" resizable="false" text="Data e ora" />
+                  <TableColumn fx:id="descriptionField" editable="false" minWidth="80.0" prefWidth="415.0217978009704" resizable="false" text="Descrizione" />
                </columns>
                <BorderPane.margin>
                   <Insets top="20.0" />

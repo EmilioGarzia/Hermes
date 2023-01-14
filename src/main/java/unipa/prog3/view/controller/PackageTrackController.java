@@ -1,9 +1,6 @@
 package unipa.prog3.view.controller;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
-import javafx.collections.ObservableArrayBase;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -20,6 +17,9 @@ import unipa.prog3.model.relation.Delivery;
 import unipa.prog3.model.relation.Route;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+import java.util.Comparator;
 import java.util.Vector;
 
 public class PackageTrackController extends Controller {
@@ -52,19 +52,16 @@ public class PackageTrackController extends Controller {
         Vector<Delivery> deliveries = deliveryService.selectByPackage(collo);
 
         if (deliveries.size() > 0) {
-            System.out.println("Fatto");
-            Delivery last = deliveries.get(deliveries.size() - 1);
-            int index = path.indexOf(last.getCentro())+1;
-            progressBar.setProgress((double) index / path.size());
+            progressBar.setProgress((double) deliveries.size() / path.size());
 
             timestampField.setCellValueFactory(new PropertyValueFactory<>("timestamp"));
             descriptionField.setCellValueFactory(new PropertyValueFactory<>("description"));
 
+            deliveries.sort(Comparator.comparing(Delivery::getTimestamp));
             Vector<DeliveryTableRecord> records = new Vector<>();
             deliveries.forEach(delivery -> {
                 LocalDateTime dateTime = delivery.getTimestamp();
-                String timestamp = dateTime.getDayOfMonth() + "/" + dateTime.getMonthValue() + "/" + dateTime.getYear()
-                        + " " + dateTime.getHour() + ":" + dateTime.getMinute();
+                String timestamp = dateTime.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT));
                 String description = "Il collo è arrivato al centro di smistamento di "
                         + String.join(" - ", delivery.getCentro().keysToString());
                 records.add(new DeliveryTableRecord(timestamp, description));

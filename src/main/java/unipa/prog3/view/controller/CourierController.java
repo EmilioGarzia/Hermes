@@ -19,8 +19,6 @@ public class CourierController extends Controller {
     @FXML
     private ChoiceBox<Collo> packageChooser;
     @FXML
-    private ChoiceBox<Centro> centerChooser;
-    @FXML
     private Label statusLabel;
     @FXML
     private BorderPane formPane;
@@ -28,16 +26,15 @@ public class CourierController extends Controller {
     public void initialize() {
         courierChooser.getItems().clear();
         packageChooser.getItems().clear();
-        centerChooser.getItems().clear();
 
         CourierService courierService = (CourierService) ServiceProvider.getService(Courier.class);
         PackageService packageService = (PackageService) ServiceProvider.getService(Collo.class);
-        CenterService centerService = (CenterService) ServiceProvider.getService(Centro.class);
 
         Vector<Courier> couriers = courierService.selectTraveling();
         if (couriers.isEmpty()) {
             statusLabel.setTextFill(Color.RED);
             statusLabel.setText("Non ci sono corrieri in viaggio al momento!");
+            formPane.setDisable(true);
             return;
         }
 
@@ -76,45 +73,20 @@ public class CourierController extends Controller {
                 return packageService.select(s);
             }
         });
-        packageChooser.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue != null)
-                centerChooser.setItems(FXCollections.observableList(findCentersByPackage(newValue)));
-        });
-
-        centerChooser.setConverter(new StringConverter<>() {
-            @Override
-            public String toString(Centro centro) {
-                if (centro != null)
-                    return centro.getCittà() + " - " + centro.getStato();
-                return null;
-            }
-
-            @Override
-            public Centro fromString(String s) {
-                String[] info = s.split(" - ");
-                return centerService.selectByLocation(info[0], info[1]);
-            }
-        });
-    }
-
-    private Vector<Centro> findCentersByPackage(Collo pack) {
-        RouteService routeService = (RouteService) ServiceProvider.getService(Route.class);
-        CarrierHelper helper = new CarrierHelper(routeService.selectAll());
-        Vector<Centro> centers = helper.findPath(pack.getPartenza(), pack.getDestinazione());
-
-        DeliveryService deliveryService = (DeliveryService) ServiceProvider.getService(Delivery.class);
-        Vector<Delivery> deliveries = deliveryService.selectByPackage(pack);
-        deliveries.forEach(delivery -> centers.remove(delivery.getCentro()));
-        return centers;
     }
 
     @FXML
     public void report() {
         Courier courier = courierChooser.getValue();
         Collo pack = packageChooser.getValue();
-        Centro center = centerChooser.getValue();
 
+        RouteService routeService = (RouteService) ServiceProvider.getService(Route.class);
+        CarrierHelper carrierHelper = new CarrierHelper(routeService.selectAll());
+        Vector<Centro> path = carrierHelper.findPath(pack.getPartenza(), pack.getDestinazione());
         DeliveryService deliveryService = (DeliveryService) ServiceProvider.getService(Delivery.class);
+        Delivery lastDelivery = deliveryService.selectLastByPackage(pack);
+        Centro center = carrierHelper.nextStep(path, lastDelivery.getCentro());
+
         Delivery delivery = new Delivery(pack, center, courier);
         deliveryService.insert(delivery);
 
