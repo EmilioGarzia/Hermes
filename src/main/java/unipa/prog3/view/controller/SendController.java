@@ -54,6 +54,8 @@ public class SendController extends Controller {
 
         RouteService routeService = (RouteService) ServiceProvider.getService(Route.class);
         carrierHelper = new CarrierHelper(routeService.selectAll());
+
+        spedisciColli();
     }
 
     /**
@@ -106,17 +108,20 @@ public class SendController extends Controller {
         Vector<Collo> colli = packageService.selectNotSent();
         System.out.println("Colli: " + colli.size() + ", Veicoli: " + veicoli.size() + ", Corrieri: " + couriers.size());
 
-        // Continua ad effettuare spedizioni fin quando ci sono ancora risorse disponibili
-        while(!colli.isEmpty() && !veicoli.isEmpty() && !couriers.isEmpty()) {
-            // Trova l'insieme di colli che dovranno seguire un percorso simile
-            Vector<Collo> bestLoad = carrierHelper.findBestLoad(colli);
-
-            // Cerca il veicolo con il fattore di carico maggiore
+        while(!veicoli.isEmpty() && !couriers.isEmpty()) {
             Cromosoma best = null;
-            for (Veicolo v : veicoli) {
-                Cromosoma soluzione = popolazione.findBestSolutionForSingleVehicle(v, bestLoad, 1);
-                if (best == null || soluzione.weightRatio() > best.weightRatio())
-                    best = soluzione;
+            for (Collo collo : colli) {
+                // Trova l'insieme di colli che dovranno seguire un percorso simile a quello corrente
+                Vector<Collo> bestLoad = carrierHelper.findBestLoad(colli, collo);
+                System.out.println("Fatto1");
+
+                // Cerca il veicolo con il fattore di carico maggiore
+                for (Veicolo v : veicoli) {
+                    Cromosoma soluzione = popolazione.findBestSolutionForSingleVehicle(v, bestLoad, 10);
+                    if (best == null || soluzione.weightRatio() > best.weightRatio())
+                        best = soluzione;
+                }
+                System.out.println("Fatto2");
             }
 
             // Se il veicolo ha un fattore di carico maggiore o uguale all'80%, allora può partire per la sua spedizione
@@ -135,7 +140,7 @@ public class SendController extends Controller {
                 courier.setVehicle(best.getVehicle());
                 courierService.update(courier);
                 couriers.remove(courier);
-            }
+            } else break;
         }
     }
 

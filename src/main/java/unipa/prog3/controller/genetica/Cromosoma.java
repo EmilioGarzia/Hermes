@@ -3,6 +3,7 @@ package unipa.prog3.controller.genetica;
 import unipa.prog3.model.relation.Collo;
 import unipa.prog3.model.relation.Veicolo;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
 

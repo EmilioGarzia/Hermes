@@ -51,13 +51,14 @@ public class Popolazione extends Vector<Cromosoma> {
      * @return La soluzione scelta
      */
     private Cromosoma pickOne(double fitnessSum) {
-        double rand = Math.random()*fitnessSum;
-        if (rand == 0)
-            return get(0);
-
+        double rand = Math.random();
         int index = 0;
-        while(rand > 0)
-            rand -= get(index++).fitness();
+        while(index < size() && rand >= 0) {
+            double fitness = get(index).fitness();
+            rand -= fitness/fitnessSum;
+            index++;
+        }
+
         return get(index-1);
     }
 
