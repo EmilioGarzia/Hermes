@@ -54,8 +54,6 @@ public class SendController extends Controller {
 
         RouteService routeService = (RouteService) ServiceProvider.getService(Route.class);
         carrierHelper = new CarrierHelper(routeService.selectAll());
-
-        spedisciColli();
     }
 
     /**
@@ -106,14 +104,12 @@ public class SendController extends Controller {
         VehicleService vehicleService = (VehicleService) ServiceProvider.getService(Veicolo.class);
         Vector<Veicolo> veicoli = vehicleService.selectAvailable();
         Vector<Collo> colli = packageService.selectNotSent();
-        System.out.println("Colli: " + colli.size() + ", Veicoli: " + veicoli.size() + ", Corrieri: " + couriers.size());
 
         while(!veicoli.isEmpty() && !couriers.isEmpty()) {
             Cromosoma best = null;
             for (Collo collo : colli) {
                 // Trova l'insieme di colli che dovranno seguire un percorso simile a quello corrente
                 Vector<Collo> bestLoad = carrierHelper.findBestLoad(colli, collo);
-                System.out.println("Fatto1");
 
                 // Cerca il veicolo con il fattore di carico maggiore
                 for (Veicolo v : veicoli) {
@@ -121,7 +117,6 @@ public class SendController extends Controller {
                     if (best == null || soluzione.weightRatio() > best.weightRatio())
                         best = soluzione;
                 }
-                System.out.println("Fatto2");
             }
 
             // Se il veicolo ha un fattore di carico maggiore o uguale all'80%, allora può partire per la sua spedizione
