@@ -59,10 +59,10 @@ public class ClientController extends Controller {
         } else if (surnameField.getText().isEmpty()) {
             errorLabel.setText("Il campo cognome è vuoto!");
             return;
-        } else if (countryChooser.getValue().isEmpty()) {
+        } else if (countryChooser.getValue() == null) {
             errorLabel.setText("Devi selezionare il tuo Stato di appartenenza!");
             return;
-        } else if (townChooser.getValue().isEmpty()) {
+        } else if (townChooser.getValue() == null) {
             errorLabel.setText("Devi selezionare la tua città di appartenenza!");
             return;
         } else if (CAPField.getText().isEmpty()) {
