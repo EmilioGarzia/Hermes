@@ -17,6 +17,9 @@ import unipa.prog3.model.relation.*;
 import java.util.HashMap;
 import java.util.Vector;
 
+/**
+ * Classe che gestisce le interazioni dell'utente con i vari widget della view send-view.fxml
+ * */
 public class SendController extends Controller {
     @FXML
     private ChoiceBox<String> senderChooser, receiverChooser;
@@ -52,6 +55,10 @@ public class SendController extends Controller {
         carrierHelper = new CarrierHelper(routeService.selectAll());
     }
 
+    /**
+     * Gestisce il processo di spedizione subito dopo che l'utente clicca su "Spedisci" nella view di send-view.fxml,
+     * informando l'utente sull'esito dell'operazione
+     * */
     @FXML
     public void send() {
         errorLabel.setStyle("-fx-text-fill: red");
@@ -86,6 +93,9 @@ public class SendController extends Controller {
         spedisciVeicoli();
     }
 
+    /**
+     * Implementa un algoritmo di IA (Algoritmo Genetico) per la selezione dei veicoli e colli da impiegare per una spedizione
+     * */
     private void spedisciVeicoli() {
         CourierService courierService = (CourierService) ServiceProvider.getService(Courier.class);
         Vector<Courier> couriers = courierService.selectAvailable();
@@ -124,6 +134,9 @@ public class SendController extends Controller {
         populateChooser();
     }
 
+    /**
+     * Carica nelle choiceBox gli indirizzi già memorizzati e l'opzione per aggiungerne di nuovi
+     * */
     private void populateChooser() {
         ClientService clientService = (ClientService) ServiceProvider.getService(Cliente.class);
         Vector<Cliente> clienti = clientService.selectAll();
@@ -141,6 +154,10 @@ public class SendController extends Controller {
         updateChooser(receiverChooser, nomi);
     }
 
+    /**
+     * Aggiunge alla choiceBox il nuovo recod aggiunto nella client-view.fxml
+     * @param chooser,nomi
+     * */
     private void updateChooser(ChoiceBox<String> chooser, Vector<String> nomi) {
         int selected = chooser.getSelectionModel().getSelectedIndex();
         chooser.setItems(FXCollections.observableList(nomi));

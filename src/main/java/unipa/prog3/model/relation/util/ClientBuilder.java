@@ -3,6 +3,10 @@ package unipa.prog3.model.relation.util;
 import unipa.prog3.model.relation.Centro;
 import unipa.prog3.model.relation.Cliente;
 
+/**
+ * La classe implementa il pattern "Builder" che è un pattern creazionale, in questo caso,
+ * gestisce la creazione dei vari clienti.
+ * */
 public class ClientBuilder {
     private final Cliente cliente;
 

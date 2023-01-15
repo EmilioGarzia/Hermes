@@ -1,5 +1,8 @@
 package unipa.prog3.controller.service.util;
 
+/**
+ * Classe per la visita in ampiezza di un grafo
+ * */
 public class BFSNode<T> extends Node<T> {
     private BFSNode<T> parent;
     private NodeColor color;
@@ -34,6 +37,9 @@ public class BFSNode<T> extends Node<T> {
         this.distance = distance;
     }
 
+    /**
+     * Enumeratore per la colorazione dei nodi durante la visita BFS
+     * */
     public enum NodeColor {
         BLACK, GRAY, WHITE
     }

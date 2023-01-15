@@ -2,7 +2,15 @@ package unipa.prog3.controller.service.util;
 
 import java.util.*;
 
+/**
+ * Classe per la gestione di un grafo non orientato
+ * */
 public class Graph<T> extends HashMap<String, Node<T>> {
+
+    /**
+     * Esegue la visita in ampiezza di un grafo non orientato partendo da un vertice sorgente
+     * @param source nodo sorgente da cui la visita dovrà partire
+     * */
     public void breadthFirstSearch(BFSNode<T> source) {
         for (Node<T> node : values()) {
             BFSNode<T> bfsNode = (BFSNode<T>) node;

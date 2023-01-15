@@ -22,6 +22,9 @@ import java.time.format.FormatStyle;
 import java.util.Comparator;
 import java.util.Vector;
 
+/**
+ * Classe per la gestione delle interazione dell'utente con i widget della view tracking-view.fxml
+ * */
 public class PackageTrackController extends Controller {
     @FXML
     private ProgressBar progressBar;

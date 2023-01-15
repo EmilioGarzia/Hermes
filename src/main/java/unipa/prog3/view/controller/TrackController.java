@@ -9,6 +9,9 @@ import unipa.prog3.controller.service.PackageService;
 import unipa.prog3.controller.service.ServiceProvider;
 import unipa.prog3.model.relation.Collo;
 
+/**
+ * Classe che gestisce le interazioni dell'utente con i widget della track-view.fxml
+ * */
 public class TrackController extends Controller {
     @FXML
     private TextField codeField;
@@ -16,6 +19,10 @@ public class TrackController extends Controller {
     private Label errorLabel;
     private static Collo collo;
 
+
+    /**
+     * Analizza il codice di tracciamento inserito, in caso di successo carica la tracking-view.fxml
+     * */
     @FXML
     public void onTrace() {
         errorLabel.setTextFill(Color.RED);

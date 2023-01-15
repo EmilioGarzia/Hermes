@@ -15,6 +15,9 @@ import unipa.prog3.model.relation.util.ClientBuilder;
 
 import java.util.Vector;
 
+/**
+ * Gestisce tutte le interazioni dell'utente con i vari widget che compongono la client-view.fxml
+ */
 public class ClientController extends Controller {
     @FXML
     private TextField nameField, surnameField;
@@ -33,6 +36,9 @@ public class ClientController extends Controller {
         centerService = (CenterService) ServiceProvider.getService(Centro.class);
     }
 
+    /**
+     * Metodo invocato automaticamente da JavaFX per l'inizializzazione della view
+     * */
     public void initialize() {
         Vector<Centro> centers = centerService.selectAll();
         Vector<String> countries = new Vector<>();
@@ -100,9 +106,13 @@ public class ClientController extends Controller {
         MainApplication.getMainController().navigateBack();
     }
 
+
     @Override
     public void onResume() {}
 
+    /**
+     * Annulla l'inserimento di un nuovo indirizzo e riporta l'utente alla view precedente
+     * */
     @FXML
     public void annulla() {
         MainApplication.getMainController().navigateBack();

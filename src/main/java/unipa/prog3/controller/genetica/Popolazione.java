@@ -14,7 +14,7 @@ public class Popolazione extends Vector<Cromosoma> {
         clear();
         for (int i = 0; i < capacity(); i++) {
             Cromosoma soluzione = new Cromosoma(veicolo);
-            soluzione.randomizza(colli);
+            soluzione.generaCasuale(colli);
             add(soluzione);
         }
 

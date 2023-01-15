@@ -18,7 +18,7 @@ public class Cromosoma extends Vector<Collo> {
         fitness = -1;
     }
 
-    public void randomizza(List<Collo> allPackages) {
+    public void generaCasuale(List<Collo> allPackages) {
         while(size() < allPackages.size() && totalWeight < vehicle.getCapienza())
             add(selezionaCasuale(allPackages));
 

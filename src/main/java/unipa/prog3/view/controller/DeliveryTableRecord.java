@@ -2,6 +2,9 @@ package unipa.prog3.view.controller;
 
 import javafx.beans.property.SimpleStringProperty;
 
+/**
+ * Classe per la gestione dei dati all'interno della tabella contenuta nella tracking-view.fxml
+ * */
 public class DeliveryTableRecord {
     private final SimpleStringProperty timestamp;
     private final SimpleStringProperty description;

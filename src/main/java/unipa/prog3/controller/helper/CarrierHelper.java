@@ -9,6 +9,10 @@ import unipa.prog3.model.relation.Route;
 import java.awt.*;
 import java.util.Vector;
 
+/**
+ * Classe che gestisce i criteri per ottenere il miglior impiego possibile delle risorse dell'azienda,
+ * tenendo conto dei mezzi a disposizione che percorrono gli stessi itinerari e dei colli da spedire
+ * */
 public class CarrierHelper {
     private final Graph<Centro> map;
 
@@ -21,6 +25,11 @@ public class CarrierHelper {
         }
     }
 
+    /**
+     * Aggiunge un centro al grafo BFS, se non già presente e restituisce il nodo ad esso associato
+     * @param center centro di smistamento che si vuole istanziare come nodo del grafo BFS
+     * @return ritorna un istanza nodo BFS di tipo "Centro"
+     * */
     private BFSNode<Centro> add(Centro center) {
         String centerString = joinStrings(center.keysToString());
         if (map.containsKey(centerString))
@@ -31,6 +40,11 @@ public class CarrierHelper {
         return node;
     }
 
+    /**
+     * Sceglie la miglior soluzione circa il carico dei colli su di un veicolo
+     * @param packsToSend Insieme dei pacchi da spedire
+     * @return ritorna un istanza di Vector<Collo> contenente il collo con tutti i pacchi da spedire
+     * */
     public Vector<Collo> findBestLoad(Vector<Collo> packsToSend) {
         Vector<Collo> load = new Vector<>();
 
@@ -54,6 +68,12 @@ public class CarrierHelper {
         return load;
     }
 
+    /**
+     * Ricerca il percorso migliore e i vari centri di smistamento che visiterà il carico prima di arrivare a destinazione
+     * @param partenza centro di partenza
+     * @param destinazione centro di destinazione
+     * @return ritorna un'istanza di Vector<Centro> che contiene i centri che fungeranno da checkpoint perima dell'arrivo a destinazione
+     * */
     public Vector<Centro> findPath(Centro partenza, Centro destinazione) {
         String partenzaString = joinStrings(partenza.keysToString());
         String destinazioneString = joinStrings(destinazione.keysToString());
@@ -69,6 +89,11 @@ public class CarrierHelper {
         return path;
     }
 
+    /**
+     * Sposta il carico specificato in input al centro di smistamento successivo
+     * @param current centro in cui il collo si trova in questo momento
+     * @param path percorso totale che il collo deve affrontare
+     * */
     public Centro nextStep(Vector<Centro> path, Centro current) {
         String lastString = joinStrings(path.get(0).keysToString());
         BFSNode<Centro> node = (BFSNode<Centro>) map.get(lastString);

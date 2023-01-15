@@ -13,6 +13,9 @@ import unipa.prog3.model.relation.*;
 
 import java.util.Vector;
 
+/**
+ * Classe che gestisce le interazioni dell'utente con i widget della courier-view.fxml
+ * */
 public class CourierController extends Controller {
     @FXML
     private ChoiceBox<Courier> courierChooser;
@@ -23,6 +26,9 @@ public class CourierController extends Controller {
     @FXML
     private BorderPane formPane;
 
+    /**
+     * Metodo invocato automaticamente da JavaFX per l'inizializzazione della view
+     * */
     public void initialize() {
         courierChooser.getItems().clear();
         packageChooser.getItems().clear();
@@ -72,6 +78,9 @@ public class CourierController extends Controller {
         });
     }
 
+    /**
+     * Metodo che gestisce la segnalazione di un collo informando anche dell'avvenuta/mancata segnalazione di un collo da parte di un corriere
+     * */
     @FXML
     public void report() {
         Courier courier = courierChooser.getValue();
