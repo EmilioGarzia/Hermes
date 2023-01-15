@@ -8,9 +8,18 @@ import unipa.prog3.view.controller.MainController;
 
 import java.io.IOException;
 
+/**
+ * Classe principale. Contiene il metodo main.
+ */
 public class MainApplication extends Application {
     private static MainController mainController;
 
+    /**
+     * Mostra a schermo la finestra e la riempie con gli elementi caricati dal file main.fxml
+     * @param stage Istanza dell'oggetto che fa riferimento alla finestra dell'applicazione
+     * @throws Exception Quando ...
+     * @return Cosa...
+     */
     @Override
     public void start(Stage stage) {
         Scene scene = new Scene(loadView("/unipa/prog3/view/main.fxml"));
@@ -19,6 +28,9 @@ public class MainApplication extends Application {
         stage.show();
     }
 
+    /**
+     * @param args
+     */
     public static void main(String[] args) {
         launch();
     }

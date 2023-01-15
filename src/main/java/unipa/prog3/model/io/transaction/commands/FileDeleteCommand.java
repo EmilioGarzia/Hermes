@@ -2,6 +2,9 @@ package unipa.prog3.model.io.transaction.commands;
 
 import java.io.File;
 
+/**
+ * Specializzazione di un Command per l'eliminazione di un file sul file system
+ */
 public class FileDeleteCommand implements Command {
     private final File file;
 
@@ -16,6 +19,7 @@ public class FileDeleteCommand implements Command {
 
     @Override
     public boolean undo() {
+        // Un file cancellato non può essere ripristinato
         return false;
     }
 }

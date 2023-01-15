@@ -2,6 +2,9 @@ package unipa.prog3.model.io.transaction.commands;
 
 import java.io.File;
 
+/**
+ * Specializzazione di un Command per rinominare un file sul file system
+ */
 public class FileRenameCommand implements Command {
     private final String oldPath, newPath;
 

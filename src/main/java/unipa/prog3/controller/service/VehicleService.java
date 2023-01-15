@@ -6,11 +6,18 @@ import unipa.prog3.model.relation.Veicolo;
 
 import java.util.Vector;
 
+/**
+ * Specializzazione di un Service per la gestione dei veicoli di cui l'azienda dispone
+ */
 public class VehicleService extends GenericService<Veicolo> {
     public VehicleService() {
         super(TableProvider.TableName.VEHICLES);
     }
 
+    /**
+     * Seleziona tutti i veicoli fermi, quindi disponibili per una spedizione.
+     * @return Istanza di Vector contenente i veicoli selezionati
+     */
     public Vector<Veicolo> selectAvailable() {
         PackageService packageService = (PackageService) ServiceProvider.getService(Collo.class);
         Vector<Collo> packs = packageService.selectAll();
