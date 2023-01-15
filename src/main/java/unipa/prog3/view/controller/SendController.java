@@ -4,9 +4,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.paint.Color;
 import unipa.prog3.MainApplication;
 import unipa.prog3.controller.genetica.Cromosoma;
 import unipa.prog3.controller.genetica.Popolazione;
@@ -93,14 +91,14 @@ public class SendController extends Controller {
         errorLabel.setStyle("-fx-text-fill: #00c700");
         errorLabel.setText("Utilizza il codice " + collo.getCodice() + " per tracciare la tua spedizione");
         errorLabel.setVisible(true);
-        spedisciVeicoli();
+        spedisciColli();
     }
 
     /**
      * Utilizza l'algoritmo di IA (Algoritmo Genetico) per la selezione dei veicoli
      * da utilizzare per spedire i colli che sono ancora in fase di elaborazione
      * */
-    private void spedisciVeicoli() {
+    private void spedisciColli() {
         CourierService courierService = (CourierService) ServiceProvider.getService(Courier.class);
         Vector<Courier> couriers = courierService.selectAvailable();
         VehicleService vehicleService = (VehicleService) ServiceProvider.getService(Veicolo.class);
@@ -113,7 +111,7 @@ public class SendController extends Controller {
             // Trova l'insieme di colli che dovranno seguire un percorso simile
             Vector<Collo> bestLoad = carrierHelper.findBestLoad(colli);
 
-            // Cerca il veicolo che possa essere riempito maggiormento con il carico di colli selezionato
+            // Cerca il veicolo con il fattore di carico maggiore
             Cromosoma best = null;
             for (Veicolo v : veicoli) {
                 Cromosoma soluzione = popolazione.findBestSolutionForSingleVehicle(v, bestLoad, 1);
@@ -121,20 +119,18 @@ public class SendController extends Controller {
                     best = soluzione;
             }
 
-            if (best == null) return;
-            // Associa ad ogni collo il veicolo nel quale sono stati caricati
-            for (Collo c : best) {
-                c.setVeicolo(best.getVehicle());
-                packageService.update(c);
-                colli.remove(c);
-                System.out.println("Il collo " + c.getCodice() + " è stato assegnato al veicolo " + best.getVehicle().getCodice());
-            }
+            // Se il veicolo ha un fattore di carico maggiore o uguale all'80%, allora può partire per la sua spedizione
+            if (best != null && best.weightRatio() >= 0.8) {
+                // Associa ad ogni collo il veicolo nel quale deve essere caricato
+                for (Collo c : best) {
+                    c.setVeicolo(best.getVehicle());
+                    packageService.update(c);
+                    colli.remove(c);
+                    System.out.println("Il collo " + c.getCodice() + " è stato assegnato al veicolo " + best.getVehicle().getCodice());
+                }
 
-            // Se il veicolo ha un fattore di carico maggiore del 80%, allora può partire per la sua spedizione
-            if (best.weightRatio() > 0.8)
+                // Rimuove il veicolo dalla lista dei veicoli disponibili
                 veicoli.remove(best.getVehicle());
-
-            if (!courierService.existsDriverOfVehicle(best.getVehicle())) {
                 Courier courier = couriers.get((int) (Math.random() * couriers.size()));
                 courier.setVehicle(best.getVehicle());
                 courierService.update(courier);

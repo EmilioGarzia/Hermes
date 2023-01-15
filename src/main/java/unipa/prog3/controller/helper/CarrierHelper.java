@@ -49,19 +49,30 @@ public class CarrierHelper {
         Vector<Collo> load = new Vector<>();
 
         if (packsToSend.size() > 0) {
+            // Seleziona il primo collo della lista
             Collo first = packsToSend.get(0);
             load.add(first);
+
+            // Calcola il percorso che dovrà effettuare il collo selezionato
             Vector<Centro> finalPath = new Vector<>(findPath(first.getPartenza(), first.getDestinazione()));
 
+            // Aggiunge al carico tutti quei colli che dovranno fare un percorso
+            // simile, di almeno il 60% del loro intero percorso, a quello selezionato
             for (int i = 1; i < packsToSend.size(); i++) {
                 Collo collo = packsToSend.get(i);
                 Vector<Centro> path = findPath(collo.getPartenza(), collo.getDestinazione());
+                int commonSteps = 0;
                 for (Centro centro : path)
-                    if (finalPath.contains(centro)) {
-                        load.add(collo);
-                        finalPath.addAll(path);
-                        break;
-                    }
+                    if (finalPath.contains(centro))
+                        commonSteps++;
+
+                // Calcola il rapporto di somiglianza del percorso
+                // con quello del collo selezionato inizialmente
+                double similarityRatio = (double) commonSteps/path.size();
+                if (similarityRatio >= 0.6) {
+                    load.add(collo);
+                    finalPath.addAll(path);
+                }
             }
         }
 
