@@ -98,15 +98,12 @@ public class SendController extends Controller {
             Vector<Collo> bestLoad = carrierHelper.findBestLoad(colli);
             Cromosoma best = null;
             for (Veicolo v : veicoli) {
-                System.out.println("Capienza veicolo: " + v.getCapienza());
                 Cromosoma soluzione = popolazione.findBestSolutionForSingleVehicle(v, bestLoad, 1);
-                if (best == null || soluzione.weightRatio() > best.weightRatio())
+                if (best == null || soluzione.size() > best.size())
                     best = soluzione;
             }
 
             if (best == null) return;
-            System.out.println("Dimensione della soluzione: " + best.size());
-
             for (Collo c : best) {
                 c.setVeicolo(best.getVehicle());
                 packageService.update(c);

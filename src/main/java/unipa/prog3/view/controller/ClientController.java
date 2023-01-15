@@ -3,6 +3,7 @@ package unipa.prog3.view.controller;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import unipa.prog3.MainApplication;
 import unipa.prog3.controller.service.CenterService;
@@ -23,6 +24,8 @@ public class ClientController extends Controller {
     private TextField CAPField, addressField, houseNumberField;
     @FXML
     private TextField emailField, phoneField;
+    @FXML
+    private Label errorLabel;
 
     private final CenterService centerService;
 
@@ -50,6 +53,32 @@ public class ClientController extends Controller {
 
     @FXML
     public void aggiungiIndirizzo() {
+        if (nameField.getText().isEmpty()) {
+            errorLabel.setText("Il campo nome è vuoto!");
+            return;
+        } else if (surnameField.getText().isEmpty()) {
+            errorLabel.setText("Il campo cognome è vuoto!");
+            return;
+        } else if (countryChooser.getValue().isEmpty()) {
+            errorLabel.setText("Devi selezionare il tuo Stato di appartenenza!");
+            return;
+        } else if (townChooser.getValue().isEmpty()) {
+            errorLabel.setText("Devi selezionare la tua città di appartenenza!");
+            return;
+        } else if (CAPField.getText().isEmpty()) {
+            errorLabel.setText("Il campo CAP è vuoto!");
+            return;
+        } else if (addressField.getText().isEmpty()) {
+            errorLabel.setText("Il campo indirizzo è vuoto!");
+            return;
+        } else if (houseNumberField.getText().isEmpty()) {
+            errorLabel.setText("Il campo numero civico è vuoto!");
+            return;
+        } else if (phoneField.getText().isEmpty()) {
+            errorLabel.setText("Il campo telefono è vuoto!");
+            return;
+        }
+
         Centro centro = centerService.selectByLocation(townChooser.getValue(), countryChooser.getValue());
 
         ClientBuilder builder = new ClientBuilder();
@@ -59,8 +88,11 @@ public class ClientController extends Controller {
                 .setCentro(centro)
                 .setIndirizzo(addressField.getText())
                 .setCivico(Integer.parseInt(houseNumberField.getText()))
-                .setEmail(emailField.getText())
                 .setTelefono(phoneField.getText());
+
+        if (emailField.getText().isEmpty())
+            builder.setEmail(null);
+
         ClientService service = (ClientService) ServiceProvider.getService(Cliente.class);
         if (service.findRecord(builder.getCliente()) == null)
             service.insert(builder.getCliente());

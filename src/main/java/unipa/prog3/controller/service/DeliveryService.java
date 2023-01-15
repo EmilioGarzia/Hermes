@@ -21,6 +21,9 @@ public class DeliveryService extends GenericService<Delivery> {
 
     public Delivery selectLastByPackage(Collo pack) {
         Vector<Delivery> deliveries = selectByPackage(pack);
+        if (deliveries.size() == 0)
+            return null;
+
         Delivery last = deliveries.get(0);
         for (Delivery delivery : deliveries)
             if (delivery.getTimestamp().isAfter(last.getTimestamp()))

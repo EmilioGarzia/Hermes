@@ -81,10 +81,6 @@ public class Cromosoma extends Vector<Collo> {
         return vehicle;
     }
 
-    public double weightRatio() {
-        return totalWeight / vehicle.getCapienza();
-    }
-
     @Override
     public Object clone() {
         Cromosoma clone = new Cromosoma(vehicle);

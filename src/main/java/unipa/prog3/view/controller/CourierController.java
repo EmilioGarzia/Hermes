@@ -93,7 +93,11 @@ public class CourierController extends Controller {
         Vector<Centro> path = carrierHelper.findPath(pack.getPartenza(), pack.getDestinazione());
         DeliveryService deliveryService = (DeliveryService) ServiceProvider.getService(Delivery.class);
         Delivery lastDelivery = deliveryService.selectLastByPackage(pack);
-        Centro center = carrierHelper.nextStep(path, lastDelivery.getCentro());
+
+        Centro center;
+        if (lastDelivery == null)
+            center = path.get(0);
+        else center = carrierHelper.nextStep(path, lastDelivery.getCentro());
 
         Delivery delivery = new Delivery(pack, center, courier);
         deliveryService.insert(delivery);

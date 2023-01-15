@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-
 <BorderPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unipa.prog3.view.controller.CourierController">
    <center>
       <BorderPane prefHeight="500.0" prefWidth="1000.0" styleClass="mainContainer" stylesheets="@../css/courier.css">
@@ -85,7 +84,7 @@
          <bottom>
             <Label fx:id="statusLabel" alignment="CENTER" contentDisplay="CENTER" maxWidth="-Infinity" prefHeight="52.0" styleClass="errorMSG" BorderPane.alignment="CENTER">
                <BorderPane.margin>
-                  <Insets bottom="400.0" />
+                  <Insets bottom="60.0" top="30.0" />
                </BorderPane.margin>
             </Label>
          </bottom>

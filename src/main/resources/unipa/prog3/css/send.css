@@ -34,7 +34,7 @@
 .kgLabel{
     -fx-font-style: italic;
     -fx-text-fill: white;
-    -fx-font-size: 22pxpx;
+    -fx-font-size: 22px;
 }
 
 .sendButton{
@@ -58,6 +58,7 @@
 }
 
 .msg{
+    -fx-font-size: 18px;
     -fx-text-fill: green;
     -fx-background-color: transparent;
 }

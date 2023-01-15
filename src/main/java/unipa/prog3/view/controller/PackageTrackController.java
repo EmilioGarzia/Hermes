@@ -36,13 +36,14 @@ public class PackageTrackController extends Controller {
         Collo collo = TrackController.getCollo();
         StringBuilder builder = new StringBuilder();
         builder.append("Stato della spedizione ").append(collo.getCodice()).append(": ");
-        if (collo.getVeicolo() == null) {
+        if (collo.getVeicolo() == null)
             builder.append("In elaborazione...");
-            return;
-        } else if (collo.isConsegnato())
+        else if (collo.isConsegnato())
             builder.append("Consegnato!");
         else builder.append("In consegna...");
         statusLabel.setText(builder.toString());
+
+        if (collo.getVeicolo() == null) return;
 
         RouteService routeService = (RouteService) ServiceProvider.getService(Route.class);
         CarrierHelper helper = new CarrierHelper(routeService.selectAll());

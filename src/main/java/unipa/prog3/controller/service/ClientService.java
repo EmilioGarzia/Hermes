@@ -5,7 +5,6 @@ import unipa.prog3.model.relation.Centro;
 import unipa.prog3.model.relation.Cliente;
 import unipa.prog3.model.relation.util.ClientBuilder;
 
-import java.util.Arrays;
 import java.util.Vector;
 
 public class ClientService extends GenericService<Cliente> {
@@ -28,7 +27,9 @@ public class ClientService extends GenericService<Cliente> {
         ClientBuilder clientBuilder = new ClientBuilder();
         clientBuilder.setID(fields[0]).setNome(fields[1]).setCognome(fields[2]).setCentro(centro)
                 .setCap(Integer.parseInt(fields[5])).setIndirizzo(fields[6]).setCivico(Integer.parseInt(fields[7]))
-                .setEmail(fields[8]).setTelefono(fields[9]);
+                .setTelefono(fields[9]);
+        if (fields[8].equals("null"))
+            clientBuilder.setEmail(null);
         return clientBuilder.getCliente();
     }
 }
