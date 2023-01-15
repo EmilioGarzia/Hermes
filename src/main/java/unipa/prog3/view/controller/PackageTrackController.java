@@ -35,8 +35,14 @@ public class PackageTrackController extends Controller {
     @FXML
     private TableColumn<DeliveryTableRecord, String> timestampField, descriptionField;
 
+    /**
+     * Mostra a schermo tutte le informazioni sul tracciamento del collo
+     */
     public void initialize() {
+        // Preleva il collo di cui effettuare il tracciamento dal controller della view track-view.fxml
         Collo collo = TrackController.getCollo();
+
+        // Imposta il testo della label di stato
         StringBuilder builder = new StringBuilder();
         builder.append("Stato della spedizione ").append(collo.getCodice()).append(": ");
         if (collo.getVeicolo() == null)
@@ -46,8 +52,10 @@ public class PackageTrackController extends Controller {
         else builder.append("In consegna...");
         statusLabel.setText(builder.toString());
 
+        // Se il collo non è stato ancora spedito, non è necessario effettuare il tracciamento
         if (collo.getVeicolo() == null) return;
 
+        // Effettua il tracciamento del collo
         RouteService routeService = (RouteService) ServiceProvider.getService(Route.class);
         CarrierHelper helper = new CarrierHelper(routeService.selectAll());
         Vector<Centro> path = helper.findPath(collo.getPartenza(), collo.getDestinazione());
@@ -56,6 +64,8 @@ public class PackageTrackController extends Controller {
         Vector<Delivery> deliveries = deliveryService.selectByPackage(collo);
 
         if (deliveries.size() > 0) {
+            // Mostra le informazioni ottenute a schermo
+
             progressBar.setProgress((double) deliveries.size() / path.size());
 
             timestampField.setCellValueFactory(new PropertyValueFactory<>("timestamp"));
@@ -75,7 +85,5 @@ public class PackageTrackController extends Controller {
     }
 
     @Override
-    public void onResume() {
-
-    }
+    public void onResume() {}
 }

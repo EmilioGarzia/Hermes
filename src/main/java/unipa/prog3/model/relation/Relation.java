@@ -5,7 +5,8 @@ import java.util.Vector;
 /**
  * Classe che gestisce i dati del progetto mediante l'implementazione di due Array,
  * questi due array contengono rispettivamente le chiavi e le informazioni associate alle specifiche chiavi,
- * quest clsse è necessaria per rendere astratto il concetto di tabella all'interno del progetto
+ * questa classe è necessaria per rendere astratto il concetto di entità e associazioni di un ipotetico
+ * diagramma E/R, per l'implementazione di tabelle (o relazioni) per la conservazione dei dati.
  * */
 public abstract class Relation {
     protected Object[] keys, data;
@@ -78,7 +79,7 @@ public abstract class Relation {
     }
 
     /**
-     * Controlla che tutte le chiavi corrispondano a quelle passato come argomenti in input
+     * Controlla che tutte le chiavi corrispondano a quelle passate come argomenti in input
      * @param keys insieme delle chiavi da confrontare con quelle già contenute nel vettore keys della classe
      * @return true se sono uguali, false, altrimenti
      * */
@@ -93,7 +94,7 @@ public abstract class Relation {
     }
 
     /**
-     * Controlla che una chiave non sia nulla
+     * Controlla che una chiave non sia composta da valori nulli
      * @return true se nulla, false, altrimenti
      * */
     public boolean keysAreNull() {
@@ -104,7 +105,7 @@ public abstract class Relation {
     }
 
     /**
-     * Setta il valore delle chiavi con quelli passati in input
+     * Imposta il valore delle chiavi con quelli passati in input
      * @param keys insieme delle chiavi da assegnare come valori del vettore keys della classe
      * */
     public void setKeys(Object... keys) {

@@ -38,12 +38,14 @@ public class CourierController extends Controller {
 
         Vector<Courier> couriers = courierService.selectTraveling();
         if (couriers.isEmpty()) {
+            // Se non ci sono corrieri in viaggio, non è possibile effettuare alcuna segnalazione
             formPane.setDisable(true);
             return;
         }
 
         formPane.setDisable(false);
 
+        // Inizializza gli elementi delle ChoiceBox utilizzate per segnalare una consegna
         courierChooser.setConverter(new StringConverter<>() {
             @Override
             public String toString(Courier courier) {
@@ -79,7 +81,8 @@ public class CourierController extends Controller {
     }
 
     /**
-     * Metodo che gestisce la segnalazione di un collo informando anche dell'avvenuta/mancata segnalazione di un collo da parte di un corriere
+     * Metodo che gestisce la segnalazione di una consegna informando
+     * anche dell'avvenuta/mancata segnalazione della stessa
      * */
     @FXML
     public void report() {
@@ -97,6 +100,7 @@ public class CourierController extends Controller {
             return;
         }
 
+        // Cerca l'ultima consegna effettuata per il collo selezionato
         RouteService routeService = (RouteService) ServiceProvider.getService(Route.class);
         CarrierHelper carrierHelper = new CarrierHelper(routeService.selectAll());
         Vector<Centro> path = carrierHelper.findPath(pack.getPartenza(), pack.getDestinazione());
@@ -105,9 +109,10 @@ public class CourierController extends Controller {
 
         Centro center;
         if (lastDelivery == null)
-            center = path.get(0);
+            center = path.get(0); // Quando non è stata ancora effettuata nessuna segnalazione per quel collo
         else center = carrierHelper.nextStep(path, lastDelivery.getCentro());
 
+        // Inserisce la consegna nella relativa tabella
         Delivery delivery = new Delivery(pack, center, courier);
         deliveryService.insert(delivery);
 
@@ -119,15 +124,18 @@ public class CourierController extends Controller {
             statusLabel.setText("Consegna del collo avvenuta!");
 
             if (packageService.selectByVehicleNotDelivered(courier.getVehicle()).isEmpty()) {
+                // Quando il corriere ha consegnato tutti i colli, ritorna disponibile per una nuova spedizione
                 courier.setVehicle(null);
                 CourierService courierService = (CourierService) ServiceProvider.getService(Courier.class);
                 courierService.update(courier);
             }
         } else {
+            // Quando il collo è arrivato a destinazione
             statusLabel.setTextFill(Color.GREEN);
             statusLabel.setText("Segnalazione avvenuta con successo!");
         }
 
+        // Reinizializza la view
         initialize();
     }
 

@@ -26,8 +26,11 @@ public class TrackController extends Controller {
     @FXML
     public void onTrace() {
         errorLabel.setTextFill(Color.RED);
+        // Carica il collo associato al codice inserito dall'utente
         PackageService packageService = (PackageService) ServiceProvider.getService(Collo.class);
         collo = packageService.select(codeField.getText());
+
+        // Mostra la view per il tracciamento del collo
         if (collo != null)
             MainApplication.getMainController().showView("/unipa/prog3/view/tracking-view.fxml");
         else errorLabel.setText("Il codice inserito non è valido!");

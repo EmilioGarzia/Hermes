@@ -30,6 +30,19 @@ public class CourierService extends GenericService<Courier> {
         return select(courier -> courier.getVehicle() != null);
     }
 
+    /**
+     * Verifica se il veicolo specificato sia già stato associato ad un corriere
+     * @param veicolo Veicolo per cui effettuare il controllo
+     * @return true se il veicolo è stato già associato ad un corriere, false altrimenti
+     */
+    public boolean existsDriverOfVehicle(Veicolo veicolo) {
+        Vector<Courier> traveling = selectTraveling();
+        for (Courier courier : traveling)
+            if (courier.getVehicle().equalKeys(veicolo))
+                return true;
+        return false;
+    }
+
     @Override
     public Courier relationFromFields(String[] fields) {
         // Carica il veicolo associato utilizzando la chiave contenuta nel relativo campo

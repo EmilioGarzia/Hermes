@@ -106,6 +106,14 @@ public class Cromosoma extends Vector<Collo> {
         return fitness;
     }
 
+    /**
+     * Calcola il rapporto tra il peso totale dei colli contenuti nella soluzione e la capienza massima del veicolo
+     * @return Il rapporto calcolato
+     */
+    public double weightRatio() {
+        return totalWeight/vehicle.getCapienza();
+    }
+
     public Veicolo getVehicle() {
         return vehicle;
     }

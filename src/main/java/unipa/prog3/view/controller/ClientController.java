@@ -40,6 +40,7 @@ public class ClientController extends Controller {
      * Metodo invocato automaticamente da JavaFX per l'inizializzazione della view
      * */
     public void initialize() {
+        // Riempie le ComboBox per l'inserimento dello Stato e della città
         Vector<Centro> centers = centerService.selectAll();
         Vector<String> countries = new Vector<>();
         centers.forEach(centro -> {
@@ -57,6 +58,9 @@ public class ClientController extends Controller {
         });
     }
 
+    /**
+     * Metodo invocato quando viene premuto il tasto per aggiungere il nuovo indirizzo
+     */
     @FXML
     public void aggiungiIndirizzo() {
         if (nameField.getText().isEmpty()) {
@@ -100,12 +104,12 @@ public class ClientController extends Controller {
             builder.setEmail(null);
 
         ClientService service = (ClientService) ServiceProvider.getService(Cliente.class);
+        // Verifica che l'indirizzo non esista già e lo inserisce nella relativa tabella
         if (service.findRecord(builder.getCliente()) == null)
             service.insert(builder.getCliente());
 
         MainApplication.getMainController().navigateBack();
     }
-
 
     @Override
     public void onResume() {}

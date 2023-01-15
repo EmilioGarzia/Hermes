@@ -17,7 +17,9 @@ public class MainController extends Stack<Controller> {
         MainApplication.setMainController(this);
     }
 
-    @FXML
+    /**
+     * Mostra la home-view come prima view in assoluto
+     */
     public void initialize() {
         showView("/unipa/prog3/view/home-view.fxml");
     }
@@ -47,15 +49,15 @@ public class MainController extends Stack<Controller> {
     }
 
     /**
-     * Una volta caricata una tra le view precedenti, questa viene caricata e mostrata all'utente
-     * @param path il percorso file della view fxml
+     * Carica e mostra all'utente la view situata nel percorso specificato
+     * @param path Il percorso del file fxml della view
      * */
     public void showView(String path) {
         contentPane.setContent(MainApplication.loadView(path));
     }
 
     /**
-     * Provvede a rimuovere la view corrente dallo stack e a caricare la view precedente
+     * Rimuove il controller della view corrente dallo stack e mostra la view precedente
      * */
     public void navigateBack() {
         pop();
