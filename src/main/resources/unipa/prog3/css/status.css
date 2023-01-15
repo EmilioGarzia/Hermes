@@ -1,3 +1,14 @@
 .mainContainer{
     -fx-background-color: #222A35;
 }
+
+.msg{
+    -fx-font-size: 22px;
+    -fx-text-fill: #02c902;
+}
+
+.table-view{
+    -fx-font-size: 15px;
+    -fx-text-fill: red;
+    -fx-effect: dropshadow(gaussian, rgb(143, 143, 143), 64.48, 0.0, 1.0, 0.0);
+}

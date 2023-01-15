@@ -45,28 +45,30 @@
                      <center>
                         <AnchorPane maxHeight="50.0" prefHeight="50.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                            <children>
-                              <Label layoutX="167.0" prefHeight="35.0" prefWidth="150.0" text="Codice collo:" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="167.0" AnchorPane.topAnchor="0.0" />
+                              <Label layoutX="167.0" prefHeight="35.0" prefWidth="150.0" styleClass="allText" text="Codice collo:" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="167.0" AnchorPane.topAnchor="0.0" />
                               <TextField fx:id="codeField" alignment="CENTER" layoutX="317.0" maxHeight="-Infinity" maxWidth="500.0" prefHeight="57.0" prefWidth="290.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="317.0" AnchorPane.rightAnchor="316.0" AnchorPane.topAnchor="0.0" />
                               <Button layoutX="617.0" mnemonicParsing="false" onAction="#onTrace" prefHeight="38.0" prefWidth="114.0" styleClass="trackButton" text="Traccia" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="192.0" AnchorPane.topAnchor="0.0" />
                            </children>
                         </AnchorPane>
                      </center>
                      <top>
-                        <VBox prefWidth="100.0" BorderPane.alignment="CENTER">
+                        <VBox maxWidth="-Infinity" prefHeight="99.0" BorderPane.alignment="CENTER">
                            <children>
-                              <Label alignment="CENTER" prefWidth="925.0" styleClass="subtitle" text="TRACCIA LA TUA SPEDIZIONE">
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="32.0" prefWidth="975.0" styleClass="subtitle" text="TRACCIA LA TUA SPEDIZIONE" textAlignment="CENTER">
                                  <font>
-                                    <Font size="15.0" />
+                                    <Font name="System Bold" size="15.0" />
                                  </font>
-                              </Label>
-                              <Label fx:id="errorLabel" alignment="CENTER" prefWidth="925.0">
-                                 <VBox.margin>
-                                    <Insets bottom="5.0" top="30.0" />
-                                 </VBox.margin>
                               </Label>
                            </children>
                         </VBox>
                      </top>
+                     <bottom>
+                        <Label fx:id="errorLabel" alignment="CENTER" contentDisplay="CENTER" styleClass="errorLabel" textAlignment="CENTER" BorderPane.alignment="CENTER">
+                           <BorderPane.margin>
+                              <Insets top="30.0" />
+                           </BorderPane.margin>
+                        </Label>
+                     </bottom>
                   </BorderPane>
                </children>
             </VBox>

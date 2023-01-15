@@ -9,81 +9,86 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="500.0" prefWidth="1000.0" styleClass="mainContainer" stylesheets="@../css/courier.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unipa.prog3.view.controller.CourierController">
-   <top>
-      <VBox maxWidth="-Infinity" prefHeight="100.0" prefWidth="363.0" BorderPane.alignment="CENTER">
-         <BorderPane.margin>
-            <Insets top="20.0" />
-         </BorderPane.margin>
-         <children>
-            <ImageView fitHeight="109.0" fitWidth="992.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../image/logo.png" />
-               </image>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </ImageView>
-         </children>
-      </VBox>
-   </top>
+
+<BorderPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unipa.prog3.view.controller.CourierController">
    <center>
-      <VBox maxWidth="-Infinity" prefWidth="341.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="34.0" prefWidth="433.0" styleClass="subtitle" text="SEGNALA CONSEGNA" textAlignment="CENTER">
-               <VBox.margin>
-                  <Insets top="60.0" />
-               </VBox.margin></Label>
-            <Label fx:id="statusLabel" alignment="CENTER" prefWidth="437.0" styleClass="errorMSG">
-               <VBox.margin>
-                  <Insets bottom="20.0" top="10.0" />
-               </VBox.margin>
-            </Label>
-            <BorderPane fx:id="formPane" prefHeight="158.0" prefWidth="364.0">
-               <bottom>
-                  <BorderPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                     <left>
-                        <Label styleClass="allText" text="Codice collo" BorderPane.alignment="CENTER">
-                           <BorderPane.margin>
-                              <Insets bottom="20.0" />
-                           </BorderPane.margin>
-                        </Label>
-                     </left>
-                     <right>
-                        <ChoiceBox fx:id="packageChooser" prefHeight="30.0" prefWidth="195.0" BorderPane.alignment="CENTER">
-                           <BorderPane.margin>
-                              <Insets bottom="20.0" />
-                           </BorderPane.margin>
-                        </ChoiceBox>
-                     </right>
+      <BorderPane prefHeight="500.0" prefWidth="1000.0" styleClass="mainContainer" stylesheets="@../css/courier.css">
+         <top>
+            <VBox maxWidth="-Infinity" prefHeight="100.0" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets top="20.0" />
+               </BorderPane.margin>
+               <children>
+                  <ImageView fitHeight="109.0" fitWidth="992.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../image/logo.png" />
+                     </image>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </ImageView>
+               </children>
+            </VBox>
+         </top>
+         <center>
+            <VBox maxWidth="-Infinity" prefWidth="341.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="341.0" styleClass="subtitle" text="SEGNALA CONSEGNA" textAlignment="CENTER">
+                     <VBox.margin>
+                        <Insets bottom="20.0" top="60.0" />
+                     </VBox.margin>
+                  </Label>
+                  <BorderPane fx:id="formPane" prefHeight="158.0" prefWidth="364.0">
                      <bottom>
-                        <Button defaultButton="true" mnemonicParsing="false" onAction="#report" prefHeight="62.0" prefWidth="183.0" styleClass="acceptButton" text="Segnala" BorderPane.alignment="CENTER">
+                        <BorderPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                           <left>
+                              <Label styleClass="allText" text="Codice collo" BorderPane.alignment="CENTER">
+                                 <BorderPane.margin>
+                                    <Insets bottom="20.0" />
+                                 </BorderPane.margin>
+                              </Label>
+                           </left>
+                           <right>
+                              <ChoiceBox fx:id="packageChooser" prefWidth="195.0" BorderPane.alignment="CENTER">
+                                 <BorderPane.margin>
+                                    <Insets bottom="20.0" />
+                                 </BorderPane.margin>
+                              </ChoiceBox>
+                           </right>
+                           <bottom>
+                              <Button defaultButton="true" mnemonicParsing="false" onAction="#report" prefHeight="62.0" prefWidth="183.0" styleClass="acceptButton" text="Segnala" BorderPane.alignment="CENTER">
+                                 <BorderPane.margin>
+                                    <Insets />
+                                 </BorderPane.margin>
+                              </Button>
+                           </bottom>
+                        </BorderPane>
+                     </bottom>
+                     <right>
+                        <ChoiceBox fx:id="courierChooser" prefWidth="195.0" BorderPane.alignment="CENTER">
                            <BorderPane.margin>
                               <Insets />
                            </BorderPane.margin>
-                        </Button>
-                     </bottom>
+                        </ChoiceBox>
+                     </right>
+                     <left>
+                        <Label styleClass="allText" text="Corriere" BorderPane.alignment="CENTER">
+                           <BorderPane.margin>
+                              <Insets />
+                           </BorderPane.margin>
+                        </Label>
+                     </left>
                   </BorderPane>
-               </bottom>
-               <right>
-                  <ChoiceBox fx:id="courierChooser" prefHeight="30.0" prefWidth="195.0" BorderPane.alignment="CENTER">
-                     <BorderPane.margin>
-                        <Insets />
-                     </BorderPane.margin>
-                  </ChoiceBox>
-               </right>
-               <left>
-                  <Label styleClass="allText" text="Corriere" BorderPane.alignment="CENTER">
-                     <BorderPane.margin>
-                        <Insets />
-                     </BorderPane.margin>
-                  </Label>
-               </left>
-            </BorderPane>
-         </children>
-      </VBox>
+               </children>
+            </VBox>
+         </center>
+         <bottom>
+            <Label fx:id="statusLabel" alignment="CENTER" contentDisplay="CENTER" maxWidth="-Infinity" prefHeight="52.0" styleClass="errorMSG" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets bottom="400.0" />
+               </BorderPane.margin>
+            </Label>
+         </bottom>
+      </BorderPane>
    </center>
-   <bottom>
-      <VBox prefHeight="100.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
-   </bottom>
 </BorderPane>

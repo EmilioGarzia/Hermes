@@ -23,7 +23,7 @@ public class SendController extends Controller {
     @FXML
     private TextField weightField;
     @FXML
-    private Label errorLabel;
+    private TextField errorLabel;
 
     private final HashMap<String, Cliente> clientsMap;
     private final PackageService packageService;
@@ -54,7 +54,7 @@ public class SendController extends Controller {
 
     @FXML
     public void send() {
-        errorLabel.setTextFill(Color.RED);
+        errorLabel.setStyle("-fx-text-fill: red");
         if (senderChooser.getValue() == null) {
             errorLabel.setText("Devi selezionare un mittente!");
             return;
@@ -80,7 +80,7 @@ public class SendController extends Controller {
 
         Collo collo = new Collo(null, sender, receiver, weight);
         packageService.insert(collo);
-        errorLabel.setTextFill(Color.GREEN);
+        errorLabel.setStyle("-fx-text-fill: #00c700");
         errorLabel.setText("Utilizza il codice " + collo.getCodice() + " per tracciare la tua spedizione");
         errorLabel.setVisible(true);
         spedisciVeicoli();

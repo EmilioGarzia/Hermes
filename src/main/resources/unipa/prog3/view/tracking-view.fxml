@@ -11,17 +11,17 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="node" styleClass="mainContainer" stylesheets="@../css/status.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unipa.prog3.view.controller.PackageTrackController">
+<BorderPane fx:id="node" prefHeight="531.0" prefWidth="1266.0" styleClass="mainContainer" stylesheets="@../css/status.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unipa.prog3.view.controller.PackageTrackController">
    <center>
-      <BorderPane>
+      <BorderPane prefHeight="272.0" prefWidth="912.0">
          <center>
-            <TableView fx:id="historyTable" prefHeight="200.0" prefWidth="555.0" BorderPane.alignment="CENTER">
+            <TableView fx:id="historyTable" prefHeight="140.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
                <columns>
-                  <TableColumn fx:id="timestampField" minWidth="75.0" prefWidth="150.0" resizable="false" text="Data e ora" />
-                  <TableColumn fx:id="descriptionField" editable="false" minWidth="80.0" prefWidth="415.0217978009704" resizable="false" text="Descrizione" />
+                  <TableColumn fx:id="timestampField" editable="false" maxWidth="-Infinity" minWidth="300.0" prefWidth="-1.0" text="Data e ora" />
+                  <TableColumn fx:id="descriptionField" editable="false" maxWidth="1000.0" minWidth="550.0" prefWidth="1000.0" text="Descrizione" />
                </columns>
                <BorderPane.margin>
-                  <Insets top="20.0" />
+                  <Insets bottom="50.0" />
                </BorderPane.margin>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -29,20 +29,11 @@
             </TableView>
          </center>
          <top>
-            <VBox BorderPane.alignment="CENTER">
-               <children>
-                  <ProgressBar fx:id="progressBar" prefHeight="30.0" prefWidth="566.0" progress="0.0">
-                     <cursor>
-                        <Cursor fx:constant="DEFAULT" />
-                     </cursor>
-                  </ProgressBar>
-                  <Label fx:id="statusLabel" alignment="CENTER" prefHeight="18.0" prefWidth="566.0">
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin>
-                  </Label>
-               </children>
-            </VBox>
+            <Label fx:id="statusLabel" alignment="CENTER" contentDisplay="CENTER" maxWidth="-Infinity" prefHeight="32.0" styleClass="msg" textAlignment="CENTER" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets bottom="30.0" top="20.0" />
+               </BorderPane.margin>
+            </Label>
          </top>
       </BorderPane>
    </center>
@@ -63,6 +54,13 @@
       <VBox prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </left>
    <bottom>
-      <VBox prefHeight="75.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+      <ProgressBar fx:id="progressBar" prefHeight="30.0" prefWidth="944.0" progress="0.0" BorderPane.alignment="CENTER">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <BorderPane.margin>
+            <Insets bottom="50.0" />
+         </BorderPane.margin>
+      </ProgressBar>
    </bottom>
 </BorderPane>

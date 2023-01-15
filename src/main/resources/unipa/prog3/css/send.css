@@ -27,18 +27,14 @@
 .choice-box{
     -fx-background-radius: 100 100 100 100;
     -fx-text-fill: black;
+    -fx-font-size: 22px;
+    -fx-text-alignment: center;
 }
 
 .kgLabel{
     -fx-font-style: italic;
     -fx-text-fill: white;
-    -fx-font-size: 18px;
-}
-
-.errorLabel{
-    -fx-font-weight: bold;
-    -fx-background-radius: 100 100 100 100;
-    -fx-padding: 10;
+    -fx-font-size: 22pxpx;
 }
 
 .sendButton{
@@ -59,4 +55,9 @@
 
 .tooltip{
     -fx-font-size: 16px;
+}
+
+.msg{
+    -fx-text-fill: green;
+    -fx-background-color: transparent;
 }
