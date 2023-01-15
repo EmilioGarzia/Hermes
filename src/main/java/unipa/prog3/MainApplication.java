@@ -17,8 +17,6 @@ public class MainApplication extends Application {
     /**
      * Mostra a schermo la finestra e la riempie con gli elementi caricati dal file main.fxml
      * @param stage Istanza dell'oggetto che fa riferimento alla finestra dell'applicazione
-     * @throws Exception Quando ...
-     * @return Cosa...
      */
     @Override
     public void start(Stage stage) {
@@ -28,13 +26,16 @@ public class MainApplication extends Application {
         stage.show();
     }
 
-    /**
-     * @param args
-     */
     public static void main(String[] args) {
         launch();
     }
 
+    /**
+     * Carica una view dal relativo file fxml
+     * @param path Percorso del file fxml
+     * @return Istanza della view caricata
+     * @param <T> Classe dell'oggetto relativo alla view caricata
+     */
     public static <T> T loadView(String path) {
         try {
             return new FXMLLoader(MainApplication.class.getResource(path)).load();
