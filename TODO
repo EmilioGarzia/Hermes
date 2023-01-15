@@ -1,5 +1,3 @@
-Rimuovere campo consegnato in Collo
-
 Design pattern utilizzati:
     - Factory Pattern e Flyweight -> ServiceProvider
     - Adapter -> TableAdapter
