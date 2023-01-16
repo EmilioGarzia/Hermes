@@ -15,4 +15,6 @@ module unipa.prog {
     opens unipa.prog3.view.controller to javafx.fxml;
     exports unipa.prog3;
     opens unipa.prog3 to javafx.fxml;
+    exports unipa.prog3.view.table;
+    opens unipa.prog3.view.table to javafx.fxml;
 }

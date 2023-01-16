@@ -2,8 +2,8 @@ package unipa.prog3.model.relation;
 
 import java.time.LocalDateTime;
 
-public class Delivery extends Relation {
-    public Delivery(Collo collo, Centro centro, Courier corriere, LocalDateTime timestamp) {
+public class Consegna extends Relation {
+    public Consegna(Collo collo, Centro centro, Corriere corriere, LocalDateTime timestamp) {
         super(3, 1);
         addKey(collo);
         addKey(centro);
@@ -11,15 +11,15 @@ public class Delivery extends Relation {
         addData(timestamp);
     }
 
-    public Delivery(Collo collo, Centro centro, Courier corriere) {
+    public Consegna(Collo collo, Centro centro, Corriere corriere) {
         this(collo, centro, corriere, LocalDateTime.now());
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof Delivery delivery)
-            return getCollo().equals(delivery.getCollo()) && getCentro().equals(delivery.getCentro())
-                && getCorriere().equals(delivery.getCorriere()) && getTimestamp().equals(delivery.getTimestamp());
+        if (obj instanceof Consegna consegna)
+            return getCollo().equals(consegna.getCollo()) && getCentro().equals(consegna.getCentro())
+                && getCorriere().equals(consegna.getCorriere()) && getTimestamp().equals(consegna.getTimestamp());
         return false;
     }
 
@@ -31,8 +31,8 @@ public class Delivery extends Relation {
         return (Centro) keys[1];
     }
 
-    public Courier getCorriere() {
-        return (Courier) keys[2];
+    public Corriere getCorriere() {
+        return (Corriere) keys[2];
     }
 
     public LocalDateTime getTimestamp() {

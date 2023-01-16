@@ -1,4 +1,4 @@
-package unipa.prog3.view.controller;
+package unipa.prog3.view.table;
 
 import javafx.beans.property.SimpleStringProperty;
 

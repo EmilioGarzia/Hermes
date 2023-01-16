@@ -18,7 +18,7 @@ import java.util.Vector;
  * */
 public class CourierController extends Controller {
     @FXML
-    private ChoiceBox<Courier> courierChooser;
+    private ChoiceBox<Corriere> courierChooser;
     @FXML
     private ChoiceBox<Collo> packageChooser;
     @FXML
@@ -33,11 +33,11 @@ public class CourierController extends Controller {
         courierChooser.getItems().clear();
         packageChooser.getItems().clear();
 
-        CourierService courierService = (CourierService) ServiceProvider.getService(Courier.class);
+        CourierService courierService = (CourierService) ServiceProvider.getService(Corriere.class);
         PackageService packageService = (PackageService) ServiceProvider.getService(Collo.class);
 
-        Vector<Courier> couriers = courierService.selectTraveling();
-        if (couriers.isEmpty()) {
+        Vector<Corriere> corrieres = courierService.selectTraveling();
+        if (corrieres.isEmpty()) {
             // Se non ci sono corrieri in viaggio, non è possibile effettuare alcuna segnalazione
             formPane.setDisable(true);
             return;
@@ -48,18 +48,18 @@ public class CourierController extends Controller {
         // Inizializza gli elementi delle ChoiceBox utilizzate per segnalare una consegna
         courierChooser.setConverter(new StringConverter<>() {
             @Override
-            public String toString(Courier courier) {
-                if (courier != null)
-                    return courier.getID();
+            public String toString(Corriere corriere) {
+                if (corriere != null)
+                    return corriere.getID();
                 return null;
             }
 
             @Override
-            public Courier fromString(String s) {
+            public Corriere fromString(String s) {
                 return courierService.select(s);
             }
         });
-        courierChooser.setItems(FXCollections.observableList(couriers));
+        courierChooser.setItems(FXCollections.observableList(corrieres));
         courierChooser.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, newValue) -> {
             if (newValue != null)
                 packageChooser.setItems(FXCollections.observableList(packageService.selectByVehicleNotDelivered(newValue.getVehicle())));
@@ -86,8 +86,8 @@ public class CourierController extends Controller {
      * */
     @FXML
     public void report() {
-        Courier courier = courierChooser.getValue();
-        if (courier == null) {
+        Corriere corriere = courierChooser.getValue();
+        if (corriere == null) {
             statusLabel.setTextFill(Color.RED);
             statusLabel.setText("Devi indicare il tuo codice da corriere!");
             return;
@@ -101,20 +101,20 @@ public class CourierController extends Controller {
         }
 
         // Cerca l'ultima consegna effettuata per il collo selezionato
-        RouteService routeService = (RouteService) ServiceProvider.getService(Route.class);
+        RouteService routeService = (RouteService) ServiceProvider.getService(Rotta.class);
         CarrierHelper carrierHelper = new CarrierHelper(routeService.selectAll());
         Vector<Centro> path = carrierHelper.findPath(pack.getPartenza(), pack.getDestinazione());
-        DeliveryService deliveryService = (DeliveryService) ServiceProvider.getService(Delivery.class);
-        Delivery lastDelivery = deliveryService.selectLastByPackage(pack);
+        DeliveryService deliveryService = (DeliveryService) ServiceProvider.getService(Consegna.class);
+        Consegna lastConsegna = deliveryService.selectLastByPackage(pack);
 
         Centro center;
-        if (lastDelivery == null)
+        if (lastConsegna == null)
             center = path.get(0); // Quando non è stata ancora effettuata nessuna segnalazione per quel collo
-        else center = carrierHelper.nextStep(path, lastDelivery.getCentro());
+        else center = carrierHelper.nextStep(path, lastConsegna.getCentro());
 
         // Inserisce la consegna nella relativa tabella
-        Delivery delivery = new Delivery(pack, center, courier);
-        deliveryService.insert(delivery);
+        Consegna consegna = new Consegna(pack, center, corriere);
+        deliveryService.insert(consegna);
 
         if (center.equals(pack.getDestinazione())) {
             PackageService packageService = (PackageService) ServiceProvider.getService(Collo.class);
@@ -123,11 +123,11 @@ public class CourierController extends Controller {
             statusLabel.setTextFill(Color.GREEN);
             statusLabel.setText("Consegna del collo avvenuta!");
 
-            if (packageService.selectByVehicleNotDelivered(courier.getVehicle()).isEmpty()) {
+            if (packageService.selectByVehicleNotDelivered(corriere.getVehicle()).isEmpty()) {
                 // Quando il corriere ha consegnato tutti i colli, ritorna disponibile per una nuova spedizione
-                courier.setVehicle(null);
-                CourierService courierService = (CourierService) ServiceProvider.getService(Courier.class);
-                courierService.update(courier);
+                corriere.setVehicle(null);
+                CourierService courierService = (CourierService) ServiceProvider.getService(Corriere.class);
+                courierService.update(corriere);
             }
         } else {
             // Quando il collo è arrivato a destinazione

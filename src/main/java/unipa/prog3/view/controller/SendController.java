@@ -52,7 +52,7 @@ public class SendController extends Controller {
         senderChooser.getSelectionModel().selectedIndexProperty().addListener(listener);
         receiverChooser.getSelectionModel().selectedIndexProperty().addListener(listener);
 
-        RouteService routeService = (RouteService) ServiceProvider.getService(Route.class);
+        RouteService routeService = (RouteService) ServiceProvider.getService(Rotta.class);
         carrierHelper = new CarrierHelper(routeService.selectAll());
     }
 
@@ -99,13 +99,13 @@ public class SendController extends Controller {
      * da utilizzare per spedire i colli che sono ancora in fase di elaborazione
      * */
     private void spedisciColli() {
-        CourierService courierService = (CourierService) ServiceProvider.getService(Courier.class);
-        Vector<Courier> couriers = courierService.selectAvailable();
+        CourierService courierService = (CourierService) ServiceProvider.getService(Corriere.class);
+        Vector<Corriere> corrieres = courierService.selectAvailable();
         VehicleService vehicleService = (VehicleService) ServiceProvider.getService(Veicolo.class);
         Vector<Veicolo> veicoli = vehicleService.selectAvailable();
         Vector<Collo> colli = packageService.selectNotSent();
 
-        while(!veicoli.isEmpty() && !couriers.isEmpty()) {
+        while(!veicoli.isEmpty() && !corrieres.isEmpty()) {
             Cromosoma best = null;
             for (Collo collo : colli) {
                 // Trova l'insieme di colli che dovranno seguire un percorso simile a quello corrente
@@ -131,10 +131,10 @@ public class SendController extends Controller {
 
                 // Rimuove il veicolo dalla lista dei veicoli disponibili
                 veicoli.remove(best.getVehicle());
-                Courier courier = couriers.get((int) (Math.random() * couriers.size()));
-                courier.setVehicle(best.getVehicle());
-                courierService.update(courier);
-                couriers.remove(courier);
+                Corriere corriere = corrieres.get((int) (Math.random() * corrieres.size()));
+                corriere.setVehicle(best.getVehicle());
+                courierService.update(corriere);
+                corrieres.remove(corriere);
             } else break;
         }
     }

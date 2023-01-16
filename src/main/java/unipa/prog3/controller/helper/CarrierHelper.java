@@ -4,7 +4,7 @@ import unipa.prog3.controller.service.util.BFSNode;
 import unipa.prog3.controller.service.util.Graph;
 import unipa.prog3.model.relation.Centro;
 import unipa.prog3.model.relation.Collo;
-import unipa.prog3.model.relation.Route;
+import unipa.prog3.model.relation.Rotta;
 
 import java.util.Vector;
 
@@ -15,11 +15,11 @@ import java.util.Vector;
 public class CarrierHelper {
     private final Graph<Centro> map;
 
-    public CarrierHelper(Vector<Route> routes) {
+    public CarrierHelper(Vector<Rotta> rottas) {
         map = new Graph<>();
-        for (Route route : routes) {
-            BFSNode<Centro> n1 = add(route.getCentro1());
-            BFSNode<Centro> n2 = add(route.getCentro2());
+        for (Rotta rotta : rottas) {
+            BFSNode<Centro> n1 = add(rotta.getCentro1());
+            BFSNode<Centro> n2 = add(rotta.getCentro2());
             n1.connectTo(n2);
         }
     }

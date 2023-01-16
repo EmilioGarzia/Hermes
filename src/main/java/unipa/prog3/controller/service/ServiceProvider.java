@@ -28,15 +28,15 @@ public abstract class ServiceProvider {
             return new ClientService();
         else if (Collo.class.equals(type))
             return new PackageService();
-        else if (Courier.class.equals(type))
+        else if (Corriere.class.equals(type))
             return new CourierService();
         else if (Veicolo.class.equals(type))
             return new VehicleService();
         else if (Centro.class.equals(type))
             return new CenterService();
-        else if (Delivery.class.equals(type))
+        else if (Consegna.class.equals(type))
             return new DeliveryService();
-        else if (Route.class.equals(type))
+        else if (Rotta.class.equals(type))
             return new RouteService();
         return null;
     }

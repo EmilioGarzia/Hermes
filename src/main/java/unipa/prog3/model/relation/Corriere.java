@@ -1,7 +1,7 @@
 package unipa.prog3.model.relation;
 
-public class Courier extends Relation {
-    public Courier(String id, String name, String surname, Veicolo vehicle) {
+public class Corriere extends Relation {
+    public Corriere(String id, String name, String surname, Veicolo vehicle) {
         super(1, 3);
         addKey(id);
         addData(name);
@@ -9,7 +9,7 @@ public class Courier extends Relation {
         addData(vehicle);
     }
 
-    public Courier(String name, String surname) {
+    public Corriere(String name, String surname) {
         this(null, name, surname, null);
     }
 

@@ -1,7 +1,7 @@
 package unipa.prog3.model.relation;
 
-public class Route extends Relation {
-    public Route(Centro centro1, Centro centro2) {
+public class Rotta extends Relation {
+    public Rotta(Centro centro1, Centro centro2) {
         super(2, 0);
         addKey(centro1);
         addKey(centro2);

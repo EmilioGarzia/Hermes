@@ -1,15 +1,15 @@
 package unipa.prog3.controller.service;
 
+import unipa.prog3.model.relation.Corriere;
 import unipa.prog3.model.relation.Veicolo;
 import unipa.prog3.model.io.TableProvider;
-import unipa.prog3.model.relation.Courier;
 
 import java.util.Vector;
 
 /**
  * Specializzazione di un Service che gestisca le istanze della classe Courier
  */
-public class CourierService extends GenericService<Courier> {
+public class CourierService extends GenericService<Corriere> {
     public CourierService() {
         super(TableProvider.TableName.COURIERS);
     }
@@ -18,7 +18,7 @@ public class CourierService extends GenericService<Courier> {
      * Seleziona tutti corrieri disponibili per la guida di una spedizione
      * @return Istanza di un Vector contenente i corrieri selezionati
      */
-    public Vector<Courier> selectAvailable() {
+    public Vector<Corriere> selectAvailable() {
         return select(courier -> courier.getVehicle() == null);
     }
 
@@ -26,7 +26,7 @@ public class CourierService extends GenericService<Courier> {
      * Seleziona tutti i corrieri che sono già in viaggio
      * @return Istanza di un Vector contenente i corrieri selezionati
      */
-    public Vector<Courier> selectTraveling() {
+    public Vector<Corriere> selectTraveling() {
         return select(courier -> courier.getVehicle() != null);
     }
 
@@ -36,18 +36,18 @@ public class CourierService extends GenericService<Courier> {
      * @return true se il veicolo è stato già associato ad un corriere, false altrimenti
      */
     public boolean existsDriverOfVehicle(Veicolo veicolo) {
-        Vector<Courier> traveling = selectTraveling();
-        for (Courier courier : traveling)
-            if (courier.getVehicle().equalKeys(veicolo))
+        Vector<Corriere> traveling = selectTraveling();
+        for (Corriere corriere : traveling)
+            if (corriere.getVehicle().equalKeys(veicolo))
                 return true;
         return false;
     }
 
     @Override
-    public Courier relationFromFields(String[] fields) {
+    public Corriere relationFromFields(String[] fields) {
         // Carica il veicolo associato utilizzando la chiave contenuta nel relativo campo
         VehicleService vehicleService = (VehicleService) ServiceProvider.getService(Veicolo.class);
         Veicolo veicolo = vehicleService.select(fields[3]);
-        return new Courier(fields[0], fields[1], fields[2], veicolo);
+        return new Corriere(fields[0], fields[1], fields[2], veicolo);
     }
 }

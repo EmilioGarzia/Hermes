@@ -13,8 +13,9 @@ import unipa.prog3.controller.service.RouteService;
 import unipa.prog3.controller.service.ServiceProvider;
 import unipa.prog3.model.relation.Centro;
 import unipa.prog3.model.relation.Collo;
-import unipa.prog3.model.relation.Delivery;
-import unipa.prog3.model.relation.Route;
+import unipa.prog3.model.relation.Consegna;
+import unipa.prog3.model.relation.Rotta;
+import unipa.prog3.view.table.DeliveryTableRecord;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -56,12 +57,12 @@ public class PackageTrackController extends Controller {
         if (collo.getVeicolo() == null) return;
 
         // Effettua il tracciamento del collo
-        RouteService routeService = (RouteService) ServiceProvider.getService(Route.class);
+        RouteService routeService = (RouteService) ServiceProvider.getService(Rotta.class);
         CarrierHelper helper = new CarrierHelper(routeService.selectAll());
         Vector<Centro> path = helper.findPath(collo.getPartenza(), collo.getDestinazione());
 
-        DeliveryService deliveryService = (DeliveryService) ServiceProvider.getService(Delivery.class);
-        Vector<Delivery> deliveries = deliveryService.selectByPackage(collo);
+        DeliveryService deliveryService = (DeliveryService) ServiceProvider.getService(Consegna.class);
+        Vector<Consegna> deliveries = deliveryService.selectByPackage(collo);
 
         if (deliveries.size() > 0) {
             // Mostra le informazioni ottenute a schermo
@@ -71,7 +72,7 @@ public class PackageTrackController extends Controller {
             timestampField.setCellValueFactory(new PropertyValueFactory<>("timestamp"));
             descriptionField.setCellValueFactory(new PropertyValueFactory<>("description"));
 
-            deliveries.sort(Comparator.comparing(Delivery::getTimestamp));
+            deliveries.sort(Comparator.comparing(Consegna::getTimestamp));
             Vector<DeliveryTableRecord> records = new Vector<>();
             deliveries.forEach(delivery -> {
                 LocalDateTime dateTime = delivery.getTimestamp();
