@@ -35,7 +35,7 @@ public abstract class Relation {
 
     /**
      * Converte tutte le chiavi in un array di stringhe
-     * @return Ritorna un istanza Vector<String> contenente tutte le chiavi della tabella come stringhe
+     * @return Ritorna un istanza Vector contenente tutte le chiavi della tabella come stringhe
      * */
     public final Vector<String> keysToString() {
         return fieldsToStrings(keys);
@@ -43,7 +43,7 @@ public abstract class Relation {
 
     /**
      * Converte tutti i campi della tabella in un array di stringhe
-     * @return Ritorna un istanza Vector<String> contenente tutti i campi della tabella come stringhe
+     * @return Ritorna un istanza Vector contenente tutti i campi della tabella come stringhe
      * */
     public final Vector<String> fieldsToStrings() {
         Vector<String> keys = fieldsToStrings(this.keys);

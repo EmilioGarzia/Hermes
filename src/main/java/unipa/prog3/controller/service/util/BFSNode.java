@@ -2,6 +2,7 @@ package unipa.prog3.controller.service.util;
 
 /**
  * Classe per la visita in ampiezza di un grafo
+ * @param <T> Tipo di dati che il nodo deve contenere
  * */
 public class BFSNode<T> extends Node<T> {
     private BFSNode<T> parent;

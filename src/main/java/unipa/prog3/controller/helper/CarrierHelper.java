@@ -42,7 +42,8 @@ public class CarrierHelper {
     /**
      * Sceglie la miglior soluzione circa il carico dei colli su di un veicolo
      * @param packsToSend Insieme dei pacchi da spedire
-     * @return Istanza di Vector<Collo> contenente tutti i colli selezionati per il carico
+     * @param selected Collo selezionato per la ricerca dei percorsi simili
+     * @return Istanza di Vector contenente tutti i colli selezionati per il carico
      * */
     public Vector<Collo> findBestLoad(Vector<Collo> packsToSend, Collo selected) {
         Vector<Collo> bestLoad = new Vector<>();
@@ -78,7 +79,7 @@ public class CarrierHelper {
      * Ricerca il percorso più breve da un centro di smistamento ad un altro
      * @param partenza centro di partenza
      * @param destinazione centro di destinazione
-     * @return Istanza di Vector<Centro> che contiene i centri che costituiscono il percorso completo
+     * @return Istanza di Vector che contiene i centri che costituiscono il percorso completo
      * */
     public Vector<Centro> findPath(Centro partenza, Centro destinazione) {
         String partenzaString = joinStrings(partenza.keysToString());

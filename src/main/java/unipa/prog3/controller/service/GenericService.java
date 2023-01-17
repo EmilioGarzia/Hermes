@@ -52,7 +52,7 @@ public abstract class GenericService<T extends Relation> implements Service<T> {
     }
 
     /**
-     * Utilizzando il metodo select(Predicate<T>), seleziona tutti i record della tabella.
+     * Utilizzando il metodo select(Predicate), seleziona tutti i record della tabella.
      * @return Un'istanza di Vector contenente gli oggetti relativi a tutti i record della tabella.
      */
     public Vector<T> selectAll() {
@@ -69,7 +69,7 @@ public abstract class GenericService<T extends Relation> implements Service<T> {
     }
 
     /**
-     * Utilizzando il metodo select(Predicate<T>), seleziona l'oggetto corrispondente
+     * Utilizzando il metodo select(Predicate), seleziona l'oggetto corrispondente
      * alla chiave primaria data. La chiave primaria potrebbe essere composta da più ID.
      * @param ids ID che compongono la chiave primaria dell'oggetto da selezionare.
      * @return Restituisce un'istanza dell'oggetto letto dalla tabella.

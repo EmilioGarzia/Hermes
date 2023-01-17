@@ -5,6 +5,7 @@ import java.util.Vector;
 
 /**
  * Classe per la rappresentazione dei singoli nodi che compongono il grafo
+ * Tipo di dati da conservare nel nodo
  * */
 public abstract class Node<T> extends Vector<Node<T>> {
     private final T data;

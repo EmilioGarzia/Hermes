@@ -4,6 +4,7 @@ import java.util.*;
 
 /**
  * Classe per la gestione di un grafo non orientato
+ * @param <T> Tipo di dati da conservare nei nodi del grafo
  * */
 public class Graph<T> extends HashMap<String, Node<T>> {
 
