@@ -110,7 +110,6 @@ public class SendController extends Controller {
             for (Collo collo : colli) {
                 // Trova l'insieme di colli che dovranno seguire un percorso simile a quello corrente
                 Vector<Collo> bestLoad = carrierHelper.findBestLoad(colli, collo);
-
                 // Cerca il veicolo con il fattore di carico maggiore
                 for (Veicolo v : veicoli) {
                     Cromosoma soluzione = popolazione.findBestSolutionForSingleVehicle(v, bestLoad, 10);
@@ -126,7 +125,6 @@ public class SendController extends Controller {
                     c.setVeicolo(best.getVehicle());
                     packageService.update(c);
                     colli.remove(c);
-                    System.out.println("Il collo " + c.getCodice() + " è stato assegnato al veicolo " + best.getVehicle().getCodice());
                 }
 
                 // Rimuove il veicolo dalla lista dei veicoli disponibili
@@ -166,7 +164,8 @@ public class SendController extends Controller {
 
     /**
      * Aggiunge alla choiceBox il nuovo recod aggiunto nella client-view.fxml
-     * @param chooser,nomi
+     * @param chooser ChoiceBox di cui effettuare l'aggiornamento
+     * @param nomi Lista di nomi da inserire nella ChoiceBox
      * */
     private void updateChooser(ChoiceBox<String> chooser, Vector<String> nomi) {
         int selected = chooser.getSelectionModel().getSelectedIndex();

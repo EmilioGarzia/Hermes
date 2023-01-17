@@ -107,10 +107,10 @@ public class CourierController extends Controller {
         DeliveryService deliveryService = (DeliveryService) ServiceProvider.getService(Consegna.class);
         Consegna lastConsegna = deliveryService.selectLastByPackage(pack);
 
-        Centro center;
-        if (lastConsegna == null)
-            center = path.get(0); // Quando non è stata ancora effettuata nessuna segnalazione per quel collo
-        else center = carrierHelper.nextStep(path, lastConsegna.getCentro());
+        Centro lastCenter = null, center;
+        if (lastConsegna != null)
+            lastCenter = lastConsegna.getCentro();
+        center = carrierHelper.nextStep(path, lastCenter);
 
         // Inserisce la consegna nella relativa tabella
         Consegna consegna = new Consegna(pack, center, corriere);

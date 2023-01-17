@@ -101,6 +101,9 @@ public class CarrierHelper {
      * @param path percorso su cui effettuare la ricerca
      * */
     public Centro nextStep(Vector<Centro> path, Centro current) {
+        if (current == null)
+            return path.get(path.size()-1);
+
         String lastString = joinStrings(path.get(0).keysToString());
         BFSNode<Centro> node = (BFSNode<Centro>) map.get(lastString);
         String currentString = joinStrings(current.keysToString());

@@ -17,7 +17,7 @@ public class Table {
     public static final String delimiter = ";"; // Delimitatore dei campi della tabella
 
     // Percorso della directory contenente le tabelle
-    private static final String dataPath = System.getProperty("user.home") + File.separator + "prog3" + File.separator;
+    private static final String dataPath = System.getProperty("user.home") + File.separator + "hermes" + File.separator;
 
     private final String fileName;
     private RandomAccessFile file;
