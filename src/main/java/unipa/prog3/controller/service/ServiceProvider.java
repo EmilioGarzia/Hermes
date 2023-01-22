@@ -5,7 +5,7 @@ import unipa.prog3.model.relation.*;
 import java.util.HashMap;
 
 /**
- * Implementazione dei design pattern Flyweight e Factory method che forniscano istanze dei vari Service
+ * Implementazione dei design pattern Flyweight e Factory pattern che forniscano istanze dei vari Service
  */
 public abstract class ServiceProvider {
     private static final HashMap<Class<? extends Relation>, Service<? extends Relation>> servicePool;

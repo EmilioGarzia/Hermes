@@ -3,7 +3,6 @@ package unipa.prog3.controller.genetica;
 import unipa.prog3.model.relation.Collo;
 import unipa.prog3.model.relation.Veicolo;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
 
@@ -40,7 +39,7 @@ public class Cromosoma extends Vector<Collo> {
     /**
      * Seleziona un collo, che non sia già presente nella soluzione, casualmente
      * @param allPackages Lista di colli da utilizzare per effettuare la selezione
-     * @return
+     * @return Collo selezionato
      */
     private Collo selezionaCasuale(List<Collo> allPackages) {
         Collo scelto;

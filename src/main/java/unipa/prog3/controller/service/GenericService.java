@@ -56,11 +56,7 @@ public abstract class GenericService<T extends Relation> implements Service<T> {
      * @return Un'istanza di Vector contenente gli oggetti relativi a tutti i record della tabella.
      */
     public Vector<T> selectAll() {
-        Vector<String> data = table.select(null);
-        Vector<T> entities = new Vector<>();
-        for (String s : data)
-            entities.add(relationFromString(s));
-        return entities;
+        return select((Predicate<T>) null);
     }
 
     @Override
