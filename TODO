@@ -5,6 +5,5 @@ Design pattern utilizzati:
     - Builder -> ClientBuilder
     - Prototype -> Cromosoma
     - Command -> per effettuare le transazioni in Table
-    - Template -> GenericService
 
 * View di segnalata consegna: Da gestire lo stile del messaggio "Non ci sono corrieri"
