@@ -3,10 +3,12 @@ package unipa.prog3;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import unipa.prog3.view.controller.MainController;
 
 import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * Classe principale. Contiene il metodo main.
@@ -24,6 +26,10 @@ public class MainApplication extends Application {
         stage.setTitle("Hermès");
         stage.setScene(scene);
         stage.show();
+
+        InputStream imageStream = getClass().getResourceAsStream("image/icon.png");
+        if (imageStream != null)
+            stage.getIcons().add(new Image(imageStream));
     }
 
     public static void main(String[] args) {
